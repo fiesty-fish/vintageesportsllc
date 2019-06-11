@@ -21,7 +21,7 @@ const getItemsCreator = items => ({type: GET_ITEMS, items})
  */
 export const getItemsThunk = () => async dispatch => {
   try {
-    const {data} = await axios.get('/auth/items')
+    const {data} = await axios.get('/api/items')
     dispatch(getItemsCreator(data))
   } catch (err) {
     console.error(err)
