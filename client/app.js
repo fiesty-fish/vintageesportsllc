@@ -1,5 +1,5 @@
 import React from 'react'
-import {Navbar, ItemList} from './components'
+import {Navbar, ItemList, CartView} from './components'
 import Routes from './routes'
 
 const App = () => {
@@ -7,7 +7,10 @@ const App = () => {
     <div>
       <Navbar />
       <Routes />
+      <hr />
       <ItemList />
+      <hr />
+      <CartView />
     </div>
   )
 }
