@@ -34,7 +34,7 @@ class ItemList extends Component {
             ? items.map(item => {
                 return (
                   <div key={item.id}>
-                    <li>{item.name}</li>{' '}
+                    <li>{item.name}</li>
                     <button
                       type="button"
                       onClick={() => this.handleAddToCart(item.id)}
