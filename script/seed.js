@@ -16,7 +16,7 @@ async function seed() {
     Item.create({
       name: 'Super Mario 64',
       price: 3999,
-      year: 1972,
+      year: 1996,
       inventory: 999
     }),
     Item.create({name: 'Mario Kart', price: 5499, year: 1972, inventory: 998})

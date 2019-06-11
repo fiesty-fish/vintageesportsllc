@@ -24,7 +24,7 @@ const Item = db.define('item', {
       min: 1972,
       max: 2020
     },
-    alllowNull: false
+    allowNull: false
   },
   inventory: {
     type: Sequelize.INTEGER,

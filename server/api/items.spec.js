@@ -4,29 +4,35 @@ const {expect} = require('chai')
 const request = require('supertest')
 const db = require('../db')
 const app = require('../index')
-const User = db.model('user')
+const Item = db.model('item')
 
-describe('User routes', () => {
+describe('Item routes', () => {
   beforeEach(() => {
     return db.sync({force: true})
   })
 
-  describe('/api/users/', () => {
-    const codysEmail = 'cody@puppybook.com'
+  describe('/api/items/', () => {
+    const game = {
+      name: 'Super Mario 64',
+      price: 3999,
+      year: 1996,
+      inventory: 999
+    }
 
     beforeEach(() => {
-      return User.create({
-        email: codysEmail
-      })
+      return Item.create(game)
     })
 
-    it('GET /api/users', async () => {
+    it('GET /api/items', async () => {
       const res = await request(app)
-        .get('/api/users')
+        .get('/api/items')
         .expect(200)
 
       expect(res.body).to.be.an('array')
-      expect(res.body[0].email).to.be.equal(codysEmail)
+      expect(res.body[0].name).to.be.equal(game.name)
+      expect(res.body[0].price).to.be.equal(game.price)
+      expect(res.body[0].year).to.be.equal(game.year)
+      expect(res.body[0].inventory).to.be.equal(game.inventory)
     })
-  }) // end describe('/api/users')
-}) // end describe('User routes')
+  }) // end describe('/api/items')
+}) // end describe('Item routes')
