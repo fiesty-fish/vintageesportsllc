@@ -24,9 +24,9 @@ class CartView extends Component {
     this.forceUpdate()
   }
 
-  handleCheckout() {
+  handleCheckout(totalCost) {
     if (localStorage.cart) {
-      const currentCart = JSON.parse(localStorage.cart)
+      // ORDER MODEL THUNK CALL
       localStorage.clear()
       this.forceUpdate()
     }
@@ -36,11 +36,14 @@ class CartView extends Component {
     const {items} = this.props
     console.log('localStorage in CartView render: ', localStorage.cart)
     let cartItems
+    let cartTotal
     if (localStorage.cart) {
       // get the keys of localStorage cart
       const cartItemId = Object.keys(JSON.parse(localStorage.cart))
       //  filter all the item from local storage key array
       cartItems = items.filter(item => cartItemId.includes(item.id.toString()))
+      // calculate the total price of all items in cart
+      cartTotal = cartItems.reduce((acc, item) => acc + item.price, 0)
     }
 
     return (
@@ -65,7 +68,10 @@ class CartView extends Component {
               })
             : null}
         </ul>
-        <button onClick={this.handleCheckout} type="button">
+        <div>
+          Total: $ {cartTotal ? (cartTotal / 100).toFixed(2) : (0).toFixed(2)}
+        </div>
+        <button onClick={() => this.handleCheckout(cartTotal)} type="button">
           Checkout
         </button>
       </div>
