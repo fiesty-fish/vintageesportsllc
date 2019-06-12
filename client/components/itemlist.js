@@ -34,6 +34,7 @@ class ItemList extends Component {
     const {items} = this.props
     return (
       <div>
+        <h3>See our nice selection of vintage vidya games!</h3>
         <ul>
           {items
             ? items.map(item => {

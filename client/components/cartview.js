@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {getItemsThunk} from '../store/item'
+import UserHome from './user-home'
 import axios from 'axios'
 
 class CartView extends Component {
@@ -67,6 +68,8 @@ class CartView extends Component {
 
     return (
       <div>
+        {/* <UserHome /> */}
+        <h3>This is your cart!</h3>
         <ul>
           {cartItemsData
             ? cartItemsData.map(item => {
