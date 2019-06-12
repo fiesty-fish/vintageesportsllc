@@ -1,8 +1,15 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {getItemsThunk} from '../store/item'
+import axios from 'axios'
 
 class CartView extends Component {
+  constructor() {
+    super()
+    this.handleRemoveFromCart = this.handleRemoveFromCart.bind(this)
+    this.handleCheckout = this.handleCheckout.bind(this)
+  }
+
   componentDidMount() {
     this.props.loadAllItems()
   }
@@ -18,26 +25,64 @@ class CartView extends Component {
     this.forceUpdate()
   }
 
+  async handleCheckout(orderObj) {
+    if (localStorage.cart) {
+      try {
+        console.log('orderObj in handleCheckout: ', orderObj)
+        const {data} = await axios.post('/api/orders', {
+          order: orderObj
+        })
+        console.log('orderData in handleCheckout: ', data)
+      } catch (error) {
+        console.error(error)
+      }
+      // handle totalCost charge
+      localStorage.clear()
+      this.forceUpdate()
+    }
+  }
+
   render() {
     const {items} = this.props
-    // get the keys of localStorage cart
-    const cartItemId = Object.keys(JSON.parse(localStorage.cart))
-    //  filter all the item from local storage key array
-    const cartItems = items.filter(item =>
-      cartItemId.includes(item.id.toString())
-    )
+    console.log('localStorage in CartView render: ', localStorage.cart)
+    let cartItems
+    let cartItemsData
+    let cartTotal
+    let curOrder
+    if (localStorage.cart) {
+      // get the keys of localStorage cart
+      cartItems = JSON.parse(localStorage.cart)
+      const cartItemsIds = Object.keys(cartItems)
+      //  filter all the item from local storage key array
+      cartItemsData = items.filter(item =>
+        cartItemsIds.includes(String(item.id))
+      )
+      // calculate the total price of all items in cart
+      cartTotal = cartItemsData.reduce(
+        (acc, item) => acc + item.price * cartItems[item.id],
+        0
+      )
+      curOrder = {cartItems, cartItemsData, cartTotal}
+    }
 
     return (
       <div>
         <ul>
-          {cartItems
-            ? cartItems.map(item => {
+          {cartItemsData
+            ? cartItemsData.map(item => {
                 return (
                   <div key={item.id}>
-                    <li>{item.name}</li>
+                    <li>
+                      <strong>Name: </strong>
+                      {item.name}, <strong>Quantity: </strong>
+                      {cartItems[item.id]}, <strong>Price: </strong>${' '}
+                      {(item.price * cartItems[item.id] / 100).toFixed(2)},{' '}
+                      <strong>Price per unit: </strong>${' '}
+                      {(item.price / 100).toFixed(2)}
+                    </li>
                     <button
-                      type="button"
                       onClick={() => this.handleRemoveFromCart(item.id)}
+                      type="button"
                     >
                       Remove From Cart
                     </button>
@@ -46,6 +91,12 @@ class CartView extends Component {
               })
             : null}
         </ul>
+        <div>
+          Total: $ {cartTotal ? (cartTotal / 100).toFixed(2) : (0).toFixed(2)}
+        </div>
+        <button onClick={() => this.handleCheckout(curOrder)} type="button">
+          Checkout
+        </button>
       </div>
     )
   }
