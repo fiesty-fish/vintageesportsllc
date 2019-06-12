@@ -6,7 +6,7 @@ import axios from 'axios'
 class CartView extends Component {
   constructor() {
     super()
-    this.handleRemoveFromCat = this.handleRemoveFromCart.bind(this)
+    this.handleRemoveFromCart = this.handleRemoveFromCart.bind(this)
     this.handleCheckout = this.handleCheckout.bind(this)
   }
 
@@ -29,10 +29,10 @@ class CartView extends Component {
     if (localStorage.cart) {
       try {
         console.log('orderObj in handleCheckout: ', orderObj)
-        const newOrder = await axios.create('/api/orders', {
+        const {data} = await axios.post('/api/orders', {
           order: orderObj
         })
-        console.log('orderData in handleCheckout: ', newOrder)
+        console.log('orderData in handleCheckout: ', data)
       } catch (error) {
         console.error(error)
       }
