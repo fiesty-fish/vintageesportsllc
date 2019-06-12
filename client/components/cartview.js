@@ -3,6 +3,12 @@ import {connect} from 'react-redux'
 import {getItemsThunk} from '../store/item'
 
 class CartView extends Component {
+  constructor() {
+    super()
+    this.handleRemoveFromCat = this.handleRemoveFromCart.bind(this)
+    this.handleCheckout = this.handleCheckout.bind(this)
+  }
+
   componentDidMount() {
     this.props.loadAllItems()
   }
@@ -18,14 +24,24 @@ class CartView extends Component {
     this.forceUpdate()
   }
 
+  handleCheckout() {
+    if (localStorage.cart) {
+      const currentCart = JSON.parse(localStorage.cart)
+      localStorage.clear()
+      this.forceUpdate()
+    }
+  }
+
   render() {
     const {items} = this.props
-    // get the keys of localStorage cart
-    const cartItemId = Object.keys(JSON.parse(localStorage.cart))
-    //  filter all the item from local storage key array
-    const cartItems = items.filter(item =>
-      cartItemId.includes(item.id.toString())
-    )
+    console.log('localStorage in CartView render: ', localStorage.cart)
+    let cartItems
+    if (localStorage.cart) {
+      // get the keys of localStorage cart
+      const cartItemId = Object.keys(JSON.parse(localStorage.cart))
+      //  filter all the item from local storage key array
+      cartItems = items.filter(item => cartItemId.includes(item.id.toString()))
+    }
 
     return (
       <div>
@@ -34,10 +50,13 @@ class CartView extends Component {
             ? cartItems.map(item => {
                 return (
                   <div key={item.id}>
-                    <li>{item.name}</li>
+                    <li>
+                      Name: {item.name}, Price: ${' '}
+                      {(item.price / 100).toFixed(2)}
+                    </li>
                     <button
-                      type="button"
                       onClick={() => this.handleRemoveFromCart(item.id)}
+                      type="button"
                     >
                       Remove From Cart
                     </button>
@@ -46,6 +65,9 @@ class CartView extends Component {
               })
             : null}
         </ul>
+        <button onClick={this.handleCheckout} type="button">
+          Checkout
+        </button>
       </div>
     )
   }

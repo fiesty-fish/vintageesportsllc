@@ -3,6 +3,11 @@ import {connect} from 'react-redux'
 import {getItemsThunk} from '../store/item'
 
 class ItemList extends Component {
+  constructor() {
+    super()
+    this.handleAddToCart = this.handleAddToCart.bind(this)
+  }
+
   componentDidMount() {
     this.props.loadAllItems()
   }
@@ -10,7 +15,7 @@ class ItemList extends Component {
   handleAddToCart(itemId) {
     // If there's no localStorage cart existing make a cart key with an empty object
     if (!localStorage.cart) {
-      localStorage.setItem('cart', JSON.stringify({}))
+      localStorage.setItem('cart', '{}')
     }
     // Convert string to json
     let currentCart = JSON.parse(localStorage.cart)
@@ -34,10 +39,13 @@ class ItemList extends Component {
             ? items.map(item => {
                 return (
                   <div key={item.id}>
-                    <li>{item.name}</li>
+                    <li>
+                      Name: {item.name}, Price: ${' '}
+                      {(item.price / 100).toFixed(2)}
+                    </li>
                     <button
-                      type="button"
                       onClick={() => this.handleAddToCart(item.id)}
+                      type="button"
                     >
                       Add To Cart
                     </button>
