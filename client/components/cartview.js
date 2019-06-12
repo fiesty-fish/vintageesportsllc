@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {getItemsThunk} from '../store/item'
+import axios from 'axios'
 
 class CartView extends Component {
   constructor() {
@@ -24,9 +25,18 @@ class CartView extends Component {
     this.forceUpdate()
   }
 
-  handleCheckout(totalCost) {
+  async handleCheckout(orderObj) {
     if (localStorage.cart) {
-      // ORDER MODEL THUNK CALL
+      try {
+        console.log('orderObj in handleCheckout: ', orderObj)
+        const newOrder = await axios.create('/api/orders', {
+          order: orderObj
+        })
+        console.log('orderData in handleCheckout: ', newOrder)
+      } catch (error) {
+        console.error(error)
+      }
+      // handle totalCost charge
       localStorage.clear()
       this.forceUpdate()
     }
@@ -36,25 +46,38 @@ class CartView extends Component {
     const {items} = this.props
     console.log('localStorage in CartView render: ', localStorage.cart)
     let cartItems
+    let cartItemsData
     let cartTotal
+    let curOrder
     if (localStorage.cart) {
       // get the keys of localStorage cart
-      const cartItemId = Object.keys(JSON.parse(localStorage.cart))
+      cartItems = JSON.parse(localStorage.cart)
+      const cartItemsIds = Object.keys(cartItems)
       //  filter all the item from local storage key array
-      cartItems = items.filter(item => cartItemId.includes(item.id.toString()))
+      cartItemsData = items.filter(item =>
+        cartItemsIds.includes(String(item.id))
+      )
       // calculate the total price of all items in cart
-      cartTotal = cartItems.reduce((acc, item) => acc + item.price, 0)
+      cartTotal = cartItemsData.reduce(
+        (acc, item) => acc + item.price * cartItems[item.id],
+        0
+      )
+      curOrder = {cartItems, cartItemsData, cartTotal}
     }
 
     return (
       <div>
         <ul>
-          {cartItems
-            ? cartItems.map(item => {
+          {cartItemsData
+            ? cartItemsData.map(item => {
                 return (
                   <div key={item.id}>
                     <li>
-                      Name: {item.name}, Price: ${' '}
+                      <strong>Name: </strong>
+                      {item.name}, <strong>Quantity: </strong>
+                      {cartItems[item.id]}, <strong>Price: </strong>${' '}
+                      {(item.price * cartItems[item.id] / 100).toFixed(2)},{' '}
+                      <strong>Price per unit: </strong>${' '}
                       {(item.price / 100).toFixed(2)}
                     </li>
                     <button
@@ -71,7 +94,7 @@ class CartView extends Component {
         <div>
           Total: $ {cartTotal ? (cartTotal / 100).toFixed(2) : (0).toFixed(2)}
         </div>
-        <button onClick={() => this.handleCheckout(cartTotal)} type="button">
+        <button onClick={() => this.handleCheckout(curOrder)} type="button">
           Checkout
         </button>
       </div>
