@@ -15,3 +15,16 @@ router.get('/', async (req, res, next) => {
     next(err)
   }
 })
+
+// router.post('/', async (req, res, next) => {
+//   try {
+//     const userObj = {
+//       email: req.body.email,
+//       password: req.body.password,
+//     };
+//     const user = await User.create(userObj);
+//     res.status(201).json(user);
+//   } catch (error) {
+//     next(error);
+//   }
+// });
