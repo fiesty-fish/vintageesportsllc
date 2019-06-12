@@ -68,7 +68,7 @@ class CartView extends Component {
 
     return (
       <div>
-        <UserHome />
+        {/* <UserHome /> */}
         <h3>This is your cart!</h3>
         <ul>
           {cartItemsData
