@@ -54,7 +54,6 @@ router.put('/edit/:userId', async (req, res, next) => {
       where: {userId: req.params.userId, checkedout: false}
     })
     // find if specific item by id exists in specific order for specific user
-    console.log('itemId: ', itemId, typeof itemId)
     const itemInOrderCheck = await ItemOrder.findOne({
       where: {itemId, orderId: orderData.id}
     })
@@ -78,6 +77,32 @@ router.put('/edit/:userId', async (req, res, next) => {
     res.json(updatedOrder)
   } catch (err) {
     next(err)
+  }
+})
+
+router.put('/remove/:userId', async (req, res, next) => {
+  try {
+    const itemId = req.body.itemId
+
+    // get user's open order object
+    const openOrder = await Order.findOne({
+      where: {userId: req.params.userId, checkedout: false}
+    })
+
+    // find itemOrderObj using itemId and openOrderId
+    const numOfAffectedRows = await ItemOrder.destroy({
+      // TODO: research this or ask alvin
+      // const [ numDestroyedRows, destroyedItemObj ] = await ItemOrder.destroy({
+      where: {
+        itemId: itemId,
+        orderId: openOrder.id
+      },
+      returning: true
+      // plain: true,
+    })
+    res.json(numOfAffectedRows)
+  } catch (error) {
+    next(error)
   }
 })
 

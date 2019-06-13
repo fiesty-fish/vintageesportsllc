@@ -15,7 +15,16 @@ class CartView extends Component {
     this.props.loadAllItems()
   }
 
-  handleRemoveFromCart(itemId) {
+  async handleRemoveFromCart(itemId) {
+    // if user.id, means we are logged in
+    if (this.props.user.id) {
+      const removedItem = await axios.put(
+        `/api/orders/remove/${this.props.user.id}`,
+        {itemId: +itemId}
+      )
+    }
+
+    // remove from localStorage as well
     // get the json object from localStorage
     const currentCart = JSON.parse(localStorage.cart)
     // delete the key pair from cart object
