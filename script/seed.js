@@ -24,27 +24,10 @@ async function seed() {
 
   const orders = await Promise.all([
     Order.create({
-      order: {'1': 1}
+      userId: 1
     }),
     Order.create({
-      order: {'1': 1, '2': 2}
-    }),
-    Order.create({
-      order: {
-        cartItems: {
-          '1': 1
-        },
-        cartItemsData: {
-          description: null,
-          id: 1,
-          imageUrl: '/default.png',
-          inventory: 998,
-          name: 'Mario Kart',
-          price: 5499,
-          year: 1972
-        },
-        totalCost: 18996
-      }
+      userId: 2
     })
   ])
 

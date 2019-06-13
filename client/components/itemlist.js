@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {getItemsThunk} from '../store/item'
+import axios from 'axios'
 
 class ItemList extends Component {
   constructor() {
@@ -12,7 +13,7 @@ class ItemList extends Component {
     this.props.loadAllItems()
   }
 
-  handleAddToCart(itemId) {
+  async handleAddToCart(item) {
     // If there's no localStorage cart existing make a cart key with an empty object
     if (!localStorage.cart) {
       localStorage.setItem('cart', '{}')
@@ -20,14 +21,27 @@ class ItemList extends Component {
     // Convert string to json
     let currentCart = JSON.parse(localStorage.cart)
     // If key exists for itemId increment quantity by one
-    if (currentCart[itemId]) {
-      currentCart[itemId] = currentCart[itemId] + 1
+    if (currentCart[item.id]) {
+      currentCart[item.id] = currentCart[item.id] + 1
       // else set quantity to one
     } else {
-      currentCart[itemId] = 1
+      currentCart[item.id] = 1
     }
     // finally set the cart key to current object
     localStorage.setItem('cart', JSON.stringify(currentCart))
+    // if a user is logged in, add the item to their order. if this is the first item added,
+    // and there is no existing order, create a new order and add the item to it.
+    if (this.props.user.id) {
+      try {
+        console.log(item)
+        const addToOrder = await axios.put(
+          `/api/orders/${this.props.user.id}`,
+          {item}
+        )
+      } catch (error) {
+        console.error(error)
+      }
+    }
   }
 
   render() {
@@ -45,7 +59,7 @@ class ItemList extends Component {
                       {(item.price / 100).toFixed(2)}
                     </li>
                     <button
-                      onClick={() => this.handleAddToCart(item.id)}
+                      onClick={() => this.handleAddToCart(item)}
                       type="button"
                     >
                       Add To Cart
@@ -62,6 +76,7 @@ class ItemList extends Component {
 
 const mapState = state => {
   return {
+    user: state.user,
     items: state.item
   }
 }
