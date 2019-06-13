@@ -13,56 +13,51 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-router.put('/:userId', async (req, res, next) => {
-  try {
-    console.log(req.body)
-    const itemId = req.body.id
-    const itemPrice = req.body.price
-    const itemQuantity = req.body.quantity
-    const [orderData, created] = await Order.findOrCreate({
-      where: {userId: req.params.userId, checkedout: false}
-    })
-
-    console.log('itemId: ', itemId, 'orderData.id: ', orderData.id)
-    const itemInOrderCheck = await ItemOrder.findOne({
-      where: {itemId, orderId: orderData.id}
-    })
-    console.log('ITEMINORDERCHECK: ', itemInOrderCheck)
-    let updatedOrder
-    if (itemInOrderCheck) {
-      updatedOrder = await itemInOrderCheck.update({
-        quantity: itemInOrderCheck.quantity + itemQuantity
-      })
-    } else {
-      updatedOrder = await ItemOrder.create({
-        quantity: itemQuantity,
-        price: itemPrice,
-        itemId,
-        orderId: orderData.id
-      })
-    }
-    res.json(updatedOrder)
-  } catch (err) {
-    next(err)
-  }
-})
+// router.put('/:userId', async (req, res, next) => {
+//   try {
+//     const itemId = req.body.id
+//     const itemPrice = req.body.price
+//     const itemQuantity = req.body.quantity
+//     const [orderData] = await Order.findOrCreate({
+//       where: {userId: req.params.userId, checkedout: false}
+//     })
+//     const itemInOrderCheck = await ItemOrder.findOne({
+//       where: {itemId, orderId: orderData.id}
+//     })
+//     let updatedOrder
+//     if (itemInOrderCheck) {
+//       updatedOrder = await itemInOrderCheck.update({
+//         quantity: itemInOrderCheck.quantity + itemQuantity
+//       })
+//     } else {
+//       updatedOrder = await ItemOrder.create({
+//         quantity: itemQuantity,
+//         price: itemPrice,
+//         itemId,
+//         orderId: orderData.id
+//       })
+//     }
+//     res.json(updatedOrder)
+//   } catch (err) {
+//     next(err)
+//   }
+// })
 
 router.put('/edit/:userId', async (req, res, next) => {
   try {
-    // console.log(req.body)
-    const itemId = req.body.id
-    const itemPrice = req.body.price
-    const itemQuantity = req.body.quantity
+    // console.log(req.body.item.id)
+    const itemId = req.body.item.id
+    const itemPrice = req.body.item.price
+    const itemQuantity = req.body.item.quantity
     // find if open order exists based on user id (logged in users only)
     const [orderData] = await Order.findOrCreate({
       where: {userId: req.params.userId, checkedout: false}
     })
-    // console.log('itemId: ', itemId, 'orderData.id: ', orderData.id)
     // find if specific item by id exists in specific order for specific user
+    console.log('itemId: ', itemId, typeof itemId)
     const itemInOrderCheck = await ItemOrder.findOne({
       where: {itemId, orderId: orderData.id}
     })
-    console.log('ITEMINORDERCHECK: >>>>>>>>>>>>>>>>>>>>>>>>', itemInOrderCheck)
     let updatedOrder
     // if we found that the specific order has this specific item already
     if (itemInOrderCheck) {
@@ -73,7 +68,6 @@ router.put('/edit/:userId', async (req, res, next) => {
     } else {
       // if there is no specific item by itemid in this specific order,
       // create a new item order with the given price, quantity, etc.
-      console.log('IN THE ELSE', itemId, typeof itemId)
       updatedOrder = await ItemOrder.create({
         quantity: itemQuantity,
         price: itemPrice,

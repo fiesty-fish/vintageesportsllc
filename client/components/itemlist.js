@@ -33,9 +33,10 @@ class ItemList extends Component {
     // and there is no existing order, create a new order and add the item to it.
     if (this.props.user.id) {
       try {
-        console.log(item)
+        console.log('userId: ', this.props.user.id, 'item: ', item)
+        item.quantity = currentCart[item.id]
         const addToOrder = await axios.put(
-          `/api/orders/${this.props.user.id}`,
+          `/api/orders/edit/${this.props.user.id}`,
           {item}
         )
       } catch (error) {
