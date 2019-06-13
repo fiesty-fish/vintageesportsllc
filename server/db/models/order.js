@@ -2,8 +2,9 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 
 const Order = db.define('order', {
-  order: {
-    type: Sequelize.JSON,
+  checkedout: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false,
     allowNull: false
   }
 })

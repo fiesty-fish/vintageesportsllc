@@ -26,16 +26,18 @@ class CartView extends Component {
     this.forceUpdate()
   }
 
-  async handleCheckout(orderObj) {
+  async handleCheckout() {
     if (localStorage.cart) {
-      try {
-        console.log('orderObj in handleCheckout: ', orderObj)
-        const {data} = await axios.post('/api/orders', {
-          order: orderObj
-        })
-        console.log('orderData in handleCheckout: ', data)
-      } catch (error) {
-        console.error(error)
+      if (this.props.user.id) {
+        try {
+          console.log('orderObj in handleCheckout: ')
+          const {data} = await axios.put(
+            `/api/orders/checkout/${this.props.user.id}`
+          )
+          console.log('orderData in handleCheckout: ', data)
+        } catch (error) {
+          console.error(error)
+        }
       }
       // handle totalCost charge
       localStorage.clear()
@@ -97,7 +99,7 @@ class CartView extends Component {
         <div>
           Total: $ {cartTotal ? (cartTotal / 100).toFixed(2) : (0).toFixed(2)}
         </div>
-        <button onClick={() => this.handleCheckout(curOrder)} type="button">
+        <button onClick={this.handleCheckout} type="button">
           Checkout
         </button>
       </div>
@@ -107,6 +109,7 @@ class CartView extends Component {
 
 const mapState = state => {
   return {
+    user: state.user,
     items: state.item
   }
 }
