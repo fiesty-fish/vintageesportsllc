@@ -11,6 +11,7 @@ class SingleCartItem extends Component {
     this.handleUpdateItem = this.handleUpdateItem.bind(this)
     this.handleIncrement = this.handleIncrement.bind(this)
     this.handleDecrement = this.handleDecrement.bind(this)
+    // this.handleRemoveFromCart = this.handleRemoveFromCart.bind(this)
   }
 
   componentDidMount() {
@@ -73,6 +74,27 @@ class SingleCartItem extends Component {
     }
   }
 
+  // async handleRemoveFromCart(itemId) {
+  //   // if user.id, means we are logged in
+  //   // remove from localStorage as well
+  //   // get the json object from localStorage
+  //   const currentCart = JSON.parse(localStorage.cart)
+  //   // delete the key pair from cart object
+  //   delete currentCart[itemId]
+  //   // reset the cart to stringify
+  //   localStorage.cart = JSON.stringify(currentCart)
+
+  //   if (this.props.user.id) {
+  //     const removedItem = await axios.put(
+  //       `/api/orders/remove/${this.props.user.id}`,
+  //       {itemId: +itemId}
+  //     )
+  //   }
+
+  //   // causes a re-render without the shouldComponentMount lifecycle hook
+  //   this.forceUpdate()
+  // }
+
   render() {
     const {item} = this.props
     const currCart = JSON.parse(localStorage.cart)
@@ -96,7 +118,8 @@ class SingleCartItem extends Component {
           Update
         </button>
         <button
-          onClick={() => this.handleRemoveFromCart(item.id)}
+          // onClick={() => this.handleRemoveFromCart(item.id)}
+          onClick={() => this.props.handleRemoveFromCart(item.id)}
           type="button"
         >
           Remove From Cart
