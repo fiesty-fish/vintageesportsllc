@@ -45,7 +45,6 @@ router.get('/', async (req, res, next) => {
 
 router.put('/edit/:userId', async (req, res, next) => {
   try {
-    // console.log(req.body.item.id)
     const itemId = req.body.item.id
     const itemPrice = req.body.item.price
     const itemQuantity = req.body.item.quantity

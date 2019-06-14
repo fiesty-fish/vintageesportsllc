@@ -2,18 +2,24 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import axios from 'axios'
 
-class SingleItem extends Component {
+class SingleCartItem extends Component {
   constructor() {
     super()
     this.state = {
       quantity: 1
     }
-    this.handleAddToCart = this.handleAddToCart.bind(this)
+    this.handleUpdateItem = this.handleUpdateItem.bind(this)
     this.handleIncrement = this.handleIncrement.bind(this)
     this.handleDecrement = this.handleDecrement.bind(this)
   }
 
-  async handleAddToCart(item) {
+  componentDidMount() {
+    this.setState({
+      quantity: JSON.parse(localStorage.cart)[this.props.item.id]
+    })
+  }
+
+  async handleUpdateItem(item) {
     // If there's no localStorage cart existing make a cart key with an empty object
     if (!localStorage.cart) {
       localStorage.setItem('cart', '{}')
@@ -21,20 +27,23 @@ class SingleItem extends Component {
     // Convert string to json
     let currentCart = JSON.parse(localStorage.cart)
 
-    // if item key exists in cart then add quantity to the existing value, else initialize with quantity
-    currentCart[item.id] = currentCart[item.id]
-      ? currentCart[item.id] + this.state.quantity
-      : this.state.quantity
+    const prevQuantity = currentCart[item.id]
+
+    currentCart[item.id] = this.state.quantity
 
     // finally set the cart key to current object
     localStorage.setItem('cart', JSON.stringify(currentCart))
     // if a user is logged in, add the item to their order. if this is the first item added,
     // and there is no existing order, create a new order and add the item to it.
-    //below is axios push to db
     if (this.props.user.id) {
       try {
-        // item.quantity = currentCart[item.id]
-        item.quantity = this.state.quantity
+        // get updated current quantity from local state
+        const currQuantity = this.state.quantity
+        // making the item's quantity = the difference between currentQuantity(local state) and prevQuantity(localStorage)
+        item.quantity = currQuantity - prevQuantity
+        // prevQuantity < currQuantity
+        //   ? prevQuantity - currQuantity
+        //   : currQuantity - prevQuantity
         const addToOrder = await axios.put(
           `/api/orders/edit/${this.props.user.id}`,
           {item}
@@ -43,6 +52,7 @@ class SingleItem extends Component {
         console.error(error)
       }
     }
+    this.forceUpdate()
   }
 
   handleIncrement() {
@@ -65,11 +75,15 @@ class SingleItem extends Component {
 
   render() {
     const {item} = this.props
-
+    const currCart = JSON.parse(localStorage.cart)
     return (
       <div>
         <li>
-          Name: {item.name}, Price: $ {(item.price / 100).toFixed(2)}
+          <strong>Name: </strong>
+          {item.name}, <strong>Quantity: </strong>
+          {currCart[item.id]}, <strong>Price: </strong>${' '}
+          {(item.price * currCart[item.id] / 100).toFixed(2)},{' '}
+          <strong>Price per unit: </strong>$ {(item.price / 100).toFixed(2)}
         </li>
         <button onClick={this.handleDecrement} type="button">
           -
@@ -78,8 +92,14 @@ class SingleItem extends Component {
         <button onClick={this.handleIncrement} type="button">
           +
         </button>
-        <button onClick={() => this.handleAddToCart(item)} type="button">
-          Add To Cart
+        <button onClick={() => this.handleUpdateItem(item)} type="button">
+          Update
+        </button>
+        <button
+          onClick={() => this.handleRemoveFromCart(item.id)}
+          type="button"
+        >
+          Remove From Cart
         </button>
       </div>
     )
@@ -92,4 +112,4 @@ const mapState = state => {
   }
 }
 
-export default connect(mapState)(SingleItem)
+export default connect(mapState)(SingleCartItem)
