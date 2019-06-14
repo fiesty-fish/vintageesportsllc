@@ -1,3 +1,4 @@
+const path = require('path')
 const isDev = process.env.NODE_ENV === 'development'
 
 module.exports = {
@@ -7,7 +8,7 @@ module.exports = {
     './client/index.js'
   ],
   output: {
-    path: __dirname,
+    path: isDev ? __dirname : path.join(__dirname, '/dist'),
     filename: './public/bundle.js'
   },
   resolve: {
