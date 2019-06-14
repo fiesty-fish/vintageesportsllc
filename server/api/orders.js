@@ -91,7 +91,6 @@ router.put('/remove/:userId', async (req, res, next) => {
 
     // find itemOrderObj using itemId and openOrderId
     const numOfAffectedRows = await ItemOrder.destroy({
-      // TODO: research this or ask alvin
       // const [ numDestroyedRows, destroyedItemObj ] = await ItemOrder.destroy({
       where: {
         itemId: itemId,
