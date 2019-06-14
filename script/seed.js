@@ -19,7 +19,12 @@ async function seed() {
       year: 1996,
       inventory: 999
     }),
-    Item.create({name: 'Mario Kart', price: 5499, year: 1972, inventory: 998})
+    Item.create({
+      name: 'Mario Kart',
+      price: 5499,
+      year: 1972,
+      inventory: 998
+    })
   ])
 
   console.log(`seeded ${users.length} users`)
