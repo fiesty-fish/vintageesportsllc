@@ -13,6 +13,12 @@ class SingleCartItem extends Component {
     this.handleDecrement = this.handleDecrement.bind(this)
   }
 
+  componentDidMount() {
+    this.setState({
+      quantity: JSON.parse(localStorage.cart)[this.props.item.id]
+    })
+  }
+
   async handleUpdateItem(item) {
     // If there's no localStorage cart existing make a cart key with an empty object
     if (!localStorage.cart) {
@@ -20,6 +26,8 @@ class SingleCartItem extends Component {
     }
     // Convert string to json
     let currentCart = JSON.parse(localStorage.cart)
+
+    const prevQuantity = currentCart[item.id]
 
     currentCart[item.id] = this.state.quantity
 
@@ -31,8 +39,11 @@ class SingleCartItem extends Component {
       try {
         // get updated current quantity from local state
         const currQuantity = this.state.quantity
-        // making the item's quantity = newQuantity(local state) - prevQuantity(localStorage)
-        item.quantity = currQuantity - currentCart[item.id]
+        // making the item's quantity = the difference between currentQuantity(local state) and prevQuantity(localStorage)
+        item.quantity = currQuantity - prevQuantity
+        // prevQuantity < currQuantity
+        //   ? prevQuantity - currQuantity
+        //   : currQuantity - prevQuantity
         const addToOrder = await axios.put(
           `/api/orders/edit/${this.props.user.id}`,
           {item}
@@ -41,6 +52,7 @@ class SingleCartItem extends Component {
         console.error(error)
       }
     }
+    this.forceUpdate()
   }
 
   handleIncrement() {

@@ -20,8 +20,12 @@ class SingleItem extends Component {
     }
     // Convert string to json
     let currentCart = JSON.parse(localStorage.cart)
-    currentCart[item.id] = currentCart[item.id] + this.state.quantity // this is going to be the total
-    console.log('currentCart>>>>>>>>', currentCart)
+
+    // if item key exists in cart then add quantity to the existing value, else initialize with quantity
+    currentCart[item.id] = currentCart[item.id]
+      ? currentCart[item.id] + this.state.quantity
+      : this.state.quantity
+
     // finally set the cart key to current object
     localStorage.setItem('cart', JSON.stringify(currentCart))
     // if a user is logged in, add the item to their order. if this is the first item added,
