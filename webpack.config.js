@@ -8,7 +8,8 @@ module.exports = {
     './client/index.js'
   ],
   output: {
-    path: isDev ? __dirname : path.join(__dirname, 'dist'),
+    path: __dirname,
+    // path: isDev ? __dirname : path.join(__dirname, 'dist'),
     filename: './public/bundle.js'
   },
   resolve: {
