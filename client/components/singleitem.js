@@ -65,9 +65,10 @@ class SingleItem extends Component {
 
   render() {
     const {item} = this.props
-
+    console.log(item.imageUrl)
     return (
       <div>
+        <img src={item.imageUrl} id="item-image" />
         <li>
           Name: {item.name}, Price: $ {(item.price / 100).toFixed(2)}
         </li>

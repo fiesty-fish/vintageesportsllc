@@ -16,7 +16,7 @@ const Item = db.define('item', {
   },
   imageUrl: {
     type: Sequelize.STRING,
-    defaultValue: '/default.png'
+    defaultValue: 'https://i.ibb.co/CvRsPmX/Vintage-Vidya-Games-1.png'
   },
   year: {
     type: Sequelize.INTEGER,

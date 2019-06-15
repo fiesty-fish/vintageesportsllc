@@ -19,3 +19,8 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+#item-image {
+  max-width: 15%;
+  max-height: 15%;
+}
