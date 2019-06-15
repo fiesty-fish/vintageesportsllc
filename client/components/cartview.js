@@ -82,7 +82,13 @@ class CartView extends Component {
         <ul>
           {cartItemsData
             ? cartItemsData.map(item => {
-                return <SingleCartItem key={item.id} item={item} />
+                return (
+                  <SingleCartItem
+                    key={item.id}
+                    item={item}
+                    handleRemoveFromCart={this.handleRemoveFromCart}
+                  />
+                )
               })
             : null}
         </ul>
