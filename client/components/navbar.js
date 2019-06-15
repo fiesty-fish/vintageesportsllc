@@ -10,13 +10,21 @@ const Navbar = ({handleClick, isLoggedIn}) => (
     <nav>
       <Link to="/home">Home</Link>
       <Link to="/cart">Cart</Link>
+      {/* show link to profile after logged in */}
+      {isLoggedIn && (
+        // React.Fragment wraps the child elements but does not add another dom element
+        <React.Fragment>
+          <Link to="profile">Profile</Link>
+          <Link to="orders">Orders</Link>
+        </React.Fragment>
+      )}
       {isLoggedIn ? (
-        <div>
+        <React.Fragment>
           {/* The navbar will show these links after you log in */}
           <a href="#" onClick={handleClick}>
             Logout
           </a>
-        </div>
+        </React.Fragment>
       ) : (
         <div>
           {/* The navbar will show these links before you log in */}

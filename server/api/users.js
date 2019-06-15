@@ -16,6 +16,8 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+router.put('/update/')
+
 // router.post('/', async (req, res, next) => {
 //   try {
 //     const userObj = {
