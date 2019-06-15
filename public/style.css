@@ -20,7 +20,7 @@ form div {
   display: inline-block;
 }
 
-#item-image {
+.item-image {
   max-width: 15%;
   max-height: 15%;
 }

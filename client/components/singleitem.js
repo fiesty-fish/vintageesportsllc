@@ -68,7 +68,7 @@ class SingleItem extends Component {
     console.log(item.imageUrl)
     return (
       <div>
-        <img src={item.imageUrl} id="item-image" />
+        <img src={item.imageUrl} className="item-image" />
         <li>
           Name: {item.name}, Price: $ {(item.price / 100).toFixed(2)}
         </li>

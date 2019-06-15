@@ -39,11 +39,10 @@ class CartView extends Component {
     if (localStorage.cart) {
       if (this.props.user.id) {
         try {
-          console.log('orderObj in handleCheckout: ')
           const {data} = await axios.put(
             `/api/orders/checkout/${this.props.user.id}`
           )
-          console.log('orderData in handleCheckout: ', data)
+          // console.log('orderData in handleCheckout: ', data)
         } catch (error) {
           console.error(error)
         }

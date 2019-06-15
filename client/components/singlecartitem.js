@@ -42,9 +42,7 @@ class SingleCartItem extends Component {
         const currQuantity = this.state.quantity
         // making the item's quantity = the difference between currentQuantity(local state) and prevQuantity(localStorage)
         item.quantity = currQuantity - prevQuantity
-        // prevQuantity < currQuantity
-        //   ? prevQuantity - currQuantity
-        //   : currQuantity - prevQuantity
+
         const addToOrder = await axios.put(
           `/api/orders/edit/${this.props.user.id}`,
           {item}
@@ -100,6 +98,7 @@ class SingleCartItem extends Component {
     const currCart = JSON.parse(localStorage.cart)
     return (
       <div>
+        <img src={item.imageUrl} className="item-image" />
         <li>
           <strong>Name: </strong>
           {item.name}, <strong>Quantity: </strong>
