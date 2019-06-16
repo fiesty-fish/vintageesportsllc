@@ -33,7 +33,6 @@ class SingleItem extends Component {
     //below is axios push to db
     if (this.props.user.id) {
       try {
-        // item.quantity = currentCart[item.id]
         item.quantity = this.state.quantity
         const addToOrder = await axios.put(
           `/api/orders/edit/${this.props.user.id}`,

@@ -29,36 +29,6 @@ router.get('/:userId', async (req, res, next) => {
   }
 })
 
-// router.put('/:userId', async (req, res, next) => {
-//   try {
-//     const itemId = req.body.id
-//     const itemPrice = req.body.price
-//     const itemQuantity = req.body.quantity
-//     const [orderData] = await Order.findOrCreate({
-//       where: {userId: req.params.userId, checkedout: false}
-//     })
-//     const itemInOrderCheck = await ItemOrder.findOne({
-//       where: {itemId, orderId: orderData.id}
-//     })
-//     let updatedOrder
-//     if (itemInOrderCheck) {
-//       updatedOrder = await itemInOrderCheck.update({
-//         quantity: itemInOrderCheck.quantity + itemQuantity
-//       })
-//     } else {
-//       updatedOrder = await ItemOrder.create({
-//         quantity: itemQuantity,
-//         price: itemPrice,
-//         itemId,
-//         orderId: orderData.id
-//       })
-//     }
-//     res.json(updatedOrder)
-//   } catch (err) {
-//     next(err)
-//   }
-// })
-
 router.put('/edit/:userId', async (req, res, next) => {
   try {
     const itemId = req.body.item.id

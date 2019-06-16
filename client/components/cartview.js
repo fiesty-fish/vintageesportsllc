@@ -15,46 +15,6 @@ class CartView extends Component {
     this.props.loadAllItems()
   }
 
-  // async componentDidMount() {
-  //   this.props.loadAllItems()
-  //   if (this.props.user.id) {
-  //     const {data} = await axios.get(`/api/orders/${this.props.user.id}`)
-  //     if (data.length) {
-  //       if (localStorage.cart) {
-  //         const curCart = JSON.parse(localStorage.cart)
-  //         data.forEach(async curItem => {
-  //           if (curCart[curItem.itemId]) {
-  //             if (curCart[curItem.itemId] !== curItem.quantity) {
-  //               const curGuestCartQuantity = curCart[curItem.itemId]
-  //               curCart[curItem.itemId] =
-  //                 curCart[curItem.itemId] + curItem.quantity
-  //               const updateCurItemQuantity = await axios.put(
-  //                 `/api/orders/edit/${this.props.user.id}`,
-  //                 {
-  //                   item: {
-  //                     id: curItem.itemId,
-  //                     price: curItem.price,
-  //                     quantity: curGuestCartQuantity
-  //                   }
-  //                 }
-  //               )
-  //             }
-  //           } else {
-  //             curCart[curItem.itemId] = curItem.quantity
-  //           }
-  //         })
-  //         localStorage.setItem('cart', JSON.stringify(curCart))
-  //       } else {
-  //         const retrievedCart = data.reduce((acc, curItem) => {
-  //           acc[curItem.itemId] = curItem.quantity
-  //           return acc
-  //         }, {})
-  //         localStorage.setItem('cart', JSON.stringify(retrievedCart))
-  //       }
-  //     }
-  //   }
-  // }
-
   async handleRemoveFromCart(itemId) {
     // if user.id, means we are logged in
     if (this.props.user.id) {
@@ -79,11 +39,9 @@ class CartView extends Component {
     if (localStorage.cart) {
       if (this.props.user.id) {
         try {
-          console.log('orderObj in handleCheckout: ')
           const {data} = await axios.put(
             `/api/orders/checkout/${this.props.user.id}`
           )
-          console.log('orderData in handleCheckout: ', data)
         } catch (error) {
           console.error(error)
         }
@@ -119,7 +77,7 @@ class CartView extends Component {
     return (
       <div>
         <h3>This is your cart!</h3>
-        <ul>
+        <div>
           {cartItemsData
             ? cartItemsData.map(item => {
                 return (
@@ -131,7 +89,8 @@ class CartView extends Component {
                 )
               })
             : null}
-        </ul>
+        </div>
+        <hr />
         <div>
           Total: $ {cartTotal ? (cartTotal / 100).toFixed(2) : (0).toFixed(2)}
         </div>
