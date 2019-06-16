@@ -11,49 +11,50 @@ class CartView extends Component {
     this.handleCheckout = this.handleCheckout.bind(this)
   }
 
-  componentDidMount() {
-    this.props.loadAllItems()
-  }
-
-  // async componentDidMount() {
+  // componentDidMount() {
   //   this.props.loadAllItems()
-  //   if (this.props.user.id) {
-  //     const {data} = await axios.get(`/api/orders/${this.props.user.id}`)
-  //     if (data.length) {
-  //       if (localStorage.cart) {
-  //         const curCart = JSON.parse(localStorage.cart)
-  //         data.forEach(async curItem => {
-  //           if (curCart[curItem.itemId]) {
-  //             if (curCart[curItem.itemId] !== curItem.quantity) {
-  //               const curGuestCartQuantity = curCart[curItem.itemId]
-  //               curCart[curItem.itemId] =
-  //                 curCart[curItem.itemId] + curItem.quantity
-  //               const updateCurItemQuantity = await axios.put(
-  //                 `/api/orders/edit/${this.props.user.id}`,
-  //                 {
-  //                   item: {
-  //                     id: curItem.itemId,
-  //                     price: curItem.price,
-  //                     quantity: curGuestCartQuantity
-  //                   }
-  //                 }
-  //               )
-  //             }
-  //           } else {
-  //             curCart[curItem.itemId] = curItem.quantity
-  //           }
-  //         })
-  //         localStorage.setItem('cart', JSON.stringify(curCart))
-  //       } else {
-  //         const retrievedCart = data.reduce((acc, curItem) => {
-  //           acc[curItem.itemId] = curItem.quantity
-  //           return acc
-  //         }, {})
-  //         localStorage.setItem('cart', JSON.stringify(retrievedCart))
-  //       }
-  //     }
-  //   }
   // }
+
+  async componentDidMount() {
+    this.props.loadAllItems()
+    if (this.props.user.id) {
+      const {data} = await axios.get(`/api/orders/${this.props.user.id}`)
+      if (data.length) {
+        if (localStorage.cart) {
+          const curCart = JSON.parse(localStorage.cart)
+          data.forEach(async curItem => {
+            if (curCart[curItem.itemId]) {
+              if (curCart[curItem.itemId] !== curItem.quantity) {
+                const curGuestCartQuantity = curCart[curItem.itemId]
+                curCart[curItem.itemId] =
+                  curCart[curItem.itemId] + curItem.quantity
+                const updateCurItemQuantity = await axios.put(
+                  `/api/orders/edit/${this.props.user.id}`,
+                  {
+                    item: {
+                      id: curItem.itemId,
+                      price: curItem.price,
+                      quantity: curGuestCartQuantity
+                    }
+                  }
+                )
+              }
+            } else {
+              curCart[curItem.itemId] = curItem.quantity
+            }
+          })
+          localStorage.setItem('cart', JSON.stringify(curCart))
+        } else {
+          const retrievedCart = data.reduce((acc, curItem) => {
+            acc[curItem.itemId] = curItem.quantity
+            return acc
+          }, {})
+          localStorage.setItem('cart', JSON.stringify(retrievedCart))
+        }
+      }
+    }
+    this.forceUpdate()
+  }
 
   async handleRemoveFromCart(itemId) {
     // if user.id, means we are logged in
