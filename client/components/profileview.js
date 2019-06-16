@@ -29,7 +29,7 @@ class profileview extends Component {
     }
   }
 
-  handleClick(event) {
+  async handleClick(event) {
     event.preventDefault()
     console.log('handleClickCalled!!!!!!')
 
@@ -41,8 +41,7 @@ class profileview extends Component {
       }
       console.log('>>>>>>>>>user', user)
       // thunk to update user info, make separate obj
-      updateUserThunk(user)
-      console.log('thunkCalled>>>>>>>>>')
+      await this.props.updateUser(user)
       // success redirect to success
       console.log('success!!')
       this.setState({
@@ -111,7 +110,9 @@ const mapDispatchToProps = dispatch => {
     loadUserData() {
       dispatch(me())
     },
+    // TODO: RIGHT HERE!
     updateUser(user) {
+      console.log('called updateUser!!!!!!>>>>>')
       dispatch(updateUserThunk(user))
     }
   }

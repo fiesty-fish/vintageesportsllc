@@ -19,8 +19,8 @@ router.get('/', async (req, res, next) => {
 // update user info route
 router.put('/update', async (req, res, next) => {
   try {
-    const {id, email, password} = req.body.user
-    console.log('email>>>>>>>', email)
+    console.log(req.body)
+    const {id, email, password} = req.body
     // need instance to get hook to run, current hooks only run on instance methods, not model methods
     const userToUpdate = await User.findByPk(id)
 
