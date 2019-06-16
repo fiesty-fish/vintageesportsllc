@@ -13,6 +13,22 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+router.get('/:userId', async (req, res, next) => {
+  try {
+    const curUserOpenOrder = await Order.findOne({
+      where: {userId: req.params.userId, checkedout: false}
+    })
+    if (curUserOpenOrder.id) {
+      const curOrderItems = await ItemOrder.findAll()
+      res.json(curOrderItems)
+    } else {
+      res.json('NO OPEN ORDER FOUND')
+    }
+  } catch (err) {
+    next(err)
+  }
+})
+
 // router.put('/:userId', async (req, res, next) => {
 //   try {
 //     const itemId = req.body.id
