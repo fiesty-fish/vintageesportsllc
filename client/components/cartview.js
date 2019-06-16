@@ -42,7 +42,6 @@ class CartView extends Component {
           const {data} = await axios.put(
             `/api/orders/checkout/${this.props.user.id}`
           )
-          // console.log('orderData in handleCheckout: ', data)
         } catch (error) {
           console.error(error)
         }
@@ -78,7 +77,7 @@ class CartView extends Component {
     return (
       <div>
         <h3>This is your cart!</h3>
-        <ul>
+        <div>
           {cartItemsData
             ? cartItemsData.map(item => {
                 return (
@@ -90,7 +89,8 @@ class CartView extends Component {
                 )
               })
             : null}
-        </ul>
+        </div>
+        <hr />
         <div>
           Total: $ {cartTotal ? (cartTotal / 100).toFixed(2) : (0).toFixed(2)}
         </div>
