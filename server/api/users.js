@@ -16,6 +16,25 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+// update user info route
+router.put('/update', async (req, res, next) => {
+  try {
+    console.log(req.body)
+    const {id, email, password} = req.body
+    // need instance to get hook to run, current hooks only run on instance methods, not model methods
+    const userToUpdate = await User.findByPk(id)
+
+    const updatedUser = await userToUpdate.update({
+      email,
+      password
+    })
+
+    res.json(updatedUser)
+  } catch (error) {
+    next(error)
+  }
+})
+
 // router.post('/', async (req, res, next) => {
 //   try {
 //     const userObj = {
