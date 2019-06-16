@@ -33,12 +33,15 @@ export const me = () => async dispatch => {
 }
 
 // TODO: finish this thunk
-// export const updateUser = (user) => async (dispatch) => {
-//   try {
-//   } catch (error) {
-//     console.error(error);
-//   }
-// };
+export const updateUserThunk = user => async dispatch => {
+  try {
+    console.log('thunk called!!!!!!')
+    const updatedUser = await axios.put('/api/users/update', user)
+    dispatch(updateUser(updatedUser.data))
+  } catch (error) {
+    console.error(error)
+  }
+}
 
 export const auth = (email, password, method) => async dispatch => {
   let res
@@ -75,6 +78,8 @@ export default function(state = defaultUser, action) {
       return action.user
     case REMOVE_USER:
       return defaultUser
+    case UPDATE_USER:
+      return action.user
     default:
       return state
   }

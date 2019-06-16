@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {me} from '../store/index'
+import {me, updateUserThunk} from '../store/index'
 
 class profileview extends Component {
   constructor() {
@@ -24,23 +24,37 @@ class profileview extends Component {
     this.setState({
       [event.target.name]: event.target.value
     })
+    if (event.target.name === 'email') {
+      console.log('changed email>>>>>', this.state.email)
+    }
   }
 
   handleClick(event) {
     event.preventDefault()
-    if (this.state.password !== this.reenterPassword) {
+    console.log('handleClickCalled!!!!!!')
+
+    if (this.state.password === this.state.reenterPassword) {
+      const user = {
+        id: this.props.user.id,
+        email: this.state.email,
+        password: this.state.password
+      }
+      console.log('>>>>>>>>>user', user)
+      // thunk to update user info, make separate obj
+      updateUserThunk(user)
+      console.log('thunkCalled>>>>>>>>>')
+      // success redirect to success
+      console.log('success!!')
+      this.setState({
+        editInfoSuccess: true
+      })
+    } else {
       this.setState({
         password: '',
         reenterPassword: '',
         passwordMatch: false
       })
     }
-    // thunk to update user info
-    // success redirect to success
-    console.log('success!!')
-    this.setState({
-      editInfoSuccess: true
-    })
   }
 
   render() {
@@ -52,7 +66,7 @@ class profileview extends Component {
           <form>
             <label>Email</label>
             <input
-              type="text"
+              type="email"
               name="email"
               defaultValue={this.props.user.email}
               onChange={e => this.handleChange(e)}
@@ -96,6 +110,9 @@ const mapDispatchToProps = dispatch => {
   return {
     loadUserData() {
       dispatch(me())
+    },
+    updateUser(user) {
+      dispatch(updateUserThunk(user))
     }
   }
 }
