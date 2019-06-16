@@ -9,7 +9,6 @@ class profileview extends Component {
       email: '',
       password: '',
       reenterPassword: '',
-      passwordMatch: true,
       editInfoSuccess: false
     }
     this.handleChange = this.handleChange.bind(this)
@@ -24,14 +23,10 @@ class profileview extends Component {
     this.setState({
       [event.target.name]: event.target.value
     })
-    if (event.target.name === 'email') {
-      console.log('changed email>>>>>', this.state.email)
-    }
   }
 
   async handleClick(event) {
     event.preventDefault()
-    console.log('handleClickCalled!!!!!!')
 
     if (this.state.password === this.state.reenterPassword) {
       const user = {
@@ -39,20 +34,14 @@ class profileview extends Component {
         email: this.state.email,
         password: this.state.password
       }
-      console.log('>>>>>>>>>user', user)
       // thunk to update user info, make separate obj
       await this.props.updateUser(user)
       // success redirect to success
-      console.log('success!!')
       this.setState({
         editInfoSuccess: true
       })
     } else {
-      this.setState({
-        password: '',
-        reenterPassword: '',
-        passwordMatch: false
-      })
+      alert("Passwords don't match!")
     }
   }
 
@@ -91,8 +80,6 @@ class profileview extends Component {
               Submit
             </button>
           </form>
-          {/* password match msg */}
-          {this.state.passwordNotMatch ? <p>Passwords don't match</p> : null}
         </div>
       )
     }
@@ -110,9 +97,7 @@ const mapDispatchToProps = dispatch => {
     loadUserData() {
       dispatch(me())
     },
-    // TODO: RIGHT HERE!
     updateUser(user) {
-      console.log('called updateUser!!!!!!>>>>>')
       dispatch(updateUserThunk(user))
     }
   }

@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 import {logout} from '../store'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
-  <div>
+  <React.Fragment>
     <h1>Vintage Vidya Games!</h1>
     <nav>
       <Link to="/home">Home</Link>
@@ -26,15 +26,15 @@ const Navbar = ({handleClick, isLoggedIn}) => (
           </a>
         </React.Fragment>
       ) : (
-        <div>
+        <React.Fragment>
           {/* The navbar will show these links before you log in */}
           <Link to="/login">Login</Link>
           <Link to="/signup">Sign Up</Link>
-        </div>
+        </React.Fragment>
       )}
     </nav>
     <hr />
-  </div>
+  </React.Fragment>
 )
 
 /**
