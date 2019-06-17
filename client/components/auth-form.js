@@ -63,12 +63,13 @@ const mapSignup = state => {
 
 const mapDispatch = dispatch => {
   return {
-    handleSubmit(evt) {
+    async handleSubmit(evt) {
       evt.preventDefault()
       const formName = evt.target.name
       const email = evt.target.email.value
       const password = evt.target.password.value
-      dispatch(auth(email, password, formName))
+      const curLoggedInUserId = await dispatch(auth(email, password, formName))
+      console.log('logged in user id in auth-form: ', curLoggedInUserId)
     }
   }
 }
