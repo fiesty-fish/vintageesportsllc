@@ -19,6 +19,7 @@ const Navbar = ({handleClick, isLoggedIn, handleCart, user}) => (
         <React.Fragment>
           <Link to="profile">Profile</Link>
           <Link to="orders">Orders</Link>
+          <Link to="inventory">Inventory</Link>
         </React.Fragment>
       )}
       {isLoggedIn ? (

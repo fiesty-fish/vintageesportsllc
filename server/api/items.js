@@ -13,6 +13,22 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+// api route for getting items for userId
+
+router.get('/:userId', async (req, res, next) => {
+  try {
+    const userId = req.params.userId
+    const userItems = await Item.findAll({
+      where: {
+        userId
+      }
+    })
+    res.json(userItems)
+  } catch (err) {
+    next(err)
+  }
+})
+
 router.post('/:userId', async (req, res, next) => {
   try {
     const newItemData = {

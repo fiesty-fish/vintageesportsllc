@@ -20,6 +20,11 @@ Item.belongsToMany(Order, {through: ItemOrder})
 // each order can contain many items
 Order.belongsToMany(Item, {through: ItemOrder})
 
+// Inventory Management for admin users
+// A single user can have many items (if admin)
+Item.belongsTo(User)
+User.hasMany(Item)
+
 /**
  * We'll export all of our models here, so that any time a module needs a model,
  * we can just require it from 'db/models'
