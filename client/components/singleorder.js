@@ -1,11 +1,9 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-// import axios from 'axios'
 
 class SingleOrder extends Component {
   render() {
     const {order, items} = this.props
-    console.log('ITEMS ---->', items)
 
     return (
       <div>
@@ -19,8 +17,7 @@ class SingleOrder extends Component {
                 }
                 return accum
               }, '')
-              // const currItemName = currItemObj.name
-              console.log('CURR ITEMNAME', currItemName)
+
               return (
                 <li key={currItem.itemId}>
                   Name:
@@ -32,7 +29,6 @@ class SingleOrder extends Component {
             }
           })}
         </div>
-        {/* // <li>Name: {items.name}</li> */}
       </div>
     )
   }
