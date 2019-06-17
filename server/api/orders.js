@@ -1,5 +1,7 @@
 const router = require('express').Router()
 const {Order, ItemOrder, User, Item} = require('../db/models')
+const Sequelize = require('sequelize')
+const Op = Sequelize.Op
 module.exports = router
 
 // url - localhost:8080/orders
@@ -8,6 +10,37 @@ router.get('/', async (req, res, next) => {
   try {
     const orders = await Order.findAll()
     res.json(orders)
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.get('/past/:userId', async (req, res, next) => {
+  try {
+    const curUserClosedOrders = await Order.findAll({
+      where: {userId: req.params.userId, checkedout: true}
+    })
+    if (curUserClosedOrders.length) {
+      const curUserClosedOrdersIdsArr = curUserClosedOrders.map(
+        curOrder => curOrder.id
+      )
+      console.log(
+        'curUserClosedOrdersIdsArr: ',
+        curUserClosedOrdersIdsArr,
+        'is of type: ',
+        Array.isArray(curUserClosedOrdersIdsArr)
+      )
+      const curUserClosedOrdersItems = await ItemOrder.findAll({
+        where: {
+          orderId: {
+            [Op.in]: curUserClosedOrdersIdsArr
+          }
+        }
+      })
+      res.json(curUserClosedOrdersItems)
+    } else {
+      res.json('NO CLOSED ORDER FOUND')
+    }
   } catch (err) {
     next(err)
   }
