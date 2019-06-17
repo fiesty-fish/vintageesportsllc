@@ -1,10 +1,16 @@
 const router = require('express').Router()
+// const cors = require('cors')
 const {Order, ItemOrder, User, Item} = require('../db/models')
 const Sequelize = require('sequelize')
+const stripe = require('stripe')('sk_test_6Zg4ZpEAeZ7lwVg4HKH0Pyp3001koIQocD')
 const Op = Sequelize.Op
+const uuid = require('uuid/v4')
+
 module.exports = router
 
 // url - localhost:8080/orders
+
+// router.use(cors())
 
 router.get('/', async (req, res, next) => {
   try {
@@ -134,4 +140,49 @@ router.put('/checkout/:userId', async (req, res, next) => {
   } catch (err) {
     next(err)
   }
+})
+
+router.post('/stripecheckout', async (req, res) => {
+  console.log('Request:', req.body)
+
+  let error
+  let status
+  try {
+    const {product, token} = req.body
+
+    const customer = await stripe.customers.create({
+      email: token.email,
+      source: token.id
+    })
+
+    const idempotency_key = uuid()
+    const charge = await stripe.charges.create(
+      {
+        amount: 100,
+        currency: 'usd',
+        customer: customer.id,
+        receipt_email: token.email,
+        description: `Purchased the ${product.name}`,
+        shipping: {
+          name: token.card.name,
+          address: {
+            line1: token.card.address_line1,
+            line2: token.card.address_line2,
+            city: token.card.address_city,
+            country: token.card.address_country,
+            postal_code: token.card.address_zip
+          }
+        }
+      },
+      {
+        idempotency_key
+      }
+    )
+    console.log('Charge:', {charge})
+    status = 'success'
+  } catch (error) {
+    console.error('Error:', error)
+    status = 'failure'
+  }
+  res.json({error, status})
 })

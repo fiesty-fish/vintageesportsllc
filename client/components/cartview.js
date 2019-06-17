@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {getItemsThunk} from '../store/item'
 import axios from 'axios'
 import SingleCartItem from './singlecartitem'
+import TakeMoney from './takemoney'
 
 class CartView extends Component {
   constructor() {
@@ -94,6 +95,7 @@ class CartView extends Component {
         <div>
           Total: $ {cartTotal ? (cartTotal / 100).toFixed(2) : (0).toFixed(2)}
         </div>
+        <TakeMoney product={items[0]} />
         <button onClick={this.handleCheckout} type="button">
           Checkout
         </button>
