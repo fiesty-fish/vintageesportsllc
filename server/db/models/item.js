@@ -4,6 +4,7 @@ const db = require('../db')
 const Item = db.define('item', {
   name: {
     type: Sequelize.STRING,
+    unique: true,
     allowNull: false
   },
   // Price is in cents.

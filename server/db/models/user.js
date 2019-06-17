@@ -33,8 +33,18 @@ const User = db.define('user', {
   },
   googleId: {
     type: Sequelize.STRING
+  },
+  admin: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
+  },
+  superAdmin: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
   }
 })
+
+// Make User instance method to make other users admins!
 
 module.exports = User
 
