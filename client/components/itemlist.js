@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {getItemsThunk} from '../store/item'
-// import axios from 'axios'
 import SingleItem from './singleitem'
 
 class ItemList extends Component {
