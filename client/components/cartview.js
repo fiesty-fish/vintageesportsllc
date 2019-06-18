@@ -85,22 +85,24 @@ class CartView extends Component {
       <div>
         <h3>This is your cart!</h3>
         <div>
-          {cartItemsData.length ? (
-            cartItemsData.map(item => {
-              return (
-                <div key={item.id}>
-                  <SingleCartItem
-                    item={item}
-                    handleRemoveFromCart={this.handleRemoveFromCart}
-                    handleUpdateCartView={this.handleUpdateCartView}
-                  />
-                  <hr />
-                </div>
-              )
-            })
-          ) : (
-            <div>Your cart is Empty.</div>
-          )}
+          {cartItemsData ? (
+            cartItemsData.length ? (
+              cartItemsData.map(item => {
+                return (
+                  <div key={item.id}>
+                    <SingleCartItem
+                      item={item}
+                      handleRemoveFromCart={this.handleRemoveFromCart}
+                      handleUpdateCartView={this.handleUpdateCartView}
+                    />
+                    <hr />
+                  </div>
+                )
+              })
+            ) : (
+              <div>Your cart is Empty.</div>
+            )
+          ) : null}
         </div>
         <br />
         <div>

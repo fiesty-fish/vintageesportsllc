@@ -9,6 +9,7 @@ const uuid = require('uuid/v4')
 module.exports = router
 
 // url - localhost:8080/orders
+
 // middleware for protecting /api/orders routes
 const accessUserOrdersAuth = (req, res, next) => {
   console.log('req.user.id>>>>>>in middleware', req.user.id)
@@ -60,6 +61,7 @@ router.get('/:userId', accessUserOrdersAuth, async (req, res, next) => {
     const curUserOpenOrder = await Order.findOne({
       where: {userId: req.params.userId, checkedout: false}
     })
+    console.log('curUserOpenOrder: >>>>>>>>>>>>>>>>>>>>>>', curUserOpenOrder)
     if (curUserOpenOrder) {
       if (curUserOpenOrder.id) {
         const curOrderItems = await ItemOrder.findAll()
