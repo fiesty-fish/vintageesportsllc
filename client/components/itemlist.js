@@ -14,7 +14,7 @@ class ItemList extends Component {
     return (
       <div>
         <h3>See our nice selection of vintage vidya games!</h3>
-        <ul>
+        <div>
           {items ? (
             items.map(item => {
               return (
@@ -27,7 +27,7 @@ class ItemList extends Component {
           ) : (
             <div>No items were found in inventory!</div>
           )}
-        </ul>
+        </div>
       </div>
     )
   }
