@@ -52,16 +52,25 @@ class SingleInventory extends Component {
       <div>
         <h3>{`Name: ${item.name}`}</h3>
         <h5>Inventory: </h5>
-        <button onClick={this.handleDecrement} type="button">
+        <button
+          onClick={this.handleDecrement}
+          type="button"
+          className="nes-btn inc-dec-btn"
+        >
           -
         </button>
         <span>{item.inventory + this.state.quantity}</span>
-        <button onClick={this.handleIncrement} type="button">
+        <button
+          onClick={this.handleIncrement}
+          type="button"
+          className="nes-btn inc-dec-btn"
+        >
           +
         </button>
         <button
           onClick={() => this.handleUpdateItem(updatedItem)}
           type="button"
+          className="nes-btn is-primary"
         >
           Update
         </button>

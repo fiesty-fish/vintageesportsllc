@@ -11,6 +11,7 @@ class SingleItem extends Component {
     this.handleAddToCart = this.handleAddToCart.bind(this)
     this.handleIncrement = this.handleIncrement.bind(this)
     this.handleDecrement = this.handleDecrement.bind(this)
+    this.playSound = this.playSound.bind(this)
   }
 
   async handleAddToCart(item) {
@@ -44,7 +45,13 @@ class SingleItem extends Component {
     }
   }
 
+  playSound() {
+    console.log('HERE!!!!!!')
+    document.getElementById('audio').play()
+  }
+
   handleIncrement() {
+    this.playSound()
     const currQuantity = this.state.quantity
     if (currQuantity < 10) {
       this.setState({
@@ -54,6 +61,7 @@ class SingleItem extends Component {
   }
 
   handleDecrement() {
+    this.playSound()
     const currQuantity = this.state.quantity
     if (currQuantity > 1) {
       this.setState({
@@ -65,23 +73,43 @@ class SingleItem extends Component {
   render() {
     const {item} = this.props
     return (
-      <div>
+      <div className="card">
         <h3>{item.name}</h3>
-        <img src={item.imageUrl} className="item-image" />
-        <div>
-          <span>Price: $ {(item.price / 100).toFixed(2)}</span>
-          <span> </span>
-          <button onClick={this.handleDecrement} type="button">
-            -
-          </button>
-          <span>{this.state.quantity}</span>
-          <button onClick={this.handleIncrement} type="button">
-            +
-          </button>
-          <span> </span>
-          <button onClick={() => this.handleAddToCart(item)} type="button">
-            Add To Cart
-          </button>
+        <div className="card-interior">
+          <img src={item.imageUrl} className="item-image" />
+          <div className="info-and-button">
+            <div>
+              <span>Price: $ {(item.price / 100).toFixed(2)}</span>
+              <span> </span>
+            </div>
+            <div>
+              <button
+                onClick={this.handleDecrement}
+                type="button"
+                className="nes-btn inc-dec-btn"
+              >
+                -
+              </button>
+              <span>{this.state.quantity}</span>
+              <button
+                onClick={this.handleIncrement}
+                type="button"
+                className="nes-btn inc-dec-btn"
+              >
+                +
+              </button>
+              <span> </span>
+            </div>
+            <div>
+              <button
+                className="nes-btn is-success"
+                onClick={() => this.handleAddToCart(item)}
+                type="button"
+              >
+                Add To Cart
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     )
