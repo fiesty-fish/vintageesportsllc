@@ -1,8 +1,10 @@
 const router = require('express').Router()
-const Sequelize = require('sequelize')
-const Op = Sequelize.Op
-
 const {Order, ItemOrder} = require('../db/models')
+const Sequelize = require('sequelize')
+if (process.env.NODE_ENV !== 'production') require('../../secrets')
+const stripe = require('stripe')(process.env.stripeTestApiKey)
+const Op = Sequelize.Op
+const uuid = require('uuid/v4')
 
 module.exports = router
 
@@ -130,4 +132,49 @@ router.put('/checkout/:userId', async (req, res, next) => {
   } catch (err) {
     next(err)
   }
+})
+
+router.post('/stripecheckout', async (req, res) => {
+  console.log('Request:', req.body)
+
+  let error
+  let status
+  try {
+    const {product, token} = req.body
+
+    const customer = await stripe.customers.create({
+      email: token.email,
+      source: token.id
+    })
+
+    const idempotency_key = uuid()
+    const charge = await stripe.charges.create(
+      {
+        amount: 100,
+        currency: 'usd',
+        customer: customer.id,
+        receipt_email: token.email,
+        description: `Purchased the ${product.name}`,
+        shipping: {
+          name: token.card.name,
+          address: {
+            line1: token.card.address_line1,
+            line2: token.card.address_line2,
+            city: token.card.address_city,
+            country: token.card.address_country,
+            postal_code: token.card.address_zip
+          }
+        }
+      },
+      {
+        idempotency_key
+      }
+    )
+    console.log('Charge:', {charge})
+    status = 'success'
+  } catch (error) {
+    console.error('Error:', error)
+    status = 'failure'
+  }
+  res.json({error, status})
 })
