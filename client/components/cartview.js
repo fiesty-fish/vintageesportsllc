@@ -82,16 +82,17 @@ class CartView extends Component {
           {cartItemsData
             ? cartItemsData.map(item => {
                 return (
-                  <SingleCartItem
-                    key={item.id}
-                    item={item}
-                    handleRemoveFromCart={this.handleRemoveFromCart}
-                  />
+                  <div key={item.id}>
+                    <SingleCartItem
+                      item={item}
+                      handleRemoveFromCart={this.handleRemoveFromCart}
+                    />
+                    <hr />
+                  </div>
                 )
               })
             : null}
         </div>
-        <hr />
         <div>
           Total: $ {cartTotal ? (cartTotal / 100).toFixed(2) : (0).toFixed(2)}
         </div>

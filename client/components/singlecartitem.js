@@ -75,30 +75,34 @@ class SingleCartItem extends Component {
     const currCart = JSON.parse(localStorage.cart)
     return (
       <div>
-        <h3>{`Name: ${item.name}`}</h3>
+        <h3>{item.name}</h3>
         <ul>
-          <li>{`Quantity: ${currCart[item.id]}`}</li>
-          <li>{`Price: $ ${(item.price * currCart[item.id] / 100).toFixed(
-            2
-          )}`}</li>
-          <li>{`Price per unit: $ ${(item.price / 100).toFixed(2)}`}</li>
+          <li>Quantity: {currCart[item.id]}</li>
+          <li>Price: $ {(item.price * currCart[item.id] / 100).toFixed(2)}</li>
+          <li>Price per unit: $ {(item.price / 100).toFixed(2)}</li>
         </ul>
-        <button onClick={this.handleDecrement} type="button">
-          -
-        </button>
-        <span>{this.state.quantity}</span>
-        <button onClick={this.handleIncrement} type="button">
-          +
-        </button>
-        <button onClick={() => this.handleUpdateItem(item)} type="button">
-          Update
-        </button>
-        <button
-          onClick={() => this.props.handleRemoveFromCart(item.id)}
-          type="button"
-        >
-          Remove From Cart
-        </button>
+        <div>
+          <button onClick={this.handleDecrement} type="button">
+            -
+          </button>
+          <span>{this.state.quantity}</span>
+          <button onClick={this.handleIncrement} type="button">
+            +
+          </button>
+          <span> </span>
+          <button onClick={() => this.handleUpdateItem(item)} type="button">
+            Update
+          </button>
+        </div>
+        <br />
+        <div>
+          <button
+            onClick={() => this.props.handleRemoveFromCart(item.id)}
+            type="button"
+          >
+            Remove From Cart
+          </button>
+        </div>
       </div>
     )
   }

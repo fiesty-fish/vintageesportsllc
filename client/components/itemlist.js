@@ -15,11 +15,18 @@ class ItemList extends Component {
       <div>
         <h3>See our nice selection of vintage vidya games!</h3>
         <ul>
-          {items
-            ? items.map(item => {
-                return <SingleItem key={item.id} item={item} />
-              })
-            : null}
+          {items ? (
+            items.map(item => {
+              return (
+                <div key={item.id}>
+                  <SingleItem item={item} />
+                  <hr />
+                </div>
+              )
+            })
+          ) : (
+            <div>No items were found in inventory!</div>
+          )}
         </ul>
       </div>
     )

@@ -66,20 +66,23 @@ class SingleItem extends Component {
     const {item} = this.props
     return (
       <div>
+        <h3>{item.name}</h3>
         <img src={item.imageUrl} className="item-image" />
-        <li>
-          Name: {item.name}, Price: $ {(item.price / 100).toFixed(2)}
-        </li>
-        <button onClick={this.handleDecrement} type="button">
-          -
-        </button>
-        <span>{this.state.quantity}</span>
-        <button onClick={this.handleIncrement} type="button">
-          +
-        </button>
-        <button onClick={() => this.handleAddToCart(item)} type="button">
-          Add To Cart
-        </button>
+        <div>
+          <span>Price: $ {(item.price / 100).toFixed(2)}</span>
+          <span> </span>
+          <button onClick={this.handleDecrement} type="button">
+            -
+          </button>
+          <span>{this.state.quantity}</span>
+          <button onClick={this.handleIncrement} type="button">
+            +
+          </button>
+          <span> </span>
+          <button onClick={() => this.handleAddToCart(item)} type="button">
+            Add To Cart
+          </button>
+        </div>
       </div>
     )
   }
