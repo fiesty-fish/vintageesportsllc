@@ -60,7 +60,7 @@ router.put('/:userId', accessItemAuth, async (req, res, next) => {
         where: {
           name: updatedItemData.name
         },
-        returnning: true
+        returning: true
       })
       res.json(updateItem)
     } else {
