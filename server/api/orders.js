@@ -28,12 +28,6 @@ router.get('/past/:userId', async (req, res, next) => {
       const curUserClosedOrdersIdsArr = curUserClosedOrders.map(
         curOrder => curOrder.id
       )
-      console.log(
-        'curUserClosedOrdersIdsArr: ',
-        curUserClosedOrdersIdsArr,
-        'is of type: ',
-        Array.isArray(curUserClosedOrdersIdsArr)
-      )
       const curUserClosedOrdersItems = await ItemOrder.findAll({
         where: {
           orderId: {
