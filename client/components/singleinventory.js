@@ -1,21 +1,33 @@
 import React, {Component} from 'react'
-// import {connect} from 'react-redux'
-// import axios from 'axios'
+import {connect} from 'react-redux'
+import axios from 'axios'
 
-export default class SingleInventory extends Component {
+class SingleInventory extends Component {
   constructor() {
     super()
     this.state = {
       quantity: 0
     }
-    // this.handleUpdateItem = this.handleUpdateItem.bind(this)
+    this.handleUpdateItem = this.handleUpdateItem.bind(this)
     this.handleIncrement = this.handleIncrement.bind(this)
     this.handleDecrement = this.handleDecrement.bind(this)
   }
 
+  async handleUpdateItem(item) {
+    try {
+      await axios.put(`/api/items/${this.props.user.id}`, {item})
+      console.log('PROPS USER ID----->', this.props)
+      console.log('Item OBJ', item)
+    } catch (error) {
+      console.error(error)
+    }
+    this.forceUpdate()
+  }
+
   handleIncrement() {
     const currQuantity = this.state.quantity
-    if (currQuantity < 999) {
+    const totalInventory = this.props.item.inventory + this.state.quantity
+    if (currQuantity < 999 && totalInventory < 1000) {
       this.setState({
         quantity: currQuantity + 1
       })
@@ -24,7 +36,8 @@ export default class SingleInventory extends Component {
 
   handleDecrement() {
     const currQuantity = this.state.quantity
-    if (currQuantity >= -999) {
+    const totalInventory = this.props.item.inventory + this.state.quantity
+    if (currQuantity >= -999 && totalInventory > 0) {
       this.setState({
         quantity: currQuantity - 1
       })
@@ -33,7 +46,10 @@ export default class SingleInventory extends Component {
 
   render() {
     const {item} = this.props
-
+    const updatedItem = {
+      name: item.name,
+      inventory: this.state.quantity + item.inventory
+    }
     return (
       <div>
         <h3>{`Name: ${item.name}`}</h3>
@@ -45,7 +61,21 @@ export default class SingleInventory extends Component {
         <button onClick={this.handleIncrement} type="button">
           +
         </button>
+        <button
+          onClick={() => this.handleUpdateItem(updatedItem)}
+          type="button"
+        >
+          Update
+        </button>
       </div>
     )
   }
 }
+
+const mapState = state => {
+  return {
+    user: state.user
+  }
+}
+
+export default connect(mapState)(SingleInventory)
