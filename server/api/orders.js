@@ -1,7 +1,9 @@
 const router = require('express').Router()
-const {Order, ItemOrder, User, Item} = require('../db/models')
 const Sequelize = require('sequelize')
 const Op = Sequelize.Op
+
+const {Order, ItemOrder} = require('../db/models')
+
 module.exports = router
 
 // url - localhost:8080/orders
@@ -99,21 +101,17 @@ router.put('/edit/:userId', async (req, res, next) => {
 router.put('/remove/:userId', async (req, res, next) => {
   try {
     const itemId = req.body.itemId
-
     // get user's open order object
     const openOrder = await Order.findOne({
       where: {userId: req.params.userId, checkedout: false}
     })
-
     // find itemOrderObj using itemId and openOrderId
     const numOfAffectedRows = await ItemOrder.destroy({
-      // const [ numDestroyedRows, destroyedItemObj ] = await ItemOrder.destroy({
       where: {
         itemId: itemId,
         orderId: openOrder.id
       },
       returning: true
-      // plain: true,
     })
     res.json(numOfAffectedRows)
   } catch (error) {

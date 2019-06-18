@@ -1,9 +1,10 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+
 import SingleOrder from './singleorder'
 import {me} from '../store/user'
-import {getClosedOrdersThunkCreator} from '../store/order'
 import {getItemsThunk} from '../store/item'
+import {getClosedOrdersThunkCreator} from '../store/order'
 
 class OrdersList extends Component {
   componentDidMount() {
@@ -12,9 +13,8 @@ class OrdersList extends Component {
 
   render() {
     let curUserClosedOrdersByOrderId
-
     if (this.props.user.id && !this.props.orders.length) {
-      const checkReducer = this.props.loadAllOrders(this.props.user.id)
+      this.props.loadAllOrders(this.props.user.id)
     }
     if (this.props.orders) {
       if (this.props.orders[1]) {

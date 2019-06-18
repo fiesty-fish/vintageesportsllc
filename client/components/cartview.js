@@ -1,8 +1,9 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {getItemsThunk} from '../store/item'
 import axios from 'axios'
+
 import SingleCartItem from './singlecartitem'
+import {getItemsThunk} from '../store/item'
 
 class CartView extends Component {
   constructor() {

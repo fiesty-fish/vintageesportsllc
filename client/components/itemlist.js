@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {getItemsThunk} from '../store/item'
+
 import SingleItem from './singleitem'
+import {getItemsThunk} from '../store/item'
 
 class ItemList extends Component {
   componentDidMount() {
