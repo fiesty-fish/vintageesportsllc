@@ -38,12 +38,12 @@ export default class SingleInventory extends Component {
       <div>
         <h3>{`Name: ${item.name}`}</h3>
         <h5>Inventory: </h5>
-        <button onClick={this.handleIncrement} type="button">
-          +
-        </button>
-        <span>{item.inventory + this.state.quantity}</span>
         <button onClick={this.handleDecrement} type="button">
           -
+        </button>
+        <span>{item.inventory + this.state.quantity}</span>
+        <button onClick={this.handleIncrement} type="button">
+          +
         </button>
       </div>
     )

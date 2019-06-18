@@ -1,5 +1,4 @@
 const router = require('express').Router()
-// const cors = require('cors')
 const {Order, ItemOrder, User, Item} = require('../db/models')
 const Sequelize = require('sequelize')
 const stripe = require('stripe')('sk_test_6Zg4ZpEAeZ7lwVg4HKH0Pyp3001koIQocD')
@@ -9,8 +8,6 @@ const uuid = require('uuid/v4')
 module.exports = router
 
 // url - localhost:8080/orders
-
-// router.use(cors())
 
 router.get('/', async (req, res, next) => {
   try {
