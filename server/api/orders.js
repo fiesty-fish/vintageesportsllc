@@ -1,4 +1,4 @@
-const router = require('express').Router()
+const router = require('express').Router({mergeParams: true})
 const {Order, ItemOrder, User, Item} = require('../db/models')
 const Sequelize = require('sequelize')
 const Op = Sequelize.Op
@@ -6,8 +6,8 @@ module.exports = router
 
 // middleware for protecting /api/orders routes
 const accessUserOrders = (req, res, next) => {
-  console.log('req.user.id>>>>>', req.user.id)
-  console.log('req.params.userId', req.params.userId)
+  console.log('req.user.id>>>>>>in middleware', req.user.id)
+  console.log('req.params.userId>>>>>>in middleware', req.params.userId)
   next()
   // if (req.path === '/') {
   //   console.log('home path');
@@ -23,7 +23,7 @@ const accessUserOrders = (req, res, next) => {
 }
 //TODO: try to move the middleware into each function bc the req.params.userId does not appear.
 
-router.use('*', accessUserOrders)
+// router.use('*', accessUserOrders);
 
 // url - localhost:8080/orders
 
@@ -36,8 +36,8 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-router.get('/past/:userId', async (req, res, next) => {
-  console.log('req.params.userId', req.params.userId)
+router.get('/past/:userId', accessUserOrders, async (req, res, next) => {
+  console.log('req.params.userId in route>>>>', req.params.userId)
   try {
     const curUserClosedOrders = await Order.findAll({
       where: {userId: req.params.userId, checkedout: true}
