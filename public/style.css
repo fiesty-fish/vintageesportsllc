@@ -1,5 +1,11 @@
 body {
   font-family: 'Press Start 2P', sans-serif;
+  /* -webkit-text-stroke: 0.15px black; */
+  color: white;
+  text-shadow: 3px 3px black;
+  background-image: url('https://i.pinimg.com/originals/dc/8d/ef/dc8def609c27f9123c4f61a83a3b93bd.jpg');
+  background-size: 100%;
+  margin: 2% 5% 0 5%;
 }
 
 a {
@@ -12,15 +18,66 @@ label {
 
 nav a {
   display: inline-block;
+
   margin: 1em;
 }
 
 form div {
   margin: 1em;
+
   display: inline-block;
 }
 
 .item-image {
-  max-width: 15%;
-  max-height: 15%;
+  /* max-width: 15%; */
+  width: 10rem;
+  height: 10rem;
+  max-width: 20rem;
+  max-height: 20rem;
+  /* max-height: 15%; */
+  border-radius: 10px;
+}
+
+.info-and-button {
+  height: 20px;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.card {
+  width: 50%;
+}
+
+.card-panel {
+  width: 40%;
+}
+
+a:visited,
+a,
+a:hover {
+  color: white;
+}
+
+.nes-btn.is-warning {
+  color: white;
+  margin: 0 10px 0 10px;
+}
+
+.nes-btn.inc-dec-btn {
+  height: 40px;
+}
+
+.nes-input.input {
+  width: 30rem;
+}
+
+.login-btn-space {
+  margin: 10px 10px 10px 0px;
+}
+
+.login-btn-space > button {
+  margin-right: 10px;
 }

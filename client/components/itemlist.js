@@ -14,13 +14,12 @@ class ItemList extends Component {
     return (
       <div>
         <h3>See our nice selection of vintage vidya games!</h3>
-        <div>
+        <div className="card-container">
           {items ? (
             items.map(item => {
               return (
-                <div key={item.id}>
+                <div className="card-panel" key={item.id}>
                   <SingleItem item={item} />
-                  <hr />
                 </div>
               )
             })
