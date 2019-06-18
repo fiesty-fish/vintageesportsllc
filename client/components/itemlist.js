@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {getItemsThunk} from '../store/item'
+
 import SingleItem from './singleitem'
+import {getItemsThunk} from '../store/item'
 
 class ItemList extends Component {
   componentDidMount() {
@@ -13,13 +14,20 @@ class ItemList extends Component {
     return (
       <div>
         <h3>See our nice selection of vintage vidya games!</h3>
-        <ul>
-          {items
-            ? items.map(item => {
-                return <SingleItem key={item.id} item={item} />
-              })
-            : null}
-        </ul>
+        <div>
+          {items ? (
+            items.map(item => {
+              return (
+                <div key={item.id}>
+                  <SingleItem item={item} />
+                  <hr />
+                </div>
+              )
+            })
+          ) : (
+            <div>No items were found in inventory!</div>
+          )}
+        </div>
       </div>
     )
   }
