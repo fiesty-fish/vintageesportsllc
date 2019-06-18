@@ -1,14 +1,17 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {getItemsThunk} from '../store/item'
 import axios from 'axios'
+
 import SingleCartItem from './singlecartitem'
+import {getItemsThunk} from '../store/item'
+import {getClosedOrdersThunkCreator} from '../store/order'
 
 class CartView extends Component {
   constructor() {
     super()
     this.handleRemoveFromCart = this.handleRemoveFromCart.bind(this)
     this.handleCheckout = this.handleCheckout.bind(this)
+    this.handleUpdateCartView = this.handleUpdateCartView.bind(this)
   }
 
   componentDidMount() {
@@ -49,7 +52,12 @@ class CartView extends Component {
       // handle totalCost charge
       localStorage.clear()
       this.forceUpdate()
+      this.props.loadAllOrders(this.props.user.id)
     }
+  }
+
+  handleUpdateCartView() {
+    this.forceUpdate()
   }
 
   render() {
@@ -81,16 +89,18 @@ class CartView extends Component {
           {cartItemsData
             ? cartItemsData.map(item => {
                 return (
-                  <SingleCartItem
-                    key={item.id}
-                    item={item}
-                    handleRemoveFromCart={this.handleRemoveFromCart}
-                  />
+                  <div key={item.id}>
+                    <SingleCartItem
+                      item={item}
+                      handleRemoveFromCart={this.handleRemoveFromCart}
+                      handleUpdateCartView={this.handleUpdateCartView}
+                    />
+                    <hr />
+                  </div>
                 )
               })
             : null}
         </div>
-        <hr />
         <div>
           Total: $ {cartTotal ? (cartTotal / 100).toFixed(2) : (0).toFixed(2)}
         </div>
@@ -113,6 +123,9 @@ const mapDispatch = dispatch => {
   return {
     loadAllItems() {
       dispatch(getItemsThunk())
+    },
+    loadAllOrders(userId) {
+      dispatch(getClosedOrdersThunkCreator(userId))
     }
   }
 }

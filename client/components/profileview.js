@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+
 import {me, updateUserThunk} from '../store/index'
 
 class profileview extends Component {
@@ -9,7 +10,8 @@ class profileview extends Component {
       email: '',
       password: '',
       reenterPassword: '',
-      editInfoSuccess: false
+      editInfoSuccess: false,
+      passwordMismatch: false
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleClick = this.handleClick.bind(this)
@@ -41,7 +43,7 @@ class profileview extends Component {
         editInfoSuccess: true
       })
     } else {
-      alert("Passwords don't match!")
+      this.setState({passwordMismatch: true})
     }
   }
 
@@ -79,6 +81,9 @@ class profileview extends Component {
             <button type="submit" onClick={e => this.handleClick(e)}>
               Submit
             </button>
+            {this.state.passwordMismatch ? (
+              <span>"Passwords don't match!"</span>
+            ) : null}
           </form>
         </div>
       )

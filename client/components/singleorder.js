@@ -7,7 +7,7 @@ class SingleOrder extends Component {
 
     return (
       <div>
-        <div>Date: {order[0].slice(0, 9)}</div>
+        <h3>Date: {order[0].slice(0, 10)}</h3>
         <div>
           {order.map((currItem, idx) => {
             if (idx !== 0) {
@@ -19,12 +19,19 @@ class SingleOrder extends Component {
               }, '')
 
               return (
-                <li key={currItem.itemId}>
-                  Name:
-                  {currItemName}, Quantity: {currItem.quantity}, Price: ${' '}
-                  {(currItem.price * currItem.quantity / 100).toFixed(2)},
-                  Single Item Price: $ {(currItem.price / 100).toFixed(2)}
-                </li>
+                <div key={currItem.itemId}>
+                  <h4>{currItemName}</h4>
+                  <ul>
+                    <li>Quantity: {currItem.quantity}</li>
+                    <li>
+                      Price: ${' '}
+                      {(currItem.price * currItem.quantity / 100).toFixed(2)}
+                    </li>
+                    <li>
+                      Single Item Price: $ {(currItem.price / 100).toFixed(2)}
+                    </li>
+                  </ul>
+                </div>
               )
             }
           })}
