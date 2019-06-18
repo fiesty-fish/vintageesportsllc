@@ -75,11 +75,19 @@ class SingleItem extends Component {
               <span> </span>
             </div>
             <div>
-              <button onClick={this.handleDecrement} type="button">
+              <button
+                onClick={this.handleDecrement}
+                type="button"
+                className="nes-btn inc-dec-btn"
+              >
                 -
               </button>
               <span>{this.state.quantity}</span>
-              <button onClick={this.handleIncrement} type="button">
+              <button
+                onClick={this.handleIncrement}
+                type="button"
+                className="nes-btn inc-dec-btn"
+              >
                 +
               </button>
               <span> </span>
