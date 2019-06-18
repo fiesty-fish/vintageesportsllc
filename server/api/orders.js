@@ -9,6 +9,17 @@ const uuid = require('uuid/v4')
 module.exports = router
 
 // url - localhost:8080/orders
+// middleware for protecting /api/orders routes
+const accessUserOrdersAuth = (req, res, next) => {
+  console.log('req.user.id>>>>>>in middleware', req.user.id)
+  console.log('req.params.userId>>>>>>in middleware', req.params.userId)
+  if (req.user.id === +req.params.userId) {
+    console.log('werked>>>>>>>', req.user.id, req.params.userId)
+    next()
+  } else {
+    res.status(401).send('Access Denied')
+  }
+}
 
 router.get('/', async (req, res, next) => {
   try {
@@ -19,7 +30,7 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-router.get('/past/:userId', async (req, res, next) => {
+router.get('/past/:userId', accessUserOrdersAuth, async (req, res, next) => {
   try {
     const curUserClosedOrders = await Order.findAll({
       where: {userId: req.params.userId, checkedout: true}
@@ -44,14 +55,18 @@ router.get('/past/:userId', async (req, res, next) => {
   }
 })
 
-router.get('/:userId', async (req, res, next) => {
+router.get('/:userId', accessUserOrdersAuth, async (req, res, next) => {
   try {
     const curUserOpenOrder = await Order.findOne({
       where: {userId: req.params.userId, checkedout: false}
     })
     if (curUserOpenOrder) {
       if (curUserOpenOrder.id) {
-        const curOrderItems = await ItemOrder.findAll()
+        const curOrderItems = await ItemOrder.findAll({
+          where: {
+            orderId: curUserOpenOrder.id
+          }
+        })
         res.json(curOrderItems)
       }
     } else {
@@ -62,7 +77,7 @@ router.get('/:userId', async (req, res, next) => {
   }
 })
 
-router.put('/edit/:userId', async (req, res, next) => {
+router.put('/edit/:userId', accessUserOrdersAuth, async (req, res, next) => {
   try {
     if (req.body.item.id) {
       const itemId = req.body.item.id
@@ -100,7 +115,7 @@ router.put('/edit/:userId', async (req, res, next) => {
   }
 })
 
-router.put('/remove/:userId', async (req, res, next) => {
+router.put('/remove/:userId', accessUserOrdersAuth, async (req, res, next) => {
   try {
     const itemId = req.body.itemId
     // get user's open order object
@@ -122,17 +137,21 @@ router.put('/remove/:userId', async (req, res, next) => {
 })
 
 // checkout route changes open order checkedout property to true and closes it
-router.put('/checkout/:userId', async (req, res, next) => {
-  try {
-    const orderData = await Order.findOne({
-      where: {userId: req.params.userId, checkedout: false}
-    })
-    const updatedOrder = await orderData.update({checkedout: true})
-    res.json(updatedOrder)
-  } catch (err) {
-    next(err)
+router.put(
+  '/checkout/:userId',
+  accessUserOrdersAuth,
+  async (req, res, next) => {
+    try {
+      const orderData = await Order.findOne({
+        where: {userId: req.params.userId, checkedout: false}
+      })
+      const updatedOrder = await orderData.update({checkedout: true})
+      res.json(updatedOrder)
+    } catch (err) {
+      next(err)
+    }
   }
-})
+)
 
 router.post('/stripecheckout', async (req, res) => {
   console.log('Request:', req.body)
