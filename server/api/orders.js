@@ -11,24 +11,12 @@ module.exports = router
 // url - localhost:8080/orders
 // middleware for protecting /api/orders routes
 const accessUserOrdersAuth = (req, res, next) => {
-  console.log('req.user.id>>>>>>in middleware', req.user.id)
-  console.log('req.params.userId>>>>>>in middleware', req.params.userId)
   if (req.user.id === +req.params.userId) {
-    console.log('werked>>>>>>>', req.user.id, req.params.userId)
     next()
   } else {
     res.status(401).send('Access Denied')
   }
 }
-
-router.get('/', async (req, res, next) => {
-  try {
-    const orders = await Order.findAll()
-    res.json(orders)
-  } catch (err) {
-    next(err)
-  }
-})
 
 router.get('/past/:userId', accessUserOrdersAuth, async (req, res, next) => {
   try {
