@@ -24,12 +24,9 @@ export default class TakeMoney extends React.Component {
     }
   }
 
-  // ...
-
   render() {
     console.log(this.props.product, 'PROPSSSSS')
     return (
-      // ...
       <div>
         <ToastContainer />
 
