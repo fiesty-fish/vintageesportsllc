@@ -4,6 +4,7 @@ import axios from 'axios'
 
 import SingleCartItem from './singlecartitem'
 import {getItemsThunk} from '../store/item'
+import {getClosedOrdersThunkCreator} from '../store/order'
 
 class CartView extends Component {
   constructor() {
@@ -51,6 +52,7 @@ class CartView extends Component {
       // handle totalCost charge
       localStorage.clear()
       this.forceUpdate()
+      this.props.loadAllOrders(this.props.user.id)
     }
   }
 
@@ -121,6 +123,9 @@ const mapDispatch = dispatch => {
   return {
     loadAllItems() {
       dispatch(getItemsThunk())
+    },
+    loadAllOrders(userId) {
+      dispatch(getClosedOrdersThunkCreator(userId))
     }
   }
 }
