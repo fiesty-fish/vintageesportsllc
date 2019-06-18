@@ -17,7 +17,6 @@ const Navbar = ({handleClick, isLoggedIn, isAdmin, user}) => (
       <Link to="/home" className="small-block">
         <HomeIcon />
       </Link>
-
       <Link to="/cart" className="small-block">
         <ShoppingCartIcon />
       </Link>
