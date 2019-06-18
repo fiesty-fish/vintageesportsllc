@@ -1,8 +1,10 @@
 const router = require('express').Router()
+
 const {Item, User} = require('../db/models')
+
 module.exports = router
 
-// url - localhost:8080/api/
+// url - localhost:8080/api/items
 
 router.get('/', async (req, res, next) => {
   try {

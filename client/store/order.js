@@ -1,7 +1,5 @@
 import axios from 'axios'
 
-import history from '../history'
-
 /**
  * ACTION TYPES
  */
@@ -26,7 +24,6 @@ const getClosedOrdersActionCreator = orders => ({
 export const getClosedOrdersThunkCreator = userId => async dispatch => {
   try {
     const {data} = await axios.get(`/api/orders/past/${userId}`)
-    console.log('ordersData: ', data)
     dispatch(getClosedOrdersActionCreator(data))
   } catch (err) {
     console.error(err)
@@ -39,7 +36,6 @@ export const getClosedOrdersThunkCreator = userId => async dispatch => {
 export default function(state = allClosedOrders, action) {
   switch (action.type) {
     case GET_CLOSED_ORDERS:
-      console.log('action.orders: ', action.orders)
       return action.orders
     default:
       return state

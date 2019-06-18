@@ -1,4 +1,5 @@
 import axios from 'axios'
+
 import history from '../history'
 
 /**
@@ -32,7 +33,6 @@ export const me = () => async dispatch => {
   }
 }
 
-// TODO: finish this thunk
 export const updateUserThunk = user => async dispatch => {
   try {
     const updatedUser = await axios.put('/api/users/update', user)
@@ -53,6 +53,9 @@ export const auth = (email, password, method) => async dispatch => {
   try {
     dispatch(getUser(res.data))
     history.push('/home')
+    const {data} = res
+    const curLoggedInUserId = data.id
+    return curLoggedInUserId
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr)
   }

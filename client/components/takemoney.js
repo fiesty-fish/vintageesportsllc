@@ -10,29 +10,23 @@ export default class TakeMoney extends React.Component {
   }
 
   async onToken(token, addresses) {
-    console.log({token, addresses})
     const response = await axios.post('/api/orders/stripecheckout', {
       token,
       product: this.props.product
     })
     const {status} = response.data
     if (status === 'success') {
-      console.log('TOAST WORKED!')
+      this.props.handleCheckout()
       toast('Success! Check emails for details', {type: 'success'})
     } else {
       toast('Something went wrong', {type: 'error'})
     }
   }
 
-  // ...
-
   render() {
-    console.log(this.props.product, 'PROPSSSSS')
     return (
-      // ...
       <div>
         <ToastContainer />
-
         <StripeCheckout
           token={this.onToken}
           billingAddress
