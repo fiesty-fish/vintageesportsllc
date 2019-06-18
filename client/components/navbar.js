@@ -3,16 +3,12 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
-import axios from 'axios'
 
-const Navbar = ({handleClick, isLoggedIn, handleCart, user}) => (
+const Navbar = ({handleClick, isLoggedIn}) => (
   <React.Fragment>
     <h1>Vintage Vidya Games!</h1>
     <nav>
       <Link to="/home">Home</Link>
-      {/* <Link to="/cart" onClick={() => handleCart(user)}>
-        Cart
-      </Link> */}
       <Link to="/cart">Cart</Link>
       {/* show link to profile after logged in */}
       {isLoggedIn && (
@@ -46,8 +42,7 @@ const Navbar = ({handleClick, isLoggedIn, handleCart, user}) => (
  */
 const mapState = state => {
   return {
-    isLoggedIn: !!state.user.id,
-    user: state.user
+    isLoggedIn: !!state.user.id
   }
 }
 
@@ -67,9 +62,5 @@ export default connect(mapState, mapDispatch)(Navbar)
  */
 Navbar.propTypes = {
   handleClick: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired,
-  // handleCart: PropTypes.func.isRequired,
-  // user: PropTypes.object.isRequired
-  handleCart: PropTypes.func,
-  user: PropTypes.object
+  isLoggedIn: PropTypes.bool.isRequired
 }

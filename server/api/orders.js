@@ -1,10 +1,12 @@
 const router = require('express').Router()
-// const cors = require('cors')
 const {Order, ItemOrder, User, Item} = require('../db/models')
+
 const Sequelize = require('sequelize')
 const stripe = require('stripe')('sk_test_6Zg4ZpEAeZ7lwVg4HKH0Pyp3001koIQocD')
 const Op = Sequelize.Op
 const uuid = require('uuid/v4')
+const {Order, ItemOrder} = require('../db/models')
+
 
 module.exports = router
 
@@ -30,12 +32,6 @@ router.get('/past/:userId', async (req, res, next) => {
       const curUserClosedOrdersIdsArr = curUserClosedOrders.map(
         curOrder => curOrder.id
       )
-      console.log(
-        'curUserClosedOrdersIdsArr: ',
-        curUserClosedOrdersIdsArr,
-        'is of type: ',
-        Array.isArray(curUserClosedOrdersIdsArr)
-      )
       const curUserClosedOrdersItems = await ItemOrder.findAll({
         where: {
           orderId: {
@@ -57,7 +53,6 @@ router.get('/:userId', async (req, res, next) => {
     const curUserOpenOrder = await Order.findOne({
       where: {userId: req.params.userId, checkedout: false}
     })
-    console.log('curUserOpenOrder: ', curUserOpenOrder)
     if (curUserOpenOrder) {
       if (curUserOpenOrder.id) {
         const curOrderItems = await ItemOrder.findAll()
@@ -73,7 +68,6 @@ router.get('/:userId', async (req, res, next) => {
 
 router.put('/edit/:userId', async (req, res, next) => {
   try {
-    console.log('req.body.item.id: ', req.body.item.id)
     if (req.body.item.id) {
       const itemId = req.body.item.id
       const itemPrice = req.body.item.price
@@ -113,21 +107,17 @@ router.put('/edit/:userId', async (req, res, next) => {
 router.put('/remove/:userId', async (req, res, next) => {
   try {
     const itemId = req.body.itemId
-
     // get user's open order object
     const openOrder = await Order.findOne({
       where: {userId: req.params.userId, checkedout: false}
     })
-
     // find itemOrderObj using itemId and openOrderId
     const numOfAffectedRows = await ItemOrder.destroy({
-      // const [ numDestroyedRows, destroyedItemObj ] = await ItemOrder.destroy({
       where: {
         itemId: itemId,
         orderId: openOrder.id
       },
       returning: true
-      // plain: true,
     })
     res.json(numOfAffectedRows)
   } catch (error) {
