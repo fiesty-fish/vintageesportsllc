@@ -6,26 +6,15 @@ module.exports = router
 
 // middleware for protecting /api/orders routes
 const accessUserOrders = (req, res, next) => {
-  console.log('req.user.id>>>>>>in middleware', req.user.id)
-  console.log('req.params.userId>>>>>>in middleware', req.params.userId)
-  next()
-  // if (req.path === '/') {
-  //   console.log('home path');
-  //   next();
-  // } else if (req.user.id === req.params.userId) {
-  //   console.log('req.params.userId', req.params.userId);
-  //   next();
-  // } else {
-  //   // console.log('req.hostname', req.hostname);
-  //   res.render('Access Denied');
-  //   // res.redirect('/');
-  // }
+  // console.log('req.user.id>>>>>>in middleware', req.user.id)
+  // console.log('req.params.userId>>>>>>in middleware', req.params.userId)
+  if (req.user.id === req.params.userId) {
+    console.log('werked>>>>>>>', req.user.id, req.params.userId)
+    next()
+  } else {
+    res.status(401).send('Access Denied')
+  }
 }
-//TODO: try to move the middleware into each function bc the req.params.userId does not appear.
-
-// router.use('*', accessUserOrders);
-
-// url - localhost:8080/orders
 
 router.get('/', async (req, res, next) => {
   try {
@@ -37,7 +26,6 @@ router.get('/', async (req, res, next) => {
 })
 
 router.get('/past/:userId', accessUserOrders, async (req, res, next) => {
-  console.log('req.params.userId in route>>>>', req.params.userId)
   try {
     const curUserClosedOrders = await Order.findAll({
       where: {userId: req.params.userId, checkedout: true}
@@ -68,13 +56,11 @@ router.get('/past/:userId', accessUserOrders, async (req, res, next) => {
   }
 })
 
-router.get('/:userId', async (req, res, next) => {
-  console.log(req.params.userId)
+router.get('/:userId', accessUserOrders, async (req, res, next) => {
   try {
     const curUserOpenOrder = await Order.findOne({
       where: {userId: req.params.userId, checkedout: false}
     })
-    console.log('curUserOpenOrder: ', curUserOpenOrder)
     if (curUserOpenOrder) {
       if (curUserOpenOrder.id) {
         const curOrderItems = await ItemOrder.findAll()
@@ -89,9 +75,8 @@ router.get('/:userId', async (req, res, next) => {
 })
 
 // edit quantity of item in cart
-router.put('/edit/:userId', async (req, res, next) => {
+router.put('/edit/:userId', accessUserOrders, async (req, res, next) => {
   try {
-    console.log('req.body.item.id: ', req.body.item.id)
     if (req.body.item.id) {
       const itemId = req.body.item.id
       const itemPrice = req.body.item.price
@@ -129,7 +114,7 @@ router.put('/edit/:userId', async (req, res, next) => {
 })
 
 // remove item from cart
-router.put('/remove/:userId', async (req, res, next) => {
+router.put('/remove/:userId', accessUserOrders, async (req, res, next) => {
   try {
     const itemId = req.body.itemId
 
@@ -155,7 +140,7 @@ router.put('/remove/:userId', async (req, res, next) => {
 })
 
 // checkout route changes open order checkedout property to true and closes it
-router.put('/checkout/:userId', async (req, res, next) => {
+router.put('/checkout/:userId', accessUserOrders, async (req, res, next) => {
   try {
     const orderData = await Order.findOne({
       where: {userId: req.params.userId, checkedout: false}
