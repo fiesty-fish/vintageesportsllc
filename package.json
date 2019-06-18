@@ -65,6 +65,7 @@
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
+    "sass": "^1.21.0",
     "sequelize": "^5.3.1",
     "socket.io": "^2.2.0",
     "stripe": "^7.1.0"

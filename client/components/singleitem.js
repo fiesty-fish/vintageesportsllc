@@ -65,23 +65,35 @@ class SingleItem extends Component {
   render() {
     const {item} = this.props
     return (
-      <div>
+      <div className="card">
         <h3>{item.name}</h3>
-        <img src={item.imageUrl} className="item-image" />
-        <div>
-          <span>Price: $ {(item.price / 100).toFixed(2)}</span>
-          <span> </span>
-          <button onClick={this.handleDecrement} type="button">
-            -
-          </button>
-          <span>{this.state.quantity}</span>
-          <button onClick={this.handleIncrement} type="button">
-            +
-          </button>
-          <span> </span>
-          <button onClick={() => this.handleAddToCart(item)} type="button">
-            Add To Cart
-          </button>
+        <div className="card-interior">
+          <img src={item.imageUrl} className="item-image" />
+          <div className="info-and-button">
+            <div>
+              <span>Price: $ {(item.price / 100).toFixed(2)}</span>
+              <span> </span>
+            </div>
+            <div>
+              <button onClick={this.handleDecrement} type="button">
+                -
+              </button>
+              <span>{this.state.quantity}</span>
+              <button onClick={this.handleIncrement} type="button">
+                +
+              </button>
+              <span> </span>
+            </div>
+            <div>
+              <button
+                className="nes-btn is-success"
+                onClick={() => this.handleAddToCart(item)}
+                type="button"
+              >
+                Add To Cart
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     )
