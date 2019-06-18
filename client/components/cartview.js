@@ -6,7 +6,6 @@ import TakeMoney from './takemoney'
 import {getItemsThunk} from '../store/item'
 import {getClosedOrdersThunkCreator} from '../store/order'
 
-
 class CartView extends Component {
   constructor() {
     super()
@@ -82,13 +81,13 @@ class CartView extends Component {
         0
       )
     }
-
     return (
       <div>
         <h3>This is your cart!</h3>
         <div>
-          {cartItemsData
-            ? cartItemsData.map(item => {
+          {cartItemsData ? (
+            cartItemsData.length ? (
+              cartItemsData.map(item => {
                 return (
                   <div key={item.id}>
                     <SingleCartItem
@@ -100,15 +99,17 @@ class CartView extends Component {
                   </div>
                 )
               })
-            : null}
+            ) : (
+              <div>Your cart is Empty.</div>
+            )
+          ) : null}
         </div>
+        <br />
         <div>
           Total: $ {cartTotal ? (cartTotal / 100).toFixed(2) : (0).toFixed(2)}
         </div>
-        <TakeMoney product={items[0]} />
-        <button onClick={this.handleCheckout} type="button">
-          Checkout
-        </button>
+        <br />
+        <TakeMoney product={items[0]} handleCheckout={this.handleCheckout} />
       </div>
     )
   }

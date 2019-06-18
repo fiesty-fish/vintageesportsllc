@@ -62,7 +62,11 @@ router.get('/:userId', accessUserOrdersAuth, async (req, res, next) => {
     })
     if (curUserOpenOrder) {
       if (curUserOpenOrder.id) {
-        const curOrderItems = await ItemOrder.findAll()
+        const curOrderItems = await ItemOrder.findAll({
+          where: {
+            orderId: curUserOpenOrder.id
+          }
+        })
         res.json(curOrderItems)
       }
     } else {

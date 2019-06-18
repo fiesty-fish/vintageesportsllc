@@ -72,7 +72,6 @@ const mapDispatch = dispatch => {
       const password = evt.target.password.value
       const curLoggedInUserId = await dispatch(auth(email, password, formName))
       const userObj = {id: curLoggedInUserId}
-      // this.props.handleCart(user)
       async function handleCart(user) {
         // if there is a user logged in
         if (user.id) {
