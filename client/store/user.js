@@ -55,7 +55,6 @@ export const auth = (email, password, method) => async dispatch => {
     history.push('/home')
     const {data} = res
     const curLoggedInUserId = data.id
-    // console.log('auth res: ', curLoggedInUserId)
     return curLoggedInUserId
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr)

@@ -24,12 +24,6 @@ router.get('/past/:userId', async (req, res, next) => {
       const curUserClosedOrdersIdsArr = curUserClosedOrders.map(
         curOrder => curOrder.id
       )
-      console.log(
-        'curUserClosedOrdersIdsArr: ',
-        curUserClosedOrdersIdsArr,
-        'is of type: ',
-        Array.isArray(curUserClosedOrdersIdsArr)
-      )
       const curUserClosedOrdersItems = await ItemOrder.findAll({
         where: {
           orderId: {
@@ -51,7 +45,6 @@ router.get('/:userId', async (req, res, next) => {
     const curUserOpenOrder = await Order.findOne({
       where: {userId: req.params.userId, checkedout: false}
     })
-    console.log('curUserOpenOrder: ', curUserOpenOrder)
     if (curUserOpenOrder) {
       if (curUserOpenOrder.id) {
         const curOrderItems = await ItemOrder.findAll()
@@ -67,7 +60,6 @@ router.get('/:userId', async (req, res, next) => {
 
 router.put('/edit/:userId', async (req, res, next) => {
   try {
-    console.log('req.body.item.id: ', req.body.item.id)
     if (req.body.item.id) {
       const itemId = req.body.item.id
       const itemPrice = req.body.item.price

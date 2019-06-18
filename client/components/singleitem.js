@@ -64,7 +64,6 @@ class SingleItem extends Component {
 
   render() {
     const {item} = this.props
-    console.log(item.imageUrl)
     return (
       <div>
         <img src={item.imageUrl} className="item-image" />

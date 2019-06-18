@@ -7,7 +7,7 @@ class SingleOrder extends Component {
 
     return (
       <div>
-        <div>Date: {order[0].slice(0, 9)}</div>
+        <div>Date: {order[0].slice(0, 10)}</div>
         <div>
           {order.map((currItem, idx) => {
             if (idx !== 0) {
