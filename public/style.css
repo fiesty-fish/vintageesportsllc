@@ -1,8 +1,8 @@
 body {
   font-family: 'Press Start 2P', sans-serif;
-
+  color: white;
+  text-shadow: 4px 4px black;
   background-image: url('https://i.pinimg.com/originals/dc/8d/ef/dc8def609c27f9123c4f61a83a3b93bd.jpg');
-
   background-size: 100%;
 }
 

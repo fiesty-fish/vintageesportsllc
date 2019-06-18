@@ -6,8 +6,8 @@ import {logout} from '../store'
 
 // material ui
 
-import HomeIcon from '@material-ui/icons/Home'
-import ShoppingCartIcon from '@material-ui/icons/Shoppingcart'
+// import HomeIcon from '@material-ui/icons/Home'
+// import ShoppingCartIcon from '@material-ui/icons/Shoppingcart'
 
 const Navbar = ({handleClick, isLoggedIn, isAdmin, user}) => (
   <React.Fragment>
@@ -15,10 +15,12 @@ const Navbar = ({handleClick, isLoggedIn, isAdmin, user}) => (
 
     <nav>
       <Link to="/home" className="small-block">
-        <HomeIcon />
+        Home
+        {/* <HomeIcon /> */}
       </Link>
       <Link to="/cart" className="small-block">
-        <ShoppingCartIcon />
+        Cart
+        {/* <ShoppingCartIcon /> */}
       </Link>
 
       {/* show link to profile after logged in */}
