@@ -16,25 +16,28 @@ const AuthForm = props => {
       <div>
         <h3>Hello Guest! Be sure to sign up or log in!</h3>
       </div>
-      <form onSubmit={handleSubmit} name={name}>
+      <form onSubmit={handleSubmit} name={name} className="nes-field">
         <div>
           <label htmlFor="email">
             <small>Email</small>
           </label>
-          <input name="email" type="text" />
-        </div>
-        <div>
+          <input name="email" type="text" className="nes-input input" />
           <label htmlFor="password">
             <small>Password</small>
           </label>
-          <input name="password" type="password" />
-        </div>
-        <div>
-          <button type="submit">{displayName}</button>
+          <input name="password" type="password" className="nes-input input" />
+          <div className="login-btn-space">
+            <button type="submit" className="nes-btn is-primary">
+              {displayName}
+            </button>
+            <a href="/auth/google" className="nes-btn is-success">
+              {displayName} with Google
+            </a>
+          </div>
         </div>
         {error && error.response && <div> {error.response.data} </div>}
       </form>
-      <a href="/auth/google">{displayName} with Google</a>
+
       <hr />
     </div>
   )

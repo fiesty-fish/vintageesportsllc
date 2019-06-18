@@ -53,14 +53,16 @@ class profileview extends Component {
     } else {
       return (
         <div>
-          <form>
-            <label>Email</label>
+          <form className="nes-field">
+            <label htmlFor="name_field">Email</label>
             <input
               type="email"
               name="email"
+              id="name_field"
               defaultValue={this.props.user.email}
               onChange={e => this.handleChange(e)}
               required
+              className="nes-input input"
             />
             <label>Password</label>
             <input
@@ -68,6 +70,7 @@ class profileview extends Component {
               name="password"
               onChange={e => this.handleChange(e)}
               required
+              className="nes-input input"
             />
 
             <label>Re-Enter Password</label>
@@ -76,9 +79,14 @@ class profileview extends Component {
               name="reenterPassword"
               onChange={e => this.handleChange(e)}
               required
+              className="nes-input input"
             />
             <br />
-            <button type="submit" onClick={e => this.handleClick(e)}>
+            <button
+              type="submit"
+              onClick={e => this.handleClick(e)}
+              className="nes-btn is-success"
+            >
               Submit
             </button>
             {this.state.passwordMismatch ? (

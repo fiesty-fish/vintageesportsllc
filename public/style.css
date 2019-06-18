@@ -5,6 +5,7 @@ body {
   text-shadow: 3px 3px black;
   background-image: url('https://i.pinimg.com/originals/dc/8d/ef/dc8def609c27f9123c4f61a83a3b93bd.jpg');
   background-size: 100%;
+  margin: 2% 5% 0 5%;
 }
 
 a {
@@ -37,97 +38,6 @@ form div {
   border-radius: 10px;
 }
 
-/* .block {
-  height: 40px;
-  width: 155px;
-  text-shadow: 0.5px 0.5px black;
-
-  overflow: hidden;
-
-  background: #f6da17;
-
-  border: 3px solid black;
-
-  border-radius: 4px;
-
-  -moz-border-radius: 10px;
-
-  -webkit-border-radius: 5px;
-
-  box-shadow: inset -4px -4px 1px #d6a12d;
-
-  -moz-box-shadow: inset -4px -4px 1px #d6a12d;
-
-  -webkit-box-shadow: inset -4px -4px 1px #d6a12d;
-
-  color: white;
-
-  text-align: center;
-
-  text-shadow: 4px 4px 0 #000;
-} */
-/* 
-.small-block {
-  height: 40px;
-
-  width: 80px;
-
-  overflow: hidden;
-
-  background: #f6da17;
-
-  border: 3px solid black;
-
-  border-radius: 4px;
-
-  -moz-border-radius: 10px;
-
-  -webkit-border-radius: 5px;
-
-  box-shadow: inset -4px -4px 1px #d6a12d;
-
-  -moz-box-shadow: inset -4px -4px 1px #d6a12d;
-
-  -webkit-box-shadow: inset -4px -4px 1px #d6a12d;
-
-  color: white;
-
-  text-align: center;
-
-  text-shadow: 4px 4px 0 #000;
-}
-
-@-webkit-keyframes mariomation {
-  0% {
-    text-indent: -300px;
-  }
-
-  100% {
-    text-indent: 300px;
-  }
-}
-
-@-moz-keyframes mariomation {
-  0% {
-    text-indent: -300px;
-  }
-
-  100% {
-    text-indent: 300px;
-  }
-}
-
-p.block {
-  -webkit-animation: mariomation 2s infinite linear;
-
-  -moz-animation: mariomation 2s infinite linear;
-} */
-
-/* .card-interior {
-  display: flex;
-  align-items: center;
-} */
-
 .info-and-button {
   height: 20px;
 }
@@ -151,19 +61,6 @@ a:hover {
   color: white;
 }
 
-/* .add-to-cart-btn {
-  background: #92cd41;
-  display: inline-block;
-  position: relative;
-  text-align: center;
-  font-size: 30px;
-  padding: 20px;
-  font-family: 'Press Start 2P', cursive;
-  text-decoration: none;
-  color: white;
-  box-shadow: inset (-4px) (-4px) 0px 0px #4aa52e;
-}*/
-
 .nes-btn.is-warning {
   color: white;
   margin: 0 10px 0 10px;
@@ -171,4 +68,16 @@ a:hover {
 
 .nes-btn.inc-dec-btn {
   height: 40px;
+}
+
+.nes-input.input {
+  width: 30rem;
+}
+
+.login-btn-space {
+  margin: 10px 10px 10px 0px;
+}
+
+.login-btn-space > button {
+  margin-right: 10px;
 }
