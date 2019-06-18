@@ -45,6 +45,7 @@ router.put('/:userId', async (req, res, next) => {
     }
     const curUser = await User.findByPk(req.params.userId)
     if (curUser && curUser.admin) {
+      console.log(updatedItemData)
       const updateItem = await Item.update(updatedItemData, {
         where: {
           name: updatedItemData.name

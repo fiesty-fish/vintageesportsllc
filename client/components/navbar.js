@@ -4,7 +4,8 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
 
-const Navbar = ({handleClick, isLoggedIn}) => (
+
+const Navbar = ({handleClick, isLoggedIn, isAdmin, handleCart, user}) => (
   <React.Fragment>
     <h1>Vintage Vidya Games!</h1>
     <nav>
@@ -16,6 +17,11 @@ const Navbar = ({handleClick, isLoggedIn}) => (
         <React.Fragment>
           <Link to="profile">Profile</Link>
           <Link to="orders">Orders</Link>
+        </React.Fragment>
+      )}
+      {isAdmin && (
+        <React.Fragment>
+          <Link to="inventory">Inventory</Link>
         </React.Fragment>
       )}
       {isLoggedIn ? (
@@ -42,7 +48,9 @@ const Navbar = ({handleClick, isLoggedIn}) => (
  */
 const mapState = state => {
   return {
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    isAdmin: !!state.user.admin,
+    user: state.user
   }
 }
 
@@ -62,5 +70,8 @@ export default connect(mapState, mapDispatch)(Navbar)
  */
 Navbar.propTypes = {
   handleClick: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired
+  isLoggedIn: PropTypes.bool.isRequired,
+  isAdmin: PropTypes.bool.isRequired,
+  handleCart: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired
 }
