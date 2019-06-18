@@ -51,9 +51,12 @@ router.get('/:userId', async (req, res, next) => {
     const curUserOpenOrder = await Order.findOne({
       where: {userId: req.params.userId, checkedout: false}
     })
-    if (curUserOpenOrder.id) {
-      const curOrderItems = await ItemOrder.findAll()
-      res.json(curOrderItems)
+    console.log('curUserOpenOrder: ', curUserOpenOrder)
+    if (curUserOpenOrder) {
+      if (curUserOpenOrder.id) {
+        const curOrderItems = await ItemOrder.findAll()
+        res.json(curOrderItems)
+      }
     } else {
       res.json('NO OPEN ORDER FOUND')
     }
