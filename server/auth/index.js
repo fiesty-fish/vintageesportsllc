@@ -19,10 +19,16 @@ router.post('/login', async (req, res, next) => {
   }
 })
 
-// TODO: (destructure) edit req.body for admin users
 router.post('/signup', async (req, res, next) => {
   try {
-    const user = await User.create(req.body)
+    // destructured so alvin can't hack us no more.
+    // alvin, pls stahp
+    const {email, password} = req.body
+    const userData = {
+      email,
+      password
+    }
+    const user = await User.create(userData)
     req.login(user, err => (err ? next(err) : res.json(user)))
   } catch (err) {
     if (err.name === 'SequelizeUniqueConstraintError') {
