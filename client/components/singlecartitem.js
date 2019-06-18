@@ -50,6 +50,7 @@ class SingleCartItem extends Component {
       }
     }
     this.forceUpdate()
+    this.props.handleUpdateCartView()
   }
 
   handleIncrement() {

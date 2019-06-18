@@ -10,6 +10,7 @@ class CartView extends Component {
     super()
     this.handleRemoveFromCart = this.handleRemoveFromCart.bind(this)
     this.handleCheckout = this.handleCheckout.bind(this)
+    this.handleUpdateCartView = this.handleUpdateCartView.bind(this)
   }
 
   componentDidMount() {
@@ -53,6 +54,10 @@ class CartView extends Component {
     }
   }
 
+  handleUpdateCartView() {
+    this.forceUpdate()
+  }
+
   render() {
     const {items} = this.props
 
@@ -86,6 +91,7 @@ class CartView extends Component {
                     <SingleCartItem
                       item={item}
                       handleRemoveFromCart={this.handleRemoveFromCart}
+                      handleUpdateCartView={this.handleUpdateCartView}
                     />
                     <hr />
                   </div>
