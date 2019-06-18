@@ -11,6 +11,7 @@ class SingleItem extends Component {
     this.handleAddToCart = this.handleAddToCart.bind(this)
     this.handleIncrement = this.handleIncrement.bind(this)
     this.handleDecrement = this.handleDecrement.bind(this)
+    this.playSound = this.playSound.bind(this)
   }
 
   async handleAddToCart(item) {
@@ -44,7 +45,13 @@ class SingleItem extends Component {
     }
   }
 
+  playSound() {
+    console.log('HERE!!!!!!')
+    document.getElementById('audio').play()
+  }
+
   handleIncrement() {
+    this.playSound()
     const currQuantity = this.state.quantity
     if (currQuantity < 10) {
       this.setState({
@@ -54,6 +61,7 @@ class SingleItem extends Component {
   }
 
   handleDecrement() {
+    this.playSound()
     const currQuantity = this.state.quantity
     if (currQuantity > 1) {
       this.setState({
