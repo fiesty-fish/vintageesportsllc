@@ -16,8 +16,6 @@ class SingleInventory extends Component {
   async handleUpdateItem(item) {
     try {
       await axios.put(`/api/items/${this.props.user.id}`, {item})
-      console.log('PROPS USER ID----->', this.props)
-      console.log('Item OBJ', item)
     } catch (error) {
       console.error(error)
     }

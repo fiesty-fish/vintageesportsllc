@@ -4,8 +4,7 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
 
-
-const Navbar = ({handleClick, isLoggedIn, isAdmin, handleCart, user}) => (
+const Navbar = ({handleClick, isLoggedIn, isAdmin, user}) => (
   <React.Fragment>
     <h1>Vintage Vidya Games!</h1>
     <nav>
@@ -72,6 +71,5 @@ Navbar.propTypes = {
   handleClick: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired,
   isAdmin: PropTypes.bool.isRequired,
-  handleCart: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired
 }
