@@ -79,7 +79,9 @@ class SingleItem extends Component {
         </div>
 
         <div className="card-interior">
-          <img src={item.imageUrl} className="item-image" />
+          <div>
+            <img src={item.imageUrl} className="item-image" />
+          </div>
           <div className="info-and-button">
             <div>
               <h5 id="item-price">${(item.price / 100).toFixed(2)}</h5>
