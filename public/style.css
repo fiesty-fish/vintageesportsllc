@@ -3,8 +3,10 @@ body {
   /* -webkit-text-stroke: 0.15px black; */
   color: white;
   text-shadow: 3px 3px black;
-  background-image: url('https://i.pinimg.com/originals/dc/8d/ef/dc8def609c27f9123c4f61a83a3b93bd.jpg');
-  background-size: 100%;
+  /* background-image: url('/images/background picture.jpg'); */
+  background-image: url('https://i.imgur.com/4r4pqyY.jpg');
+  background-size: cover;
+  /* background-blend-mode: screen; */
   margin: 2% 5% 0 5%;
 }
 
@@ -30,12 +32,14 @@ form div {
 
 .item-image {
   /* max-width: 15%; */
-  width: 10rem;
-  height: 10rem;
+  /* width: 10rem; */
+  width: 100%;
+  height: 12rem;
   max-width: 20rem;
   max-height: 20rem;
   /* max-height: 15%; */
   border-radius: 10px;
+  text-align: center;
 }
 
 .info-and-button {
@@ -44,7 +48,8 @@ form div {
 
 .card-container {
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
+  align-items: flex-start;
 }
 
 .card {
@@ -52,7 +57,10 @@ form div {
 }
 
 .card-panel {
+  max-width: 25%;
   width: 40%;
+  flex: 1 0 21%;
+  margin-bottom: 200px;
 }
 
 a:visited,
@@ -80,4 +88,36 @@ a:hover {
 
 .login-btn-space > button {
   margin-right: 10px;
+}
+
+.card-name {
+  height: 50px;
+  display: flex;
+  align-items: flex-end;
+  /* justify-content: center; */
+}
+
+.card-buttons {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+#item-price {
+  text-align: center;
+}
+
+.all-items-header h3 {
+  margin-bottom: 20px;
+}
+
+.footer_parent {
+  position: relative;
+  background-color: rgba(209, 160, 25, 0.5);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  bottom: 0;
+  height: 10vh;
 }

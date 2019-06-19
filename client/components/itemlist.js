@@ -12,8 +12,8 @@ class ItemList extends Component {
   render() {
     const {items} = this.props
     return (
-      <div>
-        <h3>See our nice selection of vintage vidya games!</h3>
+      <div className="all-items-header">
+        <h3>Check out our nice selection of vintage vidya games!</h3>
         <div className="card-container">
           {items ? (
             items.map(item => {

@@ -71,15 +71,19 @@ class SingleItem extends Component {
     const {item} = this.props
     return (
       <div className="card">
-        <h3>{item.name}</h3>
+        <div className="card-name">
+          <h5>{item.name}</h5>
+        </div>
+
         <div className="card-interior">
-          <img src={item.imageUrl} className="item-image" />
+          <div>
+            <img src={item.imageUrl} className="item-image" />
+          </div>
           <div className="info-and-button">
             <div>
-              <span>Price: $ {(item.price / 100).toFixed(2)}</span>
-              <span> </span>
+              <h5 id="item-price">${(item.price / 100).toFixed(2)}</h5>
             </div>
-            <div>
+            <div className="card-buttons">
               <button
                 onClick={this.handleDecrement}
                 type="button"
@@ -95,7 +99,6 @@ class SingleItem extends Component {
               >
                 +
               </button>
-              <span> </span>
             </div>
             <div>
               <button
