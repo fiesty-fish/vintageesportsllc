@@ -31,8 +31,8 @@ export default class TakeMoney extends React.Component {
           token={this.onToken}
           billingAddress
           shippingAddress
-          amount={1000}
-          name="Mario Kart"
+          amount={this.props.total}
+          name="Your Vintage Order:"
           stripeKey="pk_test_JxsK9QIkocX2EOTbiyWnW8X600Sl7iKlaS"
         />
       </div>

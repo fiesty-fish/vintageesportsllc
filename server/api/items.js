@@ -8,7 +8,6 @@ module.exports = router
 
 // middleware protection for admins
 const accessItemAuth = (req, res, next) => {
-  console.log(req.user)
   if (req.user.id === +req.params.userId && req.user.admin) {
     next()
   } else {
