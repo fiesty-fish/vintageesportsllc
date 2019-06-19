@@ -109,7 +109,11 @@ class CartView extends Component {
           Total: $ {cartTotal ? (cartTotal / 100).toFixed(2) : (0).toFixed(2)}
         </div>
         <br />
-        <TakeMoney product={items[0]} handleCheckout={this.handleCheckout} />
+        <TakeMoney
+          product={items[0]}
+          handleCheckout={this.handleCheckout}
+          total={cartTotal ? cartTotal : 0}
+        />
       </div>
     )
   }
