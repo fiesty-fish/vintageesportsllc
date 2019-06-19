@@ -2,6 +2,8 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import axios from 'axios'
 
+import playSound from '../../script/utility-functions'
+
 class SingleCartItem extends Component {
   constructor() {
     super()
@@ -20,6 +22,7 @@ class SingleCartItem extends Component {
   }
 
   async handleUpdateItem(item) {
+    playSound('lvlup')
     // If there's no localStorage cart existing make a cart key with an empty object
     if (!localStorage.cart) {
       localStorage.setItem('cart', '{}')
@@ -54,6 +57,7 @@ class SingleCartItem extends Component {
   }
 
   handleIncrement() {
+    playSound('coin')
     const currQuantity = this.state.quantity
     if (currQuantity < 10) {
       this.setState({
@@ -63,6 +67,7 @@ class SingleCartItem extends Component {
   }
 
   handleDecrement() {
+    playSound('coin')
     const currQuantity = this.state.quantity
     if (currQuantity > 1) {
       this.setState({
@@ -110,7 +115,10 @@ class SingleCartItem extends Component {
         <br />
         <div>
           <button
-            onClick={() => this.props.handleRemoveFromCart(item.id)}
+            onClick={() => {
+              this.props.handleRemoveFromCart(item.id)
+              playSound('death')
+            }}
             type="button"
             className="nes-btn is-error"
           >

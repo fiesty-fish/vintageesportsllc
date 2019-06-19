@@ -5,11 +5,6 @@ import {NavLink as Link} from 'react-router-dom'
 import {logout} from '../store'
 import playSound from '../../script/utility-functions'
 
-// material ui
-
-// import HomeIcon from '@material-ui/icons/Home'
-// import ShoppingCartIcon from '@material-ui/icons/Shoppingcart'
-
 const Navbar = ({handleClick, isLoggedIn, isAdmin, user}) => (
   <React.Fragment>
     <h1>Vintage Vidya Games!</h1>
