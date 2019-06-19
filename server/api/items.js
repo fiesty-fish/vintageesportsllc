@@ -5,18 +5,18 @@ const {Item, User} = require('../db/models')
 module.exports = router
 
 // url - localhost:8080/api/items
-// middleware protection
+
+// middleware protection for admins
 const accessItemAuth = (req, res, next) => {
-  console.log('req.user.id>>>>>>in middleware', req.user.id)
-  console.log('req.params.userId>>>>>>in middleware', req.params.userId)
-  if (req.user.id === +req.params.userId) {
-    console.log('werked>>>>>>>', req.user.id, req.params.userId)
+  console.log(req.user)
+  if (req.user.id === +req.params.userId && req.user.admin) {
     next()
   } else {
     res.status(401).send('Access Denied')
   }
 }
 
+// get all items
 router.get('/', async (req, res, next) => {
   try {
     const items = await Item.findAll()
@@ -26,6 +26,7 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+// add a new item to the db
 router.post('/:userId', accessItemAuth, async (req, res, next) => {
   try {
     const newItemData = {
@@ -48,6 +49,7 @@ router.post('/:userId', accessItemAuth, async (req, res, next) => {
   }
 })
 
+// update inventory for an item
 router.put('/:userId', accessItemAuth, async (req, res, next) => {
   try {
     const updatedItemData = {

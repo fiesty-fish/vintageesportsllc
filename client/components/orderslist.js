@@ -12,12 +12,15 @@ class OrdersList extends Component {
   }
 
   render() {
-    let curUserClosedOrdersByOrderId
     if (this.props.user.id && !this.props.orders.length) {
       this.props.loadAllOrders(this.props.user.id)
     }
-    if (this.props.orders) {
-      if (this.props.orders[1]) {
+
+    let curUserClosedOrdersByOrderId
+    if (this.props.orders === 'NO CLOSED ORDER FOUND') {
+      curUserClosedOrdersByOrderId = null
+    } else {
+      try {
         curUserClosedOrdersByOrderId = this.props.orders.reduce(
           (acc, curOrder) => {
             acc[curOrder.orderId] = acc[curOrder.orderId] || [
@@ -28,6 +31,8 @@ class OrdersList extends Component {
           },
           []
         )
+      } catch (error) {
+        curUserClosedOrdersByOrderId = null
       }
     }
 
