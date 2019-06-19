@@ -3,8 +3,9 @@ body {
   /* -webkit-text-stroke: 0.15px black; */
   color: white;
   text-shadow: 3px 3px black;
-  background-image: url('/images/background picture.jpg');
-  background-size: 100%;
+  /* background-image: url('/images/background picture.jpg'); */
+  background-image: url('https://i.imgur.com/4r4pqyY.jpg');
+  background-size: cover;
   /* background-blend-mode: screen; */
   margin: 2% 5% 0 5%;
 }
