@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {NavLink as Link} from 'react-router-dom'
 import {logout} from '../store'
+import playSound from '../../script/utility-functions'
 
 // material ui
 
@@ -14,13 +15,19 @@ const Navbar = ({handleClick, isLoggedIn, isAdmin, user}) => (
     <h1>Vintage Vidya Games!</h1>
 
     <nav>
-      <Link to="/home" className="nes-btn is-warning">
+      <Link
+        to="/home"
+        className="nes-btn is-warning"
+        onClick={() => playSound('jump')}
+      >
         Home
-        {/* <HomeIcon /> */}
       </Link>
-      <Link to="/cart" className="nes-btn is-warning">
+      <Link
+        to="/cart"
+        className="nes-btn is-warning"
+        onClick={() => playSound('jump')}
+      >
         Cart
-        {/* <ShoppingCartIcon /> */}
       </Link>
 
       {/* show link to profile after logged in */}
@@ -29,11 +36,19 @@ const Navbar = ({handleClick, isLoggedIn, isAdmin, user}) => (
         // React.Fragment wraps the child elements but does not add another dom element
 
         <React.Fragment>
-          <Link to="profile" className="nes-btn is-warning">
+          <Link
+            to="profile"
+            className="nes-btn is-warning"
+            onClick={() => playSound('jump')}
+          >
             Profile
           </Link>
 
-          <Link to="orders" className="nes-btn is-warning">
+          <Link
+            to="orders"
+            className="nes-btn is-warning"
+            onClick={() => playSound('jump')}
+          >
             Orders
           </Link>
         </React.Fragment>
@@ -41,7 +56,11 @@ const Navbar = ({handleClick, isLoggedIn, isAdmin, user}) => (
 
       {isAdmin && (
         <React.Fragment>
-          <Link to="inventory" className="nes-btn is-warning">
+          <Link
+            to="inventory"
+            className="nes-btn is-warning"
+            onClick={() => playSound('jump')}
+          >
             Inventory
           </Link>
         </React.Fragment>
@@ -51,19 +70,34 @@ const Navbar = ({handleClick, isLoggedIn, isAdmin, user}) => (
         <React.Fragment>
           {/* The navbar will show these links after you log in */}
 
-          <a href="#" onClick={handleClick} className="nes-btn is-warning">
+          <Link
+            to="#"
+            className="nes-btn is-warning"
+            onClick={() => {
+              handleClick()
+              playSound('death')
+            }}
+          >
             Logout
-          </a>
+          </Link>
         </React.Fragment>
       ) : (
         <React.Fragment>
           {/* The navbar will show these links before you log in */}
 
-          <Link to="/login" className="nes-btn is-warning">
+          <Link
+            to="/login"
+            className="nes-btn is-warning"
+            onClick={() => playSound('lvlup')}
+          >
             Login
           </Link>
 
-          <Link to="/signup" className="nes-btn is-warning">
+          <Link
+            to="/signup"
+            className="nes-btn is-warning"
+            onClick={() => playSound('lvlup')}
+          >
             Sign Up
           </Link>
         </React.Fragment>
