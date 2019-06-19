@@ -112,12 +112,13 @@ a:hover {
 }
 
 .footer_parent {
-  position: relative;
+  /* position: relative; */
+  position: fixed;
   background-color: rgba(209, 160, 25, 0.5);
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 100%;
-  bottom: 0;
-  height: 10vh;
+  width: 90%;
+  bottom: 0px;
+  height: 8vh;
 }
