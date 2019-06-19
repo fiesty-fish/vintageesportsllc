@@ -9,6 +9,7 @@ import {
 } from './components'
 import {Route, Switch} from 'react-router-dom'
 import Routes from './routes'
+import Footer from './components/footer'
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
         <Route path="/inventory" component={Inventory} />
         <Route path="/" component={ItemList} />
       </Switch>
+      <Footer />
     </div>
   )
 }
