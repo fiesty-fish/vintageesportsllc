@@ -2,9 +2,7 @@
 
 # Dev Team:
 
-Ricky Lau
-Tal Luigi
-Michael Ng
+Ricky Lau, Tal Luigi, and Michael Ng
 
 # Description:
 
@@ -12,7 +10,7 @@ Vintage Vidya Games is an NES themed e-commerce web app complete with graphics a
 
 # Tech Stack:
 
-The app was built using Node.js, Express.js, Sequelize.js, and PostgreSQL on the backend, React.js, Redux.js, and NES.css on the frontend, and utilizes the Stripe API. It was completed using Agile methodologies in under 10 days for a group project.
+The app was built using Node.js, Express.js, Sequelize.js, and PostgreSQL on the backend, React.js, Redux.js, and NES.css on the frontend, and utilizes the Stripe API. It was completed using Agile methodologies in 10 days for a group project.
 
 # URL:
 
