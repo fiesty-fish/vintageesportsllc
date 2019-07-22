@@ -2,7 +2,7 @@
 
 # Dev Team:
 
-Ricky Lau, Tal Luigi, and Michael Ng
+Ricky Lau, Tal Luigi, and Michael Ng.
 
 # Description:
 
