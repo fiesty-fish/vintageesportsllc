@@ -10,7 +10,7 @@ export const UserHome = props => {
 
   return (
     <div>
-      <h3>Welcome, {name ? name : email}.</h3>
+      <h3>Welcome, {name ? name : email.slice(0, email.indexOf('@'))}.</h3>
       <hr />
     </div>
   )
