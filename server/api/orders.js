@@ -142,7 +142,7 @@ router.put(
 )
 
 router.post('/stripecheckout', async (req, res) => {
-  console.log('Request:', req.body)
+  // console.log('Request:', req.body)
 
   let error
   let status

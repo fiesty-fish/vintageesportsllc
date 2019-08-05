@@ -7,8 +7,8 @@ import playSound from '../../script/utility-functions'
 
 const Navbar = ({handleClick, isLoggedIn, isAdmin, user}) => (
   <React.Fragment>
-    <h1>Vintage Vidya Games!</h1>
-
+    <h1>Vintage Vidya Games</h1>
+    <br />
     <nav>
       <Link
         to="/home"
@@ -63,7 +63,7 @@ const Navbar = ({handleClick, isLoggedIn, isAdmin, user}) => (
 
       {isLoggedIn ? (
         <React.Fragment>
-          {/* The navbar will show these links after you log in */}
+          {/* The navbar will show these links after you login */}
 
           <Link
             to="#"
@@ -78,7 +78,7 @@ const Navbar = ({handleClick, isLoggedIn, isAdmin, user}) => (
         </React.Fragment>
       ) : (
         <React.Fragment>
-          {/* The navbar will show these links before you log in */}
+          {/* The navbar will show these links before you login */}
 
           <Link
             to="/login"
@@ -98,8 +98,9 @@ const Navbar = ({handleClick, isLoggedIn, isAdmin, user}) => (
         </React.Fragment>
       )}
     </nav>
-
+    <br />
     <hr />
+    <br />
   </React.Fragment>
 )
 
@@ -123,7 +124,7 @@ const mapDispatch = dispatch => {
   return {
     handleClick() {
       dispatch(logout())
-
+      // clear cart on log out
       localStorage.clear()
     }
   }

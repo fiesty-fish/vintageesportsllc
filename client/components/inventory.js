@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 // import axios from 'axios'
 import {getItemsThunk} from '../store/index'
 import SingleInventory from './singleinventory'
+import {O_TRUNC} from 'constants'
 
 class Inventory extends Component {
   componentDidMount() {
@@ -14,10 +15,28 @@ class Inventory extends Component {
 
     return (
       <div>
-        <h3>Inventory</h3>
+        <h3>This is our store inventory:</h3>
+        <br />
         {items.map(item => {
-          return <SingleInventory key={item.id} item={item} />
+          return (
+            <div key={item.id}>
+              <SingleInventory item={item} />
+              <br />
+            </div>
+          )
         })}
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
       </div>
     )
   }

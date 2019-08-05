@@ -79,6 +79,7 @@ class SingleItem extends Component {
           <div>
             <img src={item.imageUrl} className="item-image" />
           </div>
+
           <div className="info-and-button">
             <div>
               <h5 id="item-price">${(item.price / 100).toFixed(2)}</h5>
@@ -100,6 +101,7 @@ class SingleItem extends Component {
                 +
               </button>
             </div>
+
             <div>
               <button
                 className="nes-btn is-success"

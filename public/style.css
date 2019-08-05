@@ -94,7 +94,8 @@ a:hover {
   height: 50px;
   display: flex;
   align-items: flex-end;
-  /* justify-content: center; */
+  justify-content: center;
+  text-align: center;
 }
 
 .card-buttons {

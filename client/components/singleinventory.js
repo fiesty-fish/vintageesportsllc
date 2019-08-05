@@ -51,7 +51,7 @@ class SingleInventory extends Component {
     return (
       <div>
         <h3>{`Name: ${item.name}`}</h3>
-        <h5>Inventory: </h5>
+        <h5>Units: </h5>
         <button
           onClick={this.handleDecrement}
           type="button"

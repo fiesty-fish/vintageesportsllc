@@ -17,7 +17,7 @@ export default class TakeMoney extends React.Component {
     const {status} = response.data
     if (status === 'success') {
       this.props.handleCheckout()
-      toast('Success! Check emails for details', {type: 'success'})
+      toast('Your order was placed successfully.', {type: 'success'})
     } else {
       toast('Something went wrong', {type: 'error'})
     }
@@ -32,7 +32,7 @@ export default class TakeMoney extends React.Component {
           billingAddress
           shippingAddress
           amount={this.props.total}
-          name="Your Vintage Order:"
+          name="Your Vintage Order"
           stripeKey="pk_test_JxsK9QIkocX2EOTbiyWnW8X600Sl7iKlaS"
         />
       </div>

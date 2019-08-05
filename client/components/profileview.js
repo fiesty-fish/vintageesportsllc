@@ -49,7 +49,7 @@ class profileview extends Component {
 
   render() {
     if (this.state.editInfoSuccess) {
-      return <p>Edit info successful!</p>
+      return <p>Your password was changed successfully.</p>
     } else {
       return (
         <div>
@@ -89,10 +89,23 @@ class profileview extends Component {
             >
               Submit
             </button>
+            <br />
+            <br />
             {this.state.passwordMismatch ? (
-              <span>"Passwords don't match!"</span>
+              <div>The passwords do not match. Try again.</div>
             ) : null}
           </form>
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
         </div>
       )
     }
