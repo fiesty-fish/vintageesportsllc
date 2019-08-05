@@ -6,11 +6,11 @@ import {connect} from 'react-redux'
  * COMPONENT
  */
 export const UserHome = props => {
-  const {email} = props
+  const {name, email} = props
 
   return (
     <div>
-      <h3>{`Welcome, ${email.slice(0, email.indexOf('@'))}.`}</h3>
+      <h3>Welcome, {name ? name : email}.</h3>
       <hr />
     </div>
   )
