@@ -83,7 +83,8 @@ class CartView extends Component {
     }
     return (
       <div>
-        <h3>This is your cart!</h3>
+        <h3>This is your cart:</h3>
+        <br />
         <div>
           {cartItemsData ? (
             cartItemsData.length ? (
@@ -95,25 +96,44 @@ class CartView extends Component {
                       handleRemoveFromCart={this.handleRemoveFromCart}
                       handleUpdateCartView={this.handleUpdateCartView}
                     />
+                    <br />
                     <hr />
+                    <br />
                   </div>
                 )
               })
             ) : (
               <div>Your cart is Empty.</div>
             )
-          ) : null}
+          ) : (
+            <div>Your cart is Empty.</div>
+          )}
         </div>
+        <br />
         <br />
         <div>
           Total: $ {cartTotal ? (cartTotal / 100).toFixed(2) : (0).toFixed(2)}
         </div>
+        <br />
         <br />
         <TakeMoney
           product={items[0]}
           handleCheckout={this.handleCheckout}
           total={cartTotal ? cartTotal : 0}
         />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
       </div>
     )
   }

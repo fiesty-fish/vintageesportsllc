@@ -38,14 +38,17 @@ class OrdersList extends Component {
 
     return (
       <div>
-        <h3>Here is a list of your past orders:</h3>
+        <h3>This is a list of your past orders:</h3>
+        <br />
         <div>
           {curUserClosedOrdersByOrderId ? (
             curUserClosedOrdersByOrderId.map((curOrder, idx) => {
               return (
                 <div key={idx}>
                   <SingleOrder order={curOrder} items={this.props.items} />
+                  <br />
                   <hr />
+                  <br />
                 </div>
               )
             })
@@ -53,6 +56,17 @@ class OrdersList extends Component {
             <div>No past orders were found!</div>
           )}
         </div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
       </div>
     )
   }

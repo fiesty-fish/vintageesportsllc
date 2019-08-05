@@ -13,7 +13,9 @@ export const UserHome = props => {
       <h3>
         Welcome, {firstName ? firstName : email.slice(0, email.indexOf('@'))}.
       </h3>
+      <br />
       <hr />
+      <br />
     </div>
   )
 }

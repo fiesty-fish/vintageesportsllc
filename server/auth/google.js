@@ -30,7 +30,7 @@ if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
   const strategy = new GoogleStrategy(
     googleConfig,
     (token, refreshToken, profile, done) => {
-      console.log('profile: >>>>>>>>>>>>>>>', profile)
+      // console.log('profile: >>>>>>>>>>>>>>>', profile)
       const googleId = profile.id
       const firstName = profile.name.givenName
       const lastName = profile.name.familyName
