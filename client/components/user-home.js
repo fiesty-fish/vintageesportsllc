@@ -21,6 +21,7 @@ export const UserHome = props => {
  */
 const mapState = state => {
   return {
+    name: state.user.name,
     email: state.user.email
   }
 }
@@ -31,5 +32,6 @@ export default connect(mapState)(UserHome)
  * PROP TYPES
  */
 UserHome.propTypes = {
+  name: PropTypes.string,
   email: PropTypes.string
 }
