@@ -14,4 +14,4 @@ The app was built using Node.js, Express.js, Sequelize.js, and PostgreSQL on the
 
 # URL:
 
-vintage-vidya-games.herokuapp.com
+http://vintage-vidya-games.herokuapp.com
