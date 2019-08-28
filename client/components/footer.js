@@ -6,7 +6,7 @@ const Footer = () => {
     <div className="footer_parent">
       <i className="nes-mario" />
       <a href="https://github.com/rickylaufitness">Ricky Lau</a>
-      <i className="nes-mario" />
+      <i className="nes-mario luigi" />
       <a href="https://github.com/LuigiLegion">Tal Luigi</a>
       <i className="nes-mario" />
       <a href="https://github.com/xmng">Michael Ng</a>
