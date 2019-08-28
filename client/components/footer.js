@@ -5,13 +5,47 @@ const Footer = () => {
   return (
     <div className="footer_parent">
       <i className="nes-mario" />
-      <a href="https://github.com/rickylaufitness">Ricky Lau</a>
+      <a
+        href="https://github.com/rickylaufitness"
+        style={{
+          boxShadow: 'none',
+          textDecoration: 'none',
+          color: 'inherit'
+        }}
+      >
+        Ricky Lau
+      </a>
       <i className="nes-mario luigi" />
-      <a href="https://github.com/LuigiLegion">Tal Luigi</a>
+      <a
+        href="https://github.com/LuigiLegion"
+        style={{
+          boxShadow: 'none',
+          textDecoration: 'none',
+          color: 'inherit'
+        }}
+      >
+        Tal Luigi
+      </a>
       <i className="nes-mario" />
-      <a href="https://github.com/xmng">Michael Ng</a>
+      <a
+        href="https://github.com/xmng"
+        style={{
+          boxShadow: 'none',
+          textDecoration: 'none',
+          color: 'inherit'
+        }}
+      >
+        Michael Ng
+      </a>
       <div>
-        <a href="https://github.com/fiesty-fish/vintageesportsllc">
+        <a
+          href="https://github.com/fiesty-fish/vintageesportsllc"
+          style={{
+            boxShadow: 'none',
+            textDecoration: 'none',
+            color: 'inherit'
+          }}
+        >
           CONTACT US
         </a>
       </div>
