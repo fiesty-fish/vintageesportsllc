@@ -69,6 +69,10 @@ a:hover {
   color: white;
 }
 
+#item-price {
+  text-align: center;
+}
+
 .nes-btn.is-warning {
   color: white;
   margin: 0 10px 0 10px;
@@ -104,10 +108,6 @@ a:hover {
   align-items: center;
 }
 
-#item-price {
-  text-align: center;
-}
-
 .all-items-header h3 {
   margin-bottom: 20px;
 }
@@ -123,4 +123,8 @@ a:hover {
   bottom: 0px;
   height: 8vh;
   right: 50px;
+}
+
+.nes-mario.luigi::before {
+  color: green;
 }
