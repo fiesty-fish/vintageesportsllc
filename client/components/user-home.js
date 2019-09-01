@@ -14,7 +14,8 @@ export const UserHome = props => {
         Welcome, {firstName ? firstName : email.slice(0, email.indexOf('@'))}.
       </h3>
       <br />
-      <hr />
+      <progress className="nes-progress is-success" value="100" max="100" />
+      <br />
       <br />
     </div>
   )

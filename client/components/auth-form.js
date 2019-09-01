@@ -37,7 +37,8 @@ const AuthForm = props => {
         </div>
         {error && error.response && <div> {error.response.data} </div>}
       </form>
-      <hr />
+      <progress className="nes-progress is-success" value="100" max="100" />
+      <br />
       <br />
     </div>
   )
