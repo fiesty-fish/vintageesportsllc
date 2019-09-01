@@ -99,7 +99,8 @@ const Navbar = ({handleClick, isLoggedIn, isAdmin, user}) => (
       )}
     </nav>
     <br />
-    <hr />
+    <progress className="nes-progress is-success" value="100" max="100" />
+    <br />
     <br />
   </React.Fragment>
 )

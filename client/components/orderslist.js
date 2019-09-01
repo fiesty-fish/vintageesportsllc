@@ -47,7 +47,12 @@ class OrdersList extends Component {
                 <div key={idx}>
                   <SingleOrder order={curOrder} items={this.props.items} />
                   <br />
-                  <hr />
+                  <progress
+                    className="nes-progress is-success"
+                    value="100"
+                    max="100"
+                  />
+                  <br />
                   <br />
                 </div>
               )
