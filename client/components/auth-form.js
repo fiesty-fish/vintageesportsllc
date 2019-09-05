@@ -41,7 +41,7 @@ const AuthForm = props => {
         className="nes-progress is-success"
         value="0"
         max="100"
-        style={{height: '50%'}}
+        style={{height: '0.5vh'}}
       />
       <br />
       <br />
