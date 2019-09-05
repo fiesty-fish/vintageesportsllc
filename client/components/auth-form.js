@@ -37,7 +37,12 @@ const AuthForm = props => {
         </div>
         {error && error.response && <div> {error.response.data} </div>}
       </form>
-      <progress className="nes-progress is-success" value="100" max="100" />
+      <progress
+        className="nes-progress is-success"
+        value="0"
+        max="100"
+        style={{height: '50%'}}
+      />
       <br />
       <br />
     </div>
