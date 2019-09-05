@@ -88,7 +88,7 @@ class SingleItem extends Component {
               <button
                 onClick={this.handleDecrement}
                 type="button"
-                className="nes-btn inc-dec-btn"
+                className="nes-btn inc-dec-btn button-no-text-shadow"
               >
                 -
               </button>
@@ -96,7 +96,7 @@ class SingleItem extends Component {
               <button
                 onClick={this.handleIncrement}
                 type="button"
-                className="nes-btn inc-dec-btn"
+                className="nes-btn inc-dec-btn button-no-text-shadow"
               >
                 +
               </button>

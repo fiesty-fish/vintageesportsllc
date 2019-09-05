@@ -10,6 +10,10 @@ body {
   margin: 2% 5% 0 5%;
 }
 
+button {
+  text-shadow: 3px 3px black;
+}
+
 a {
   text-decoration: none;
 }
@@ -127,4 +131,8 @@ a:hover {
 
 .nes-mario.luigi::before {
   color: green;
+}
+
+.button-no-text-shadow {
+  text-shadow: none;
 }
