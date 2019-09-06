@@ -21,7 +21,7 @@ class SingleOrder extends Component {
               return (
                 <div key={currItem.itemId}>
                   <h4>{currItemName}</h4>
-                  <ul>
+                  <ul style={{listStyle: 'none'}}>
                     <li>Quantity: {currItem.quantity}</li>
                     <li>
                       Price: ${' '}
