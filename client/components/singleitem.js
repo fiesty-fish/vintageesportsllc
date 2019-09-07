@@ -70,7 +70,7 @@ class SingleItem extends Component {
   render() {
     const {item} = this.props
     return (
-      <div className="card">
+      <div className="card flex-containee">
         <div className="card-name">
           <h5>{item.name}</h5>
         </div>
@@ -101,6 +101,8 @@ class SingleItem extends Component {
                 +
               </button>
             </div>
+
+            <br />
 
             <div>
               <button

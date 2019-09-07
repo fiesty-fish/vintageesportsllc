@@ -24,11 +24,11 @@ class SingleOrder extends Component {
                   <ul style={{listStyle: 'none'}}>
                     <li>Quantity: {currItem.quantity}</li>
                     <li>
-                      Price: ${' '}
+                      Price: $
                       {(currItem.price * currItem.quantity / 100).toFixed(2)}
                     </li>
                     <li>
-                      Single Item Price: $ {(currItem.price / 100).toFixed(2)}
+                      Single Item Price: ${(currItem.price / 100).toFixed(2)}
                     </li>
                   </ul>
                 </div>

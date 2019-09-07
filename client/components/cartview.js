@@ -118,7 +118,7 @@ class CartView extends Component {
         <br />
         <br />
         <div>
-          Total: $ {cartTotal ? (cartTotal / 100).toFixed(2) : (0).toFixed(2)}
+          Total: ${cartTotal ? (cartTotal / 100).toFixed(2) : (0).toFixed(2)}
         </div>
         <br />
         <br />

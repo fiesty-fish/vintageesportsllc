@@ -54,7 +54,7 @@ class profileview extends Component {
       return (
         <div>
           <form className="nes-field">
-            <label htmlFor="name_field">Email</label>
+            <label htmlFor="name_field">Email:</label>
             <input
               type="email"
               name="email"
@@ -64,7 +64,7 @@ class profileview extends Component {
               required
               className="nes-input input"
             />
-            <label>Password</label>
+            <label>New Password:</label>
             <input
               type="password"
               name="password"
@@ -73,7 +73,7 @@ class profileview extends Component {
               className="nes-input input"
             />
 
-            <label>Re-Enter Password</label>
+            <label>Re-Enter New Password:</label>
             <input
               type="password"
               name="reenterPassword"
@@ -87,7 +87,7 @@ class profileview extends Component {
               onClick={e => this.handleClick(e)}
               className="nes-btn is-success"
             >
-              Submit
+              Update Password
             </button>
             <br />
             <br />

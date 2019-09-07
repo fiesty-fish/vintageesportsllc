@@ -19,7 +19,7 @@ class ItemList extends Component {
           {items ? (
             items.map(item => {
               return (
-                <div className="card-panel" key={item.id}>
+                <div className="card-panel flex-column-container" key={item.id}>
                   <SingleItem item={item} />
                 </div>
               )

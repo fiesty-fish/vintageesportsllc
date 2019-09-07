@@ -50,8 +50,8 @@ class SingleInventory extends Component {
     }
     return (
       <div>
-        <h3>{`Name: ${item.name}`}</h3>
-        <h5>Units: </h5>
+        <h3>{`Item Name: ${item.name}`}</h3>
+        <h5>Item Units Count: </h5>
         <button
           onClick={this.handleDecrement}
           type="button"
@@ -59,7 +59,7 @@ class SingleInventory extends Component {
         >
           -
         </button>
-        <span>{item.inventory + this.state.quantity}</span>
+        <span> {item.inventory + this.state.quantity} </span>
         <button
           onClick={this.handleIncrement}
           type="button"
@@ -67,6 +67,7 @@ class SingleInventory extends Component {
         >
           +
         </button>
+        <span> </span>
         <button
           onClick={() => this.handleUpdateItem(updatedItem)}
           type="button"
