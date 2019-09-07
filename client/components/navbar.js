@@ -32,19 +32,19 @@ const Navbar = ({handleClick, isLoggedIn, isAdmin, user}) => (
 
         <React.Fragment>
           <Link
-            to="profile"
-            className="nes-btn is-warning"
-            onClick={() => playSound('jump')}
-          >
-            Profile
-          </Link>
-
-          <Link
             to="orders"
             className="nes-btn is-warning"
             onClick={() => playSound('jump')}
           >
             Orders
+          </Link>
+
+          <Link
+            to="profile"
+            className="nes-btn is-warning"
+            onClick={() => playSound('jump')}
+          >
+            Profile
           </Link>
         </React.Fragment>
       )}
