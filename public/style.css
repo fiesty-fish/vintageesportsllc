@@ -10,27 +10,31 @@ body {
   margin: 2% 5% 0 5%;
 }
 
-button {
-  text-shadow: 3px 3px black;
-}
-
 a {
   text-decoration: none;
+}
+
+a:visited,
+a,
+a:hover {
+  color: white;
+}
+
+nav a {
+  display: inline-block;
+  margin: 1em;
+}
+
+button {
+  text-shadow: 3px 3px black;
 }
 
 label {
   display: block;
 }
 
-nav a {
-  display: inline-block;
-
-  margin: 1em;
-}
-
 form div {
   margin: 1em;
-
   display: inline-block;
 }
 
@@ -65,16 +69,6 @@ form div {
   width: 40%;
   flex: 1 0 21%;
   margin-bottom: 200px;
-}
-
-a:visited,
-a,
-a:hover {
-  color: white;
-}
-
-#item-price {
-  text-align: center;
 }
 
 .nes-btn.is-warning {
@@ -135,4 +129,20 @@ a:hover {
 
 .button-no-text-shadow {
   text-shadow: none;
+}
+
+.flex-column-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-containee {
+  flex: 1;
+  align-self: center;
+}
+
+#item-price {
+  text-align: center;
 }
