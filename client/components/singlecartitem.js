@@ -84,8 +84,8 @@ class SingleCartItem extends Component {
         <h3>{item.name}</h3>
         <ul style={{listStyle: 'none'}}>
           <li>Quantity: {currCart[item.id]}</li>
-          <li>Price: $ {(item.price * currCart[item.id] / 100).toFixed(2)}</li>
-          <li>Price Per Unit: $ {(item.price / 100).toFixed(2)}</li>
+          <li>Price: ${(item.price * currCart[item.id] / 100).toFixed(2)}</li>
+          <li>Price Per Unit: ${(item.price / 100).toFixed(2)}</li>
         </ul>
         <div>
           <button
