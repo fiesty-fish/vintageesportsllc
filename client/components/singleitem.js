@@ -102,6 +102,8 @@ class SingleItem extends Component {
               </button>
             </div>
 
+            <br />
+
             <div>
               <button
                 className="nes-btn is-success"
