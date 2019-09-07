@@ -15,7 +15,7 @@ class Inventory extends Component {
 
     return (
       <div>
-        <h3>This is our store inventory:</h3>
+        <h3>Current store inventory:</h3>
         <br />
         {items.map(item => {
           return (
