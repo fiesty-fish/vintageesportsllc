@@ -59,7 +59,7 @@ class SingleInventory extends Component {
         >
           -
         </button>
-        <span>{item.inventory + this.state.quantity}</span>
+        <span> {item.inventory + this.state.quantity} </span>
         <button
           onClick={this.handleIncrement}
           type="button"
@@ -67,6 +67,7 @@ class SingleInventory extends Component {
         >
           +
         </button>
+        <span> </span>
         <button
           onClick={() => this.handleUpdateItem(updatedItem)}
           type="button"

@@ -95,7 +95,7 @@ class SingleCartItem extends Component {
           >
             -
           </button>
-          <span>{this.state.quantity}</span>
+          <span> {this.state.quantity} </span>
           <button
             onClick={this.handleIncrement}
             type="button"
