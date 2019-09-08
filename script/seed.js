@@ -13,24 +13,21 @@ async function seed() {
       lastName: 'DaPug',
       fullName: 'Cody DaPug',
       email: 'cody@email.com',
-      password: '123',
-      admin: true,
-      superAdmin: true
+      password: '123'
     }),
     User.create({
       firstName: 'Murphy',
       lastName: 'DaPug',
       fullName: 'Murphy DaPug',
       email: 'murphy@email.com',
-      password: '123',
-      admin: true
+      password: '123'
     })
   ])
 
   const items = await Promise.all([
     Item.create({
       name: 'Super Mario 64',
-      price: 3999,
+      price: 7999,
       year: 1996,
       inventory: 999,
       imageUrl:
@@ -38,16 +35,16 @@ async function seed() {
     }),
     Item.create({
       name: 'Mario Kart 64',
-      price: 5499,
-      year: 1972,
+      price: 8999,
+      year: 1997,
       inventory: 999,
       imageUrl:
         'https://m.media-amazon.com/images/M/MV5BMWU1NzAzMWEtYzA1NC00M2FlLWIwNTgtZGIxZjIxMmM3YmUwXkEyXkFqcGdeQXVyNjkxMjYyMjk@._V1_.jpg'
     }),
     Item.create({
       name: 'Super Mario Bros.',
-      price: 2999,
-      year: 1972,
+      price: 1999,
+      year: 1985,
       inventory: 999,
       imageUrl:
         'https://images-na.ssl-images-amazon.com/images/I/81sDxuHDtkL._AC_SL1500_.jpg'
@@ -55,47 +52,39 @@ async function seed() {
     Item.create({
       name: 'Super Mario Bros. 3',
       price: 2499,
-      year: 1972,
+      year: 1990,
       inventory: 999,
       imageUrl:
         'https://www.mobygames.com/images/covers/l/16093-super-mario-bros-3-nes-front-cover.jpg'
     }),
     Item.create({
       name: 'Super Mario World',
-      price: 2499,
-      year: 1972,
+      price: 2999,
+      year: 1991,
       inventory: 999,
       imageUrl:
         'https://images-na.ssl-images-amazon.com/images/I/31m9yff5o-L.jpg'
     }),
     Item.create({
-      name: 'Pokemon Green',
-      price: 2499,
-      year: 1972,
-      inventory: 999,
-      imageUrl:
-        'https://images-na.ssl-images-amazon.com/images/I/614BDAW826L.jpg'
-    }),
-    Item.create({
       name: 'Metroid',
-      price: 3499,
-      year: 1972,
+      price: 2899,
+      year: 1986,
       inventory: 999,
       imageUrl:
         'https://images-na.ssl-images-amazon.com/images/I/518G1QPNYEL.jpg'
     }),
     Item.create({
       name: 'Donkey Kong 3',
-      price: 3999,
-      year: 1972,
+      price: 2349,
+      year: 1984,
       inventory: 999,
       imageUrl:
         'https://images-na.ssl-images-amazon.com/images/I/51JHBEeBepL.jpg'
     }),
     Item.create({
       name: 'Duck Hunt',
-      price: 1499,
-      year: 1972,
+      price: 1799,
+      year: 1985,
       inventory: 999,
       imageUrl:
         'https://images-na.ssl-images-amazon.com/images/I/71%2BfAmMQcPL._AC_SL1500_.jpg'
@@ -103,10 +92,34 @@ async function seed() {
     Item.create({
       name: 'Baseball',
       price: 999,
-      year: 1972,
+      year: 1985,
       inventory: 999,
       imageUrl:
         'https://images-na.ssl-images-amazon.com/images/I/51bnaNuk%2BlL.jpg'
+    }),
+    Item.create({
+      name: 'Pokemon Blue',
+      price: 5199,
+      year: 1998,
+      inventory: 999,
+      imageUrl:
+        'https://images-na.ssl-images-amazon.com/images/I/51LvfCxABtL.jpg'
+    }),
+    Item.create({
+      name: 'Pokemon Red',
+      price: 5599,
+      year: 1998,
+      inventory: 999,
+      imageUrl:
+        'https://images-na.ssl-images-amazon.com/images/I/61wR44VWU%2BL.jpg'
+    }),
+    Item.create({
+      name: 'Pokemon Yellow',
+      price: 5999,
+      year: 1999,
+      inventory: 999,
+      imageUrl:
+        'https://images-na.ssl-images-amazon.com/images/I/61VMUHBuCbL.jpg'
     })
   ])
 
