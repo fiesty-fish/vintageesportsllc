@@ -81,7 +81,9 @@ class SingleCartItem extends Component {
     const currCart = JSON.parse(localStorage.cart)
     return (
       <div>
-        <h3>{item.name}</h3>
+        <h3>
+          {item.name} ({item.year})
+        </h3>
         <ul style={{listStyle: 'none'}}>
           <li>Quantity: {currCart[item.id]}</li>
           <li>Price: ${(item.price * currCart[item.id] / 100).toFixed(2)}</li>

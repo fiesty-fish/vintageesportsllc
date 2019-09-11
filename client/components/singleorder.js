@@ -13,7 +13,7 @@ class SingleOrder extends Component {
             if (idx !== 0) {
               const currItemName = items.reduce((accum, item) => {
                 if (item.id === currItem.itemId) {
-                  accum = item.name
+                  accum = `${item.name} (${item.year})`
                 }
                 return accum
               }, '')
