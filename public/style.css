@@ -110,14 +110,14 @@ form div {
   margin-bottom: 20px;
 }
 
-.footer_parent {
+.footer-parent {
   /* position: relative; */
   position: fixed;
   background-color: rgba(209, 160, 25, 0.5);
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 70%;
+  width: 93%;
   bottom: 0px;
   height: 8vh;
   right: 50px;

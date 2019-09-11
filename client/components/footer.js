@@ -1,9 +1,8 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
 
 const Footer = () => {
   return (
-    <div className="footer_parent">
+    <div className="footer-parent">
       <i className="nes-mario" />
       <a
         href="https://github.com/rickylaufitness"
@@ -15,6 +14,7 @@ const Footer = () => {
       >
         Ricky Lau
       </a>
+
       <i className="nes-mario luigi" />
       <a
         href="https://github.com/LuigiLegion"
@@ -26,6 +26,7 @@ const Footer = () => {
       >
         Tal Luigi
       </a>
+
       <i className="nes-mario" />
       <a
         href="https://github.com/xmng"
@@ -37,6 +38,7 @@ const Footer = () => {
       >
         Michael Ng
       </a>
+
       <div>
         <a
           href="https://github.com/fiesty-fish/vintageesportsllc"
