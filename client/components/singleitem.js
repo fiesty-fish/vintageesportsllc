@@ -72,7 +72,9 @@ class SingleItem extends Component {
     return (
       <div className="card flex-containee">
         <div className="card-name">
-          <h5>{item.name}</h5>
+          <h5>
+            {item.name} ({item.year})
+          </h5>
         </div>
 
         <div className="card-interior">
