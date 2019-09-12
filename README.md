@@ -1,7 +1,5 @@
 # Vintage Vidya Games
 
-### Screenshot:
-
 ![](./public/images/screenshot.png)
 
 ### Video Presentation:
