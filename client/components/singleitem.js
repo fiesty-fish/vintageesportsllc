@@ -16,7 +16,7 @@ class SingleItem extends Component {
   }
 
   async handleAddToCart(item) {
-    playSound('lvlup')
+    playSound('pipe')
     // If there's no localStorage cart existing make a cart key with an empty object
     if (!localStorage.cart) {
       localStorage.setItem('cart', '{}')
