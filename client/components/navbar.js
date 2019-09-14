@@ -7,96 +7,107 @@ import playSound from '../../script/utility-functions'
 
 const Navbar = ({handleClick, isLoggedIn, isAdmin, user}) => (
   <React.Fragment>
-    <h1>Vintage Vidya Games</h1>
-    <br />
-    <nav>
-      <Link
-        to="/home"
-        className="nes-btn is-warning"
-        onClick={() => playSound('jump')}
-      >
-        Home
-      </Link>
-      <Link
-        to="/cart"
-        className="nes-btn is-warning"
-        onClick={() => playSound('jump')}
-      >
-        Cart
-      </Link>
+    <nav className="flex-row-container-navbar">
+      <div className="flex-containee-navbar">
+        <Link
+          to="/home"
+          onClick={() => playSound('jump')}
+          style={{textDecoration: 'none'}}
+        >
+          <h1>Vintage Vidya Games</h1>
+        </Link>
+      </div>
 
-      {/* show link to profile after logged in */}
+      <div className="flex-containee-navbar">
+        <Link
+          to="/home"
+          className="nes-btn is-warning"
+          onClick={() => playSound('jump')}
+        >
+          Home
+        </Link>
 
-      {isLoggedIn && (
-        // React.Fragment wraps the child elements but does not add another dom element
+        <Link
+          to="/cart"
+          className="nes-btn is-warning"
+          onClick={() => playSound('jump')}
+        >
+          Cart
+        </Link>
 
-        <React.Fragment>
-          <Link
-            to="orders"
-            className="nes-btn is-warning"
-            onClick={() => playSound('jump')}
-          >
-            Orders
-          </Link>
+        {/* show link to profile after logged in */}
 
-          <Link
-            to="profile"
-            className="nes-btn is-warning"
-            onClick={() => playSound('jump')}
-          >
-            Profile
-          </Link>
-        </React.Fragment>
-      )}
+        {isLoggedIn && (
+          // React.Fragment wraps the child elements but does not add another dom element
 
-      {isAdmin && (
-        <React.Fragment>
-          <Link
-            to="inventory"
-            className="nes-btn is-warning"
-            onClick={() => playSound('jump')}
-          >
-            Inventory
-          </Link>
-        </React.Fragment>
-      )}
+          <React.Fragment>
+            <Link
+              to="orders"
+              className="nes-btn is-warning"
+              onClick={() => playSound('jump')}
+            >
+              Orders
+            </Link>
 
-      {isLoggedIn ? (
-        <React.Fragment>
-          {/* The navbar will show these links after you login */}
+            <Link
+              to="profile"
+              className="nes-btn is-warning"
+              onClick={() => playSound('jump')}
+            >
+              Profile
+            </Link>
+          </React.Fragment>
+        )}
 
-          <Link
-            to="#"
-            className="nes-btn is-warning"
-            onClick={() => {
-              handleClick()
-              playSound('death')
-            }}
-          >
-            Logout
-          </Link>
-        </React.Fragment>
-      ) : (
-        <React.Fragment>
-          {/* The navbar will show these links before you login */}
+        {isAdmin && (
+          <React.Fragment>
+            <Link
+              to="inventory"
+              className="nes-btn is-warning"
+              onClick={() => playSound('jump')}
+            >
+              Inventory
+            </Link>
+          </React.Fragment>
+        )}
 
-          <Link
-            to="/login"
-            className="nes-btn is-warning"
-            onClick={() => playSound('lvlup')}
-          >
-            Login
-          </Link>
+        {isLoggedIn ? (
+          <React.Fragment>
+            {/* The navbar will show these links after you login */}
 
-          <Link
-            to="/signup"
-            className="nes-btn is-warning"
-            onClick={() => playSound('lvlup')}
-          >
-            Sign Up
-          </Link>
-        </React.Fragment>
-      )}
+            <Link
+              to="#"
+              className="nes-btn is-warning"
+              onClick={() => {
+                handleClick()
+                playSound('death')
+              }}
+            >
+              Logout
+            </Link>
+          </React.Fragment>
+        ) : (
+          <React.Fragment>
+            {/* The navbar will show these links before you login */}
+
+            <Link
+              to="/login"
+              className="nes-btn is-warning"
+              onClick={() => playSound('lvlup')}
+            >
+              Login
+            </Link>
+
+            <Link
+              to="/signup"
+              className="nes-btn is-warning"
+              onClick={() => playSound('lvlup')}
+            >
+              Sign Up
+            </Link>
+          </React.Fragment>
+        )}
+      </div>
     </nav>
     <br />
     <progress
