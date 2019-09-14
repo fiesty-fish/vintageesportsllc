@@ -14,7 +14,7 @@ const Navbar = ({handleClick, isLoggedIn, isAdmin, user}) => (
           onClick={() => playSound('jump')}
           style={{textDecoration: 'none'}}
         >
-          <h3>Vintage Vidya Games</h3>
+          <h1>Vintage Vidya Games</h1>
         </Link>
       </div>
 
