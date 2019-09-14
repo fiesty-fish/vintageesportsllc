@@ -143,6 +143,15 @@ form div {
   align-self: center;
 }
 
+.flex-row-container-navbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.flex-containee-navbar {
+  align-self: center;
+}
+
 #item-price {
   text-align: center;
 }
