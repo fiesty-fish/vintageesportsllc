@@ -14,9 +14,6 @@ const AuthForm = props => {
 
   return (
     <div>
-      <div>
-        <h3>Hello, guest. Be sure to login or sign up.</h3>
-      </div>
       <form onSubmit={handleSubmit} name={name} className="nes-field">
         <div>
           <label htmlFor="email">

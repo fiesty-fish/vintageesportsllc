@@ -10,16 +10,25 @@ export const UserHome = props => {
 
   return (
     <div>
-      <h3>
-        Welcome, {firstName ? firstName : email.slice(0, email.indexOf('@'))}.
-      </h3>
+      {email ? (
+        <h3>
+          Welcome, {firstName ? firstName : email.slice(0, email.indexOf('@'))}.
+        </h3>
+      ) : (
+        <div>
+          <h3>Hello, guest. Be sure to login or sign up.</h3>
+        </div>
+      )}
+
       <br />
+
       <progress
         className="nes-progress is-success"
         value="0"
         max="100"
         style={{height: '0.5vh'}}
       />
+
       <br />
       <br />
     </div>

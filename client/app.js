@@ -5,7 +5,8 @@ import {
   CartView,
   ProfileView,
   OrdersList,
-  Inventory
+  Inventory,
+  UserHome
 } from './components'
 import {Route, Switch} from 'react-router-dom'
 import Routes from './routes'
@@ -16,15 +17,16 @@ const App = () => {
     <div>
       <Navbar />
 
-      <Routes />
+      {/* <Routes /> */}
+      <UserHome />
 
       <Switch>
         <Route path="/cart" component={CartView} />
         <Route path="/orders" component={OrdersList} />
         <Route path="/profile" component={ProfileView} />
         <Route path="/inventory" component={Inventory} />
-        {/* <Route path="/login" component={Routes} />
-        <Route path="/signup" component={Routes} /> */}
+        <Route path="/login" component={Routes} />
+        <Route path="/signup" component={Routes} />
         <Route path="/" component={ItemList} />
       </Switch>
       <Footer />
