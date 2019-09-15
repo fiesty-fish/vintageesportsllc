@@ -39,7 +39,6 @@ const Navbar = ({handleClick, isLoggedIn, isAdmin, user}) => (
 
         {isLoggedIn && (
           // React.Fragment wraps the child elements but does not add another dom element
-
           <React.Fragment>
             <Link
               to="orders"
@@ -89,11 +88,10 @@ const Navbar = ({handleClick, isLoggedIn, isAdmin, user}) => (
         ) : (
           <React.Fragment>
             {/* The navbar will show these links before you login */}
-
             <Link
               to="/login"
               className="nes-btn is-warning"
-              onClick={() => playSound('lvlup')}
+              onClick={() => playSound('jump')}
             >
               Login
             </Link>
@@ -101,7 +99,7 @@ const Navbar = ({handleClick, isLoggedIn, isAdmin, user}) => (
             <Link
               to="/signup"
               className="nes-btn is-warning"
-              onClick={() => playSound('lvlup')}
+              onClick={() => playSound('jump')}
             >
               Sign Up
             </Link>
