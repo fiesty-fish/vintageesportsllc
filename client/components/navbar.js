@@ -12,7 +12,7 @@ const Navbar = ({handleClick, isLoggedIn, isAdmin, user}) => (
       <div className="flex-containee-navbar">
         <Link
           to="/home"
-          onClick={() => playSound('jump')}
+          onClick={() => playSound('pipe')}
           style={{textDecoration: 'none'}}
         >
           <h1>Vintage Vidya Games</h1>
