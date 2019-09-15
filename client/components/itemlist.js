@@ -33,8 +33,10 @@ class ItemList extends Component {
 
     return (
       <div className="all-items-header">
-        <h3>Check out our nice selection of vintage vidya games:</h3>
+        <h4>Check out our nice selection of vintage vidya games:</h4>
+
         <br />
+
         <div
           className={
             curWindowWidth > 1007 ? 'card-container' : 'flex-column-container'
@@ -59,6 +61,7 @@ class ItemList extends Component {
             <div>No items were found in inventory.</div>
           )}
         </div>
+
         <br />
         <br />
         <br />

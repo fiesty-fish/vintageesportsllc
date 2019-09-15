@@ -18,13 +18,13 @@ export class UserHome extends Component {
     return (
       <div>
         {email ? (
-          <h3>
+          <h4>
             Welcome back,{' '}
             {firstName ? firstName : email.slice(0, email.indexOf('@'))}.
-          </h3>
+          </h4>
         ) : (
           <div>
-            <h3>Hello, guest. Be sure to login or sign up.</h3>
+            <h4>Hello, guest. Be sure to login or sign up.</h4>
           </div>
         )}
 
