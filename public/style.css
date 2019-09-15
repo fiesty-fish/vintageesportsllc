@@ -71,6 +71,11 @@ form div {
   margin-bottom: 200px;
 }
 
+.card-panel-mobile {
+  flex: 1 0 21%;
+  margin-bottom: 200px;
+}
+
 .nes-btn.is-warning {
   color: white;
   margin: 0 10px 0 10px;

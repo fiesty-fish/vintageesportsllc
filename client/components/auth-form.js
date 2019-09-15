@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import axios from 'axios'
 
 import {auth} from '../store'
+import playSound from '../../script/utility-functions'
 
 /**
  * COMPONENT
@@ -13,9 +14,6 @@ const AuthForm = props => {
 
   return (
     <div>
-      <div>
-        <h3>Hello, guest. Be sure to login or sign up.</h3>
-      </div>
       <form onSubmit={handleSubmit} name={name} className="nes-field">
         <div>
           <label htmlFor="email">
@@ -27,7 +25,11 @@ const AuthForm = props => {
           </label>
           <input name="password" type="password" className="nes-input input" />
           <div className="login-btn-space">
-            <button type="submit" className="nes-btn is-success">
+            <button
+              type="submit"
+              className="nes-btn is-success"
+              onClick={() => playSound('lvlup')}
+            >
               {displayName}
             </button>
             <a href="/auth/google" className="nes-btn is-primary">

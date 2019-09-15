@@ -2,124 +2,127 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {NavLink as Link} from 'react-router-dom'
+
 import {logout} from '../store'
 import playSound from '../../script/utility-functions'
 
-const Navbar = ({handleClick, isLoggedIn, isAdmin, user}) => (
-  <React.Fragment>
-    <nav className="flex-row-container-navbar">
-      <div className="flex-containee-navbar">
-        <Link
-          to="/home"
-          onClick={() => playSound('jump')}
-          style={{textDecoration: 'none'}}
-        >
-          <h1>Vintage Vidya Games</h1>
-        </Link>
-      </div>
+const Navbar = ({handleClick, isLoggedIn, isAdmin, user}) => {
+  return (
+    <React.Fragment>
+      <nav className="flex-row-container-navbar">
+        <div className="flex-containee-navbar">
+          <Link
+            to="/home"
+            onClick={() => playSound('pipe')}
+            style={{textDecoration: 'none'}}
+          >
+            <h1>Vintage Vidya Games</h1>
+          </Link>
+        </div>
 
-      <div className="flex-containee-navbar">
-        <Link
-          to="/home"
-          className="nes-btn is-warning"
-          onClick={() => playSound('jump')}
-        >
-          Home
-        </Link>
+        <div className="flex-containee-navbar">
+          <Link
+            to="/home"
+            className="nes-btn is-warning"
+            onClick={() => playSound('jump')}
+          >
+            Home
+          </Link>
 
-        <Link
-          to="/cart"
-          className="nes-btn is-warning"
-          onClick={() => playSound('jump')}
-        >
-          Cart
-        </Link>
+          <Link
+            to="/cart"
+            className="nes-btn is-warning"
+            onClick={() => playSound('jump')}
+          >
+            Cart
+          </Link>
 
-        {/* show link to profile after logged in */}
+          {/* show link to profile after logged in */}
 
-        {isLoggedIn && (
-          // React.Fragment wraps the child elements but does not add another dom element
+          {isLoggedIn && (
+            // React.Fragment wraps the child elements but does not add another dom element
+            <React.Fragment>
+              <Link
+                to="orders"
+                className="nes-btn is-warning"
+                onClick={() => playSound('jump')}
+              >
+                Orders
+              </Link>
 
-          <React.Fragment>
-            <Link
-              to="orders"
-              className="nes-btn is-warning"
-              onClick={() => playSound('jump')}
-            >
-              Orders
-            </Link>
+              {user.googleId ? null : (
+                <Link
+                  to="profile"
+                  className="nes-btn is-warning"
+                  onClick={() => playSound('jump')}
+                >
+                  Profile
+                </Link>
+              )}
+            </React.Fragment>
+          )}
 
-            <Link
-              to="profile"
-              className="nes-btn is-warning"
-              onClick={() => playSound('jump')}
-            >
-              Profile
-            </Link>
-          </React.Fragment>
-        )}
+          {isAdmin && (
+            <React.Fragment>
+              <Link
+                to="inventory"
+                className="nes-btn is-warning"
+                onClick={() => playSound('jump')}
+              >
+                Inventory
+              </Link>
+            </React.Fragment>
+          )}
 
-        {isAdmin && (
-          <React.Fragment>
-            <Link
-              to="inventory"
-              className="nes-btn is-warning"
-              onClick={() => playSound('jump')}
-            >
-              Inventory
-            </Link>
-          </React.Fragment>
-        )}
+          {isLoggedIn ? (
+            <React.Fragment>
+              {/* The navbar will show these links after you login */}
 
-        {isLoggedIn ? (
-          <React.Fragment>
-            {/* The navbar will show these links after you login */}
+              <Link
+                to="#"
+                className="nes-btn is-warning"
+                onClick={() => {
+                  handleClick()
+                  playSound('death')
+                }}
+              >
+                Logout
+              </Link>
+            </React.Fragment>
+          ) : (
+            <React.Fragment>
+              {/* The navbar will show these links before you login */}
+              <Link
+                to="/login"
+                className="nes-btn is-warning"
+                onClick={() => playSound('jump')}
+              >
+                Login
+              </Link>
 
-            <Link
-              to="#"
-              className="nes-btn is-warning"
-              onClick={() => {
-                handleClick()
-                playSound('death')
-              }}
-            >
-              Logout
-            </Link>
-          </React.Fragment>
-        ) : (
-          <React.Fragment>
-            {/* The navbar will show these links before you login */}
-
-            <Link
-              to="/login"
-              className="nes-btn is-warning"
-              onClick={() => playSound('lvlup')}
-            >
-              Login
-            </Link>
-
-            <Link
-              to="/signup"
-              className="nes-btn is-warning"
-              onClick={() => playSound('lvlup')}
-            >
-              Sign Up
-            </Link>
-          </React.Fragment>
-        )}
-      </div>
-    </nav>
-    <br />
-    <progress
-      className="nes-progress is-success"
-      value="0"
-      max="100"
-      style={{height: '0.5vh'}}
-    />
-    <br />
-    <br />
-  </React.Fragment>
-)
+              <Link
+                to="/signup"
+                className="nes-btn is-warning"
+                onClick={() => playSound('jump')}
+              >
+                Sign Up
+              </Link>
+            </React.Fragment>
+          )}
+        </div>
+      </nav>
+      <br />
+      <progress
+        className="nes-progress is-success"
+        value="0"
+        max="100"
+        style={{height: '0.5vh'}}
+      />
+      <br />
+      <br />
+    </React.Fragment>
+  )
+}
 
 /**
 

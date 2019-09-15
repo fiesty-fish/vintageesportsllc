@@ -5,27 +5,58 @@ import SingleItem from './singleitem'
 import {getItemsThunk} from '../store/item'
 
 class ItemList extends Component {
+  constructor() {
+    super()
+    this.state = {
+      width: 0
+    }
+    this.updateWindowDimensions = this.updateWindowDimensions.bind(this)
+  }
+
   componentDidMount() {
     this.props.loadAllItems()
+    this.updateWindowDimensions()
+    window.addEventListener('resize', this.updateWindowDimensions)
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateWindowDimensions)
+  }
+
+  updateWindowDimensions() {
+    this.setState({width: window.innerWidth})
   }
 
   render() {
     const {items} = this.props
+    const curWindowWidth = this.state.width
+
     return (
       <div className="all-items-header">
-        <h3>Check out our nice selection of vintage video games:</h3>
+        <h3>Check out our nice selection of vintage vidya games:</h3>
         <br />
-        <div className="card-container">
+        <div
+          className={
+            curWindowWidth > 1007 ? 'card-container' : 'flex-column-container'
+          }
+        >
           {items ? (
             items.map(item => {
               return (
-                <div className="card-panel flex-column-container" key={item.id}>
+                <div
+                  className={
+                    curWindowWidth > 1007
+                      ? 'card-panel flex-column-container'
+                      : 'card-panel-mobile flex-column-container'
+                  }
+                  key={item.id}
+                >
                   <SingleItem item={item} />
                 </div>
               )
             })
           ) : (
-            <div>No items were found in inventory!</div>
+            <div>No items were found in inventory.</div>
           )}
         </div>
         <br />

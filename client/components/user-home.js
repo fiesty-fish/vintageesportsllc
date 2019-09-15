@@ -1,29 +1,47 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import PropTypes from 'prop-types'
+
+import {me} from '../store'
 
 /**
  * COMPONENT
  */
-export const UserHome = props => {
-  const {firstName, email} = props
+export class UserHome extends Component {
+  componentDidMount() {
+    this.props.loadInitialData()
+  }
 
-  return (
-    <div>
-      <h3>
-        Welcome, {firstName ? firstName : email.slice(0, email.indexOf('@'))}.
-      </h3>
-      <br />
-      <progress
-        className="nes-progress is-success"
-        value="0"
-        max="100"
-        style={{height: '0.5vh'}}
-      />
-      <br />
-      <br />
-    </div>
-  )
+  render() {
+    const {firstName, email} = this.props
+
+    return (
+      <div>
+        {email ? (
+          <h3>
+            Welcome back,{' '}
+            {firstName ? firstName : email.slice(0, email.indexOf('@'))}.
+          </h3>
+        ) : (
+          <div>
+            <h3>Hello, guest. Be sure to login or sign up.</h3>
+          </div>
+        )}
+
+        <br />
+
+        <progress
+          className="nes-progress is-success"
+          value="0"
+          max="100"
+          style={{height: '0.5vh'}}
+        />
+
+        <br />
+        <br />
+      </div>
+    )
+  }
 }
 
 /**
@@ -36,7 +54,15 @@ const mapState = state => {
   }
 }
 
-export default connect(mapState)(UserHome)
+const mapDispatch = dispatch => {
+  return {
+    loadInitialData() {
+      dispatch(me())
+    }
+  }
+}
+
+export default connect(mapState, mapDispatch)(UserHome)
 
 /**
  * PROP TYPES
