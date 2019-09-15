@@ -5,13 +5,31 @@ import SingleItem from './singleitem'
 import {getItemsThunk} from '../store/item'
 
 class ItemList extends Component {
+  constructor() {
+    super()
+    this.state = {
+      width: 0
+    }
+    this.updateWindowDimensions = this.updateWindowDimensions.bind(this)
+  }
+
   componentDidMount() {
     this.props.loadAllItems()
+    this.updateWindowDimensions()
+    window.addEventListener('resize', this.updateWindowDimensions)
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateWindowDimensions)
+  }
+
+  updateWindowDimensions() {
+    this.setState({width: window.innerWidth})
   }
 
   render() {
     const {items} = this.props
-    const curWindowWidth = document.body.offsetWidth
+    const curWindowWidth = this.state.width
 
     return (
       <div className="all-items-header">
