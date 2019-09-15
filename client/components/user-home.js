@@ -19,7 +19,7 @@ export class UserHome extends Component {
       <div>
         {email ? (
           <h3>
-            Welcome,{' '}
+            Welcome back,{' '}
             {firstName ? firstName : email.slice(0, email.indexOf('@'))}.
           </h3>
         ) : (

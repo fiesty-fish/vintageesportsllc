@@ -17,6 +17,6 @@
 //   })
 
 //   it('renders the email in an h3', () => {
-//     expect(userHome.find('h3').text()).to.be.equal('Welcome, Cody.')
+//     expect(userHome.find('h3').text()).to.be.equal('Welcome back, cody.')
 //   })
 // })
