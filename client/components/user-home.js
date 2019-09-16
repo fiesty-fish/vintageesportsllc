@@ -24,7 +24,12 @@ export class UserHome extends Component {
           </h4>
         ) : (
           <div>
-            <h4>Hello, guest. Be sure to login or sign up.</h4>
+            <h4>
+              Hello, guest.
+              <br />
+              <br />
+              Be sure to login or sign up.
+            </h4>
           </div>
         )}
 
