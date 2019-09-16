@@ -43,7 +43,17 @@ class Navbar extends Component {
               onClick={() => playSound('pipe')}
               style={{textDecoration: 'none'}}
             >
-              <h3>Vintage Vidya Games</h3>
+              {curWindowWidth > 1007 ? (
+                <h3>Vintage Vidya Games</h3>
+              ) : (
+                <h3>
+                  Vintage
+                  <br />
+                  Vidya
+                  <br />
+                  Games
+                </h3>
+              )}
             </Link>
           </div>
 
