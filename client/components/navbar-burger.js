@@ -34,10 +34,11 @@ class NavbarBurger extends Component {
           isOpen={this.state.menuOpen}
           onStateChange={state => this.handleStateChange(state)}
           right
-          width="50%"
+          width="44%"
           styles={burgerStyles}
         >
           <div style={divStyles}>
+            <br />
             <Link
               to="/home"
               className="nes-btn is-warning"
@@ -247,14 +248,15 @@ const burgerStyles = {
   Note: Beware of modifying this element as it can break the animations - you should not need to touch it in most cases
   */
   bmMenuWrap: {
-    height: '100%'
+    height: '100%',
+    top: '0px'
   },
 
   /* General sidebar styles */
   bmMenu: {
     background: '#92cc41',
     // padding: '2.5em 1.5em 0',
-    fontSize: '0.75em'
+    fontSize: '0.65em'
   },
 
   /* Morph shape necessary with bubble or elastic */
@@ -266,7 +268,7 @@ const burgerStyles = {
   bmItemList: {
     color: '#b8b7ad',
     backgroundColor: '#92cc41',
-    padding: '0.8em'
+    padding: '1em'
   },
 
   /* Individual item */
