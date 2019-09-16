@@ -22,6 +22,14 @@ class Inventory extends Component {
             <div key={item.id}>
               <SingleInventory item={item} />
               <br />
+              <progress
+                className="nes-progress is-success"
+                value="0"
+                max="100"
+                style={{height: '0.5vh'}}
+              />
+              <br />
+              <br />
             </div>
           )
         })}
