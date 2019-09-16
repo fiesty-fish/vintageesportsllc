@@ -32,6 +32,8 @@ const AuthForm = props => {
             >
               {displayName}
             </button>
+            <br />
+            <br />
             <a href="/auth/google" className="nes-btn is-primary">
               {displayName} with Google
             </a>
@@ -39,12 +41,19 @@ const AuthForm = props => {
         </div>
         {error && error.response && <div> {error.response.data} </div>}
       </form>
+      <br />
       <progress
         className="nes-progress is-success"
         value="0"
         max="100"
         style={{height: '0.5vh'}}
       />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
       <br />
       <br />
     </div>
