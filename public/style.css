@@ -128,6 +128,19 @@ form div {
   right: 50px;
 }
 
+.footer-parent-mobile {
+  /* position: relative; */
+  position: fixed;
+  background-color: rgba(209, 160, 25, 0.5);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 90%;
+  bottom: 0px;
+  height: 8vh;
+  /* right: 50px; */
+}
+
 .nes-mario.luigi::before {
   color: green;
 }

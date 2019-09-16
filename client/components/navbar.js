@@ -31,7 +31,6 @@ class Navbar extends Component {
 
   render() {
     const curWindowWidth = this.state.width
-    console.log('curWindowWidth: ', curWindowWidth)
     const {handleClick, isLoggedIn, isAdmin, user} = this.props
 
     return (
