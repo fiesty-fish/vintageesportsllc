@@ -216,7 +216,7 @@ const burgerStyles = {
     position: 'fixed',
     width: '36px',
     height: '30px',
-    right: '30px',
+    right: '17.5px',
     top: '17.5px'
   },
 
@@ -247,7 +247,6 @@ const burgerStyles = {
   Note: Beware of modifying this element as it can break the animations - you should not need to touch it in most cases
   */
   bmMenuWrap: {
-    position: 'fixed',
     height: '100%'
   },
 
@@ -255,7 +254,7 @@ const burgerStyles = {
   bmMenu: {
     background: '#92cc41',
     // padding: '2.5em 1.5em 0',
-    fontSize: '1.15em'
+    fontSize: '0.75em'
   },
 
   /* Morph shape necessary with bubble or elastic */
@@ -277,8 +276,9 @@ const burgerStyles = {
 
   /* Styling of overlay */
   bmOverlay: {
-    background: 'rgba(0, 0, 0, 0.3)',
-    width: '50%'
+    top: '0px',
+    right: '0px',
+    background: 'rgba(0, 0, 0, 0.3)'
   }
 }
 
