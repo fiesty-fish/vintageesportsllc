@@ -69,6 +69,7 @@ class SingleItem extends Component {
 
   render() {
     const {item} = this.props
+
     return (
       <div className="card flex-containee">
         <div className="card-name">

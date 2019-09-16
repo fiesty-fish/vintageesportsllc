@@ -28,8 +28,8 @@ class ItemList extends Component {
   }
 
   render() {
-    const {items} = this.props
     const curWindowWidth = this.state.width
+    const {items} = this.props
 
     return (
       <div className="all-items-header">
