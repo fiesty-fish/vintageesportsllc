@@ -35,7 +35,6 @@ class NavbarBurger extends Component {
           onStateChange={state => this.handleStateChange(state)}
           right
           width="50%"
-          // className="nes-btn is-warning"
           styles={burgerStyles}
         >
           <div style={divStyles}>
@@ -279,7 +278,7 @@ const burgerStyles = {
   /* Styling of overlay */
   bmOverlay: {
     background: 'rgba(0, 0, 0, 0.3)',
-    width: '100%'
+    width: '50%'
   }
 }
 
