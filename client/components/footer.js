@@ -30,7 +30,9 @@ class Footer extends Component {
         <div className="footer-parent">
           <i className="nes-mario" />
           <a
-            href="https://github.com/rickylaufitness"
+            href="https://www.linkedin.com/in/rickylaudev"
+            target="_blank"
+            rel="noopener noreferrer"
             style={{
               boxShadow: 'none',
               textDecoration: 'none',
@@ -42,7 +44,9 @@ class Footer extends Component {
 
           <i className="nes-mario luigi" />
           <a
-            href="https://github.com/LuigiLegion"
+            href="https://www.linkedin.com/in/talluigi"
+            target="_blank"
+            rel="noopener noreferrer"
             style={{
               boxShadow: 'none',
               textDecoration: 'none',
@@ -54,7 +58,9 @@ class Footer extends Component {
 
           <i className="nes-mario" />
           <a
-            href="https://github.com/xmng"
+            href="https://www.linkedin.com/in/michael-m-ng"
+            target="_blank"
+            rel="noopener noreferrer"
             style={{
               boxShadow: 'none',
               textDecoration: 'none',
@@ -67,6 +73,8 @@ class Footer extends Component {
           <div>
             <a
               href="https://github.com/fiesty-fish/vintageesportsllc"
+              target="_blank"
+              rel="noopener noreferrer"
               style={{
                 boxShadow: 'none',
                 textDecoration: 'none',
@@ -85,6 +93,8 @@ class Footer extends Component {
           <div>
             <a
               href="https://github.com/fiesty-fish/vintageesportsllc"
+              target="_blank"
+              rel="noopener noreferrer"
               style={{
                 boxShadow: 'none',
                 textDecoration: 'none',
