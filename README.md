@@ -13,7 +13,7 @@ https://vintage-vidya-games.herokuapp.com
 ### Dev Team:
 
 * Ricky Lau ([LinkedIn](https://www.linkedin.com/in/rickylaudev) | [GitHub](https://github.com/rickylaufitness))
-* Tal Luigi ([LinkedIn](ttps://www.linkedin.com/in/talluigi) | [GitHub](https://github.com/luigilegion))
+* Tal Luigi ([LinkedIn](https://www.linkedin.com/in/talluigi) | [GitHub](https://github.com/luigilegion))
 * Michael Ng ([LinkedIn](https://www.linkedin.com/in/michael-m-ng) | [GitHub](https://github.com/xmng))
 
 ### Description:
