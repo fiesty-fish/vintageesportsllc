@@ -38,7 +38,6 @@ class NavbarBurger extends Component {
           styles={burgerStyles}
         >
           <div style={divStyles}>
-            <br />
             <Link
               to="/home"
               className="nes-btn is-warning"
@@ -50,8 +49,6 @@ class NavbarBurger extends Component {
             >
               Home
             </Link>
-
-            <br />
 
             <Link
               to="/cart"
@@ -69,8 +66,6 @@ class NavbarBurger extends Component {
             {isLoggedIn && (
               // React.Fragment wraps the child elements but does not add another dom element
               <React.Fragment>
-                <br />
-
                 <Link
                   to="orders"
                   className="nes-btn is-warning"
@@ -82,8 +77,6 @@ class NavbarBurger extends Component {
                 >
                   Orders
                 </Link>
-
-                <br />
 
                 {user.googleId ? null : (
                   <Link
@@ -101,8 +94,6 @@ class NavbarBurger extends Component {
               </React.Fragment>
             )}
 
-            <br />
-
             {isAdmin && (
               <React.Fragment>
                 <Link
@@ -116,8 +107,6 @@ class NavbarBurger extends Component {
                 >
                   Inventory
                 </Link>
-
-                <br />
               </React.Fragment>
             )}
 
@@ -136,8 +125,6 @@ class NavbarBurger extends Component {
                 >
                   Logout
                 </Link>
-
-                <br />
               </React.Fragment>
             ) : (
               <React.Fragment>
@@ -153,8 +140,6 @@ class NavbarBurger extends Component {
                 >
                   Login
                 </Link>
-
-                <br />
 
                 <Link
                   to="/signup"
