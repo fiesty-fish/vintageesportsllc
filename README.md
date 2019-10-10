@@ -18,7 +18,7 @@ https://vintage-vidya-games.herokuapp.com
 
 ### Description:
 
-Vintage Vidya Games is a full stack NES themed e-commerce progressive web app complete with graphics and Mario inspired game sounds, that offers old-school video games for sale.
+Vintage Vidya Games is an NES themed e-commerce Progressive Web App (PWA) in progress complete with graphics and Super Mario Bros. game sounds, that offers old-school video games for sale.
 
 ### Tech Stack:
 
