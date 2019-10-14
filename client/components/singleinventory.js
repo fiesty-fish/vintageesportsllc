@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux'
 import axios from 'axios'
 
@@ -49,7 +49,7 @@ class SingleInventory extends Component {
       inventory: this.state.quantity + item.inventory
     }
     return (
-      <div>
+      <Fragment>
         <h3>{`Item Name: ${item.name} (${item.year})`}</h3>
         <h5>Item Units Count: </h5>
         <button
@@ -75,7 +75,7 @@ class SingleInventory extends Component {
         >
           Update
         </button>
-      </div>
+      </Fragment>
     )
   }
 }

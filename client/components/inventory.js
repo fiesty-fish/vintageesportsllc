@@ -1,9 +1,8 @@
-import React, {Component} from 'react'
+import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux'
 // import axios from 'axios'
 import {getItemsThunk} from '../store/index'
 import SingleInventory from './singleinventory'
-import {O_TRUNC} from 'constants'
 
 class Inventory extends Component {
   componentDidMount() {
@@ -14,7 +13,7 @@ class Inventory extends Component {
     const {items} = this.props
 
     return (
-      <div>
+      <Fragment>
         <h3>Current store inventory:</h3>
         <br />
         {items.map(item => {
@@ -45,7 +44,7 @@ class Inventory extends Component {
         <br />
         <br />
         <br />
-      </div>
+      </Fragment>
     )
   }
 }
