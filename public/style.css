@@ -178,3 +178,7 @@ nav .nes-btn.is-warning {
 #item-price {
   text-align: center;
 }
+
+.inventory-list {
+  padding-bottom: 40%;
+}
