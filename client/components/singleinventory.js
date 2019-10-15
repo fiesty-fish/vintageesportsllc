@@ -11,6 +11,7 @@ class SingleInventory extends Component {
     this.handleUpdateItem = this.handleUpdateItem.bind(this)
     this.handleIncrement = this.handleIncrement.bind(this)
     this.handleDecrement = this.handleDecrement.bind(this)
+    this.handleRemoveItem = this.handleRemoveItem.bind(this)
   }
 
   async handleUpdateItem(item) {
@@ -19,7 +20,14 @@ class SingleInventory extends Component {
     } catch (error) {
       console.error(error)
     }
-    this.forceUpdate()
+  }
+
+  async handleRemoveItem(itemId) {
+    try {
+      await axios.put(`/api/items/remove/${this.props.user.id}`, {itemId})
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   handleIncrement() {
@@ -44,6 +52,7 @@ class SingleInventory extends Component {
 
   render() {
     const {item} = this.props
+
     const updatedItem = {
       name: item.name,
       inventory: this.state.quantity + item.inventory
@@ -74,6 +83,13 @@ class SingleInventory extends Component {
           className="nes-btn is-primary"
         >
           Update
+        </button>
+        <button
+          onClick={() => this.handleRemoveItem(item.id)}
+          type="button"
+          className="nes-btn is-error"
+        >
+          Remove Item
         </button>
       </div>
     )
