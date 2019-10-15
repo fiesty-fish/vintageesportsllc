@@ -3,7 +3,6 @@ import {connect} from 'react-redux'
 // import axios from 'axios'
 import {getItemsThunk} from '../store/index'
 import SingleInventory from './singleinventory'
-import {O_TRUNC} from 'constants'
 
 class Inventory extends Component {
   componentDidMount() {
@@ -14,13 +13,14 @@ class Inventory extends Component {
     const {items} = this.props
 
     return (
-      <div>
+      <div className="inventory-list">
         <h3>Current store inventory:</h3>
         <br />
         {items.map(item => {
           return (
             <div key={item.id}>
               <SingleInventory item={item} />
+              <br />
               <br />
               <progress
                 className="nes-progress is-success"
@@ -33,18 +33,6 @@ class Inventory extends Component {
             </div>
           )
         })}
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
       </div>
     )
   }

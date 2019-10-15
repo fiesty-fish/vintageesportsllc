@@ -55,6 +55,7 @@ router.put('/:userId', accessItemAuth, async (req, res, next) => {
       name: req.body.item.name,
       inventory: req.body.item.inventory
     }
+
     const curUser = await User.findByPk(req.params.userId)
     if (curUser && curUser.admin) {
       const updateItem = await Item.update(updatedItemData, {
@@ -64,6 +65,26 @@ router.put('/:userId', accessItemAuth, async (req, res, next) => {
         returning: true
       })
       res.json(updateItem)
+    } else {
+      res.json('USER DOES NOT EXIST OR IS NOT AN ADMIN')
+    }
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.put('/remove/:userId', accessItemAuth, async (req, res, next) => {
+  try {
+    const itemId = req.body.itemId
+    const currUser = await User.findByPk(req.params.userId)
+    if (currUser && currUser.admin) {
+      const itemDestroyed = await Item.destroy({
+        where: {
+          id: itemId
+        },
+        returning: true
+      })
+      res.json(itemDestroyed)
     } else {
       res.json('USER DOES NOT EXIST OR IS NOT AN ADMIN')
     }
