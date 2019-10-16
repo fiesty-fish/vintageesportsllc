@@ -1,29 +1,12 @@
-import React, {useState, useCallback} from 'react'
+import React, {useState} from 'react'
 import axios from 'axios'
 
 export default function SingleInventory(props) {
-  console.log('PROPS', props)
   const [quantity, updateQuantity] = useState(0)
-  // const reRender = useCallback(
-  //   () => {
-  //     updateQuantity(quantity - 1)
-  //     console.log('QUANTITY', quantity)
-  //   },
-  //   [quantity]
-  // )
+
   async function handleUpdateInventory(item) {
     try {
       await axios.put(`/api/items/${props.user.id}`, {item})
-    } catch (error) {
-      console.error(error)
-    }
-  }
-
-  async function handleRemoveItem(itemId) {
-    try {
-      await axios.put(`/api/items/remove/${props.user.id}`, {itemId})
-      // console.log(reRender())
-      // reRender()
     } catch (error) {
       console.error(error)
     }
@@ -84,13 +67,6 @@ export default function SingleInventory(props) {
         className="nes-btn is-primary"
       >
         Update
-      </button>
-      <button
-        onClick={() => handleRemoveItem(item.id)}
-        type="button"
-        className="nes-btn is-error"
-      >
-        Remove Item
       </button>
     </div>
   )
