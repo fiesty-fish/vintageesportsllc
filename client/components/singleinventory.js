@@ -1,105 +1,73 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
+import React, {useState} from 'react'
 import axios from 'axios'
 
-class SingleInventory extends Component {
-  constructor() {
-    super()
-    this.state = {
-      quantity: 0
-    }
-    this.handleUpdateItem = this.handleUpdateItem.bind(this)
-    this.handleIncrement = this.handleIncrement.bind(this)
-    this.handleDecrement = this.handleDecrement.bind(this)
-    this.handleRemoveItem = this.handleRemoveItem.bind(this)
-  }
+export default function SingleInventory(props) {
+  const [quantity, updateQuantity] = useState(0)
 
-  async handleUpdateItem(item) {
+  async function handleUpdateInventory(item) {
     try {
-      await axios.put(`/api/items/${this.props.user.id}`, {item})
+      await axios.put(`/api/items/${props.user.id}`, {item})
     } catch (error) {
       console.error(error)
     }
   }
 
-  async handleRemoveItem(itemId) {
-    try {
-      await axios.put(`/api/items/remove/${this.props.user.id}`, {itemId})
-    } catch (error) {
-      console.error(error)
+  function handleQuantity(event) {
+    const totalInventory = props.item.inventory + quantity
+
+    if (
+      event.target.innerText === '+' &&
+      quantity < 999 &&
+      totalInventory < 1000
+    ) {
+      updateQuantity(quantity + 1)
+    }
+
+    if (
+      event.target.innerText === '-' &&
+      quantity >= -999 &&
+      totalInventory > 0
+    ) {
+      updateQuantity(quantity - 1)
     }
   }
 
-  handleIncrement() {
-    const currQuantity = this.state.quantity
-    const totalInventory = this.props.item.inventory + this.state.quantity
-    if (currQuantity < 999 && totalInventory < 1000) {
-      this.setState({
-        quantity: currQuantity + 1
-      })
-    }
+  const {item} = props
+
+  const updatedItem = {
+    name: item.name,
+    inventory: quantity + item.inventory
   }
 
-  handleDecrement() {
-    const currQuantity = this.state.quantity
-    const totalInventory = this.props.item.inventory + this.state.quantity
-    if (currQuantity >= -999 && totalInventory > 0) {
-      this.setState({
-        quantity: currQuantity - 1
-      })
-    }
-  }
-
-  render() {
-    const {item} = this.props
-
-    const updatedItem = {
-      name: item.name,
-      inventory: this.state.quantity + item.inventory
-    }
-    return (
-      <div>
-        <h3>{`Item Name: ${item.name} (${item.year})`}</h3>
-        <h5>Item Units Count: </h5>
-        <button
-          onClick={this.handleDecrement}
-          type="button"
-          className="nes-btn inc-dec-btn button-no-text-shadow"
-        >
-          -
-        </button>
-        <span> {item.inventory + this.state.quantity} </span>
-        <button
-          onClick={this.handleIncrement}
-          type="button"
-          className="nes-btn inc-dec-btn button-no-text-shadow"
-        >
-          +
-        </button>
-        <span> </span>
-        <button
-          onClick={() => this.handleUpdateItem(updatedItem)}
-          type="button"
-          className="nes-btn is-primary"
-        >
-          Update
-        </button>
-        <button
-          onClick={() => this.handleRemoveItem(item.id)}
-          type="button"
-          className="nes-btn is-error"
-        >
-          Remove Item
-        </button>
-      </div>
-    )
-  }
+  return (
+    <div>
+      <h3>{`Item Name: ${item.name} (${item.year})`}</h3>
+      <h5>Item Units Count: </h5>
+      <button
+        onClick={handleQuantity}
+        type="button"
+        className="nes-btn inc-dec-btn button-no-text-shadow"
+      >
+        -
+      </button>
+      <span> {item.inventory + quantity} </span>
+      <button
+        onClick={handleQuantity}
+        type="button"
+        className="nes-btn inc-dec-btn button-no-text-shadow"
+      >
+        +
+      </button>
+      <span> </span>
+      <button
+        onClick={() => {
+          handleUpdateInventory(updatedItem)
+        }}
+        type="button"
+        className="nes-btn is-primary"
+      >
+        Update
+      </button>
+    </div>
+  )
 }
-
-const mapState = state => {
-  return {
-    user: state.user
-  }
-}
-
-export default connect(mapState)(SingleInventory)
