@@ -11,6 +11,7 @@ class Inventory extends Component {
 
   render() {
     const {items} = this.props
+    const {user} = this.props
 
     return (
       <div className="inventory-list">
@@ -19,7 +20,7 @@ class Inventory extends Component {
         {items.map(item => {
           return (
             <div key={item.id}>
-              <SingleInventory item={item} />
+              <SingleInventory item={item} user={user} />
               <br />
               <br />
               <progress
