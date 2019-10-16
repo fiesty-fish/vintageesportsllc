@@ -49,7 +49,6 @@ export default class Inventory extends Component {
             <div key={item.id}>
               <SingleInventory item={item} user={this.state.user} />
               <br />
-
               <button
                 onClick={() => this.handleRemoveItem(item.id)}
                 type="button"
