@@ -2,20 +2,19 @@
   "name": "vintagevidyagames",
   "short_name": "VVG",
   "description": "We sell old video games.",
-  "start_url": "http://localhost:8080/",
+  "start_url": "https://vintage-vidya-games.herokuapp.com/",
   "display": "standalone",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64",
+      "src": "favicon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "favicon-512.png",
+      "sizes": "512x512",
       "type": "image/png"
     }
   ],
-  "prefer_related_applications": true,
-  "related_applications": [
-    {
-      "platform": "play",
-      "id": "com.google.samples.apps.iosched"
-    }
-  ]
+  "prefer_related_applications": false
 }
