@@ -1,0 +1,21 @@
+{
+  "name": "vintagevidyagames",
+  "short_name": "VVG",
+  "description": "We sell old video games.",
+  "start_url": "http://localhost:8080/",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64",
+      "type": "image/png"
+    }
+  ],
+  "prefer_related_applications": true,
+  "related_applications": [
+    {
+      "platform": "play",
+      "id": "com.google.samples.apps.iosched"
+    }
+  ]
+}
