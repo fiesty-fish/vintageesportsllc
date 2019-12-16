@@ -14,11 +14,10 @@ export const burgerStyles = {
   },
   bmCrossButton: {
     height: '24px',
-    width: '24px',
-    backgroundColor: '#424242'
+    width: '24px'
   },
   bmCross: {
-    background: '#bdc3c7'
+    background: '#f7d51d'
   },
   bmMenuWrap: {
     height: '100%',
