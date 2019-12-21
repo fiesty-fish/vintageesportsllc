@@ -35,7 +35,7 @@ class NavbarBurger extends Component {
           isOpen={this.state.menuOpen}
           onStateChange={state => this.handleStateChange(state)}
           right
-          width="44%"
+          width="50%"
           styles={burgerStyles}
         >
           <div style={divStyles}>
