@@ -25,6 +25,7 @@ export const burgerStyles = {
   },
   bmMenu: {
     background: '#92cc41',
+    boxShadow: '0 0 2px #92cc41, 0 0 5px #92cc41',
     fontSize: '0.65em'
   },
   bmMorphShape: {
