@@ -1,6 +1,9 @@
 const isDev = process.env.NODE_ENV === 'development'
+const nodeExternals = require('webpack-node-externals')
 
 module.exports = {
+  target: 'node',
+  externals: [nodeExternals()],
   mode: isDev ? 'development' : 'production',
   entry: [
     '@babel/polyfill', // enables async-await
@@ -11,7 +14,7 @@ module.exports = {
     filename: './public/bundle.js'
   },
   resolve: {
-    extensions: ['.js', '.jsx']
+    extensions: ['.js', '.jsx', '.tsx', '.ts', '.json']
   },
   devtool: 'source-map',
   watchOptions: {
@@ -21,6 +24,11 @@ module.exports = {
     rules: [
       {
         test: /\.jsx?$/,
+        enforce: 'pre',
+        use: ['babel-loader']
+      },
+      {
+        test: /\.(ts|tsx)$/,
         exclude: /node_modules/,
         loader: 'babel-loader'
       }

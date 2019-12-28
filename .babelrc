@@ -1,7 +1,8 @@
 {
   "presets": [
     "@babel/react",
-    "@babel/env"
+    "@babel/env",
+    "@babel/preset-typescript"
     /*
     Babel uses these "presets" to know how to transpile your Javascript code. Here's what we're saying with these:
 
