@@ -5,7 +5,6 @@ import {Router} from 'react-router-dom'
 import history from './history'
 import store from './store'
 import App from './app'
-// import * as serviceWorker from './serviceWorker'
 
 // establishes socket connection
 import './socket'
