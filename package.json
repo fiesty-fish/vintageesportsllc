@@ -1,9 +1,12 @@
 {
-  "name": "boilermaker",
-  "version": "2.0.0",
-  "description": "Some boilerplate code to get you started - get shakin'!",
+  "name": "vintage-vidya-games",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "author": "Tal Luigi, Michael Ng, Ricky Lau",
+  "license": "MIT",
   "engines": {
-    "node": ">= 7.0.0"
+    "node": "12.11.1"
   },
   "main": "index.js",
   "scripts": {
@@ -39,8 +42,6 @@
       "git add"
     ]
   },
-  "author": "Fullstack Academy of Code",
-  "license": "MIT",
   "dependencies": {
     "@material-ui/core": "^4.5.1",
     "@material-ui/icons": "^4.5.1",
