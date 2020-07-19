@@ -17,11 +17,11 @@ before_script:
 script:
   - npm test # Test the code
   - npm run build-client # Make the bundle
-# before_deploy:
-#   - rm -rf node_modules # Omit from the tarball, since we skip cleanup
-# deploy:
-#   skip_cleanup: true # Prevents Travis from deleting the build
-#   provider: heroku
-#   app: YOUR-HEROKU-APP-NAME-HERE # See README
-#   api_key:
-#     secure: YOUR-***ENCRYPTED***-API-KEY-HERE # See README
+before_deploy:
+  - rm -rf node_modules # Omit from the tarball, since we skip cleanup
+deploy:
+  skip_cleanup: true # Prevents Travis from deleting the build
+  provider: heroku
+  app: vintage-vidya-games # See README
+  api_key:
+    secure: mGvFao2Erhj7nZDYk9aCwlkaNNvr3453Vt6+ka06CF2vv7P633BF5l+wvFpbqmawYV+bLwp16IO2ePbvfadorW8kBezppyssze0fPlOd3lNYrpWEo6BRPjS8lTRHXfRC8xty6Eg3vVP6ji7aDF5569eF4bb6hRGvkCugphuK25XwohGSch9CBumEJU+3q8odwjjQvjXNMZQkVjy3xOL43h1CkxNsNJawzDjmeQreboXcYLfItDas3q9kKyj8G1SeD+fCLyS4DRMXzJYHwpb+LQqZJ3xLgrLYOdsf4wk6EloxHgPq4T+Ifx9QOIFd2tT7g2h8w+nrNdKx3+VV0ATTk0D2WvMhQsJcGuNLFpbfpX9R3cLqgNHS5/X1j8vGfrQYk3LjID0CtZQZbQpUa6GRM7dS9br1EArZdcJh8W23vRmSwpKMkYq1gt+dpYSHzy0x7uU1UeLGFbtCUXTKHdXygC2laI5ba+9AaH18pXfsjs6HBPpJ5lIuP8IJKO+lA0hQjXipDGrpZqCauHlXmYlFoe5dHmOIESEUlZ3CBmULqr9F5Nrwnd+ZE7FD5Z0yiPMPAg+bXFqMciaz8mFd5f35oxmMO9zIw0TLSSEgvK+Bri0blcJqFu2NdFghvhFwsKt04sLRY+p6kvyFjrVVwFzDcFqOcItrx7AB7SfbSbHbZ4A= # See README
