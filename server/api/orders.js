@@ -2,7 +2,7 @@ const router = require('express').Router()
 const {Order, ItemOrder} = require('../db/models')
 const Sequelize = require('sequelize')
 if (process.env.NODE_ENV !== 'production') require('../../secrets')
-const stripe = require('stripe')(process.env.stripeTestApiKey)
+const stripe = require('stripe')(process.env.STRIPE_TEST_API_KEY)
 const Op = Sequelize.Op
 const uuid = require('uuid/v4')
 
