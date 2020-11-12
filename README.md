@@ -22,6 +22,6 @@ Built using Node.js, Express, PostgreSQL, and Sequelize on the backend, React, R
 
 ### Dev Team:
 
-* Ricky Lau ([LinkedIn](https://www.linkedin.com/in/rickylaudev) | [GitHub](https://github.com/rickylaufitness))
+* Ricky Lau ([LinkedIn](https://www.linkedin.com/in/rickylaudev) | [GitHub](https://github.com/erick805))
 * Tal Luigi ([LinkedIn](https://www.linkedin.com/in/talluigi) | [GitHub](https://github.com/luigilegion))
 * Michael Ng ([LinkedIn](https://www.linkedin.com/in/michael-m-ng) | [GitHub](https://github.com/xmng))
