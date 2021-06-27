@@ -16,7 +16,7 @@ before_script:
   - psql -c 'create database "vintage-vidya-games-test";' -U postgres # Remember to change this name if you change it elsewhere (e.g. package.json)
 script:
   - npm test # Test the code
-  - npm run build-client # Make the bundle
+  - npm run build # Make the bundle
 before_deploy:
   - rm -rf node_modules # Omit from the tarball, since we skip cleanup
 deploy:
