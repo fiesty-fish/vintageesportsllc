@@ -1,34 +1,32 @@
 /* global describe beforeEach it */
 
-// const {expect} = require('chai')
-// const db = require('../index')
-// const Item = db.model('item')
+const chai = require('chai')
+const {expect} = require('chai')
+const Sequelize = require('sequelize')
+const db = require('../index')
+const Item = db.model('item')
 
-// describe('Item model', () => {
-//   beforeEach(() => {
-//     return db.sync({force: true})
-//   })
+chai.use(require('chai-as-promised'))
 
-//   describe('create item', () => {
-//     describe('require name, price, year, and inventory', () => {
-//       const game = {
-//         name: 'Super Mario 64',
-//         price: 3999,
-//         year: 1996,
-//         inventory: 999
-//       }
+describe('Item model', () => {
+  beforeEach(() => {
+    return db.sync({force: true})
+  })
 
-//       beforeEach(async () => {
-//         await Item.create(game)
-//       })
+  describe('create item', () => {
+    describe('invalid price', () => {
+      const game = {
+        name: 'Super Mario 64',
+        price: 39.99,
+        year: 1996,
+        inventory: 999
+      }
 
-//       it('returns true if the password is correct', () => {
-//         expect(cody.correctPassword('bones')).to.be.equal(true)
-//       })
-
-//       it('returns false if the password is incorrect', () => {
-//         expect(cody.correctPassword('bonez')).to.be.equal(false)
-//       })
-//     }) // end describe('correctPassword')
-//   }) // end describe('instanceMethods')
-// }) // end describe('User model')
+      it('fails if the price is a decimal', async () => {
+        await expect(Item.create(game)).to.be.rejectedWith(
+          Sequelize.DatabaseError
+        )
+      })
+    }) // end describe('invalid price')
+  }) // end describe('create item')
+}) // end describe('Item model')
