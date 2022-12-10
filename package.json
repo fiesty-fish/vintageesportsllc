@@ -49,7 +49,7 @@
     "chai-as-promised": "^7.1.1",
     "compression": "^1.7.3",
     "connect-session-sequelize": "^6.0.0",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-session": "^1.17.0",
     "history": "^4.10.1",
     "morgan": "^1.9.1",
